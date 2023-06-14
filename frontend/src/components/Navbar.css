@@ -1,0 +1,22 @@
+.Nav{
+
+/* On small screens */
+@media (min-width: 576px) {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* On medium screens */
+@media (min-width: 768px) {
+  grid-template-columns: repeat(2, 20% 80%);
+}
+
+/* On large screens */
+@media (min-width: 992px) {
+  grid-template-columns: repeat(2, 20% 70%);
+}
+
+/* On extra-large screens */
+@media (min-width: 1200px) {
+  grid-template-columns: repeat(2, 20% 79%);
+}
+}
