@@ -51,7 +51,7 @@ userRouter.get("/login", async (req, res) => {
         }
       });
     } else {
-      res.status(404).json({ msg: "user does not exit. Register first!!" });
+      res.status(404).json({ msg: "user does not exit. Signup first!!" });
     }
   } catch (error) {
     res.status(400).json({ err: error.message });
