@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema(
     password: String,
     age: Number,
     city: String,
+    job: String,
   },
   {
     versionKey: false,
