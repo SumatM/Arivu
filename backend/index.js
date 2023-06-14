@@ -4,6 +4,7 @@ const { userRouter } = require("./routes/users.routes");
 const { courseRoute } = require("./routes/courses.route");
 const { videoRoute } = require("./routes/videos.route");
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
@@ -14,6 +15,25 @@ app.use("/users", userRouter);
 app.use("/courses",courseRoute);
 
 app.use('/videos',videoRoute)
+
+app.get("/regenerateToken", (req, res) => {
+  const rToken = req.headers.authorization?.split(" ")[1];
+  const decoded = jwt.verify(rToken, "ARIVU");
+
+  if (decoded) {
+    const token = jwt.sign(
+      { userId: decoded.userId, user: decoded.user },
+      "arivu",
+      {
+        expiresIn: "7d",
+      }
+    );
+    res.status(201).json({ msg: "token created", token });
+  } else {
+    res.status(400).json({ msg: "not a valid Refresh Token" });
+  }
+});
+
 
 app.listen(process.env.port, async () => {
   try {
