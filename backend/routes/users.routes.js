@@ -112,6 +112,21 @@ userRouter.get("/logout", (req, res) => {
   }
 });
 
+
+// user course list 
+userRouter.get('/userCourse/:userId', async(req,res)=>{
+  try{
+      const userId = req.params.userId;
+      const user = await UserModel.findById({_id:userId}).populate('course')
+      console.log(user.course,userId);
+      res.status(200).json({course:user.course})
+  }catch(err){
+      res.status(400).json({message:'Something Went Wrong',error:err.message})
+  }
+}) 
+
 module.exports = {
   userRouter,
 };
+
+
