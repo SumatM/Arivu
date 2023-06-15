@@ -10,6 +10,8 @@ const auth = (req, res, next) => {
       }
       const decoded = jwt.verify(token, "arivu");
       if (decoded) {
+        req.body.username = decoded.user;
+        req.body.userId = decoded.userId;
         next();
       } else {
         res.status(200).json({ msg: "not authorized" });
