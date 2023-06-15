@@ -3,12 +3,13 @@ const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/users.models");
 const jwt = require("jsonwebtoken");
 const { blacklist } = require("../blacklist");
+const multer = require("multer");
 
 const userRouter = express.Router();
 
 //registration
 userRouter.post("/register", async (req, res) => {
-  const { name, email, password, age, city, job } = req.body;
+  const { name, email, password, age, city, job, image } = req.body;
   const registeredUser = await UserModel.findOne({ email });
 
   if (registeredUser) {
@@ -27,6 +28,7 @@ userRouter.post("/register", async (req, res) => {
             age,
             city,
             job,
+            image,
           });
           await user.save();
           res.status(201).json({ msg: "user created succesfully" });
@@ -123,7 +125,7 @@ userRouter.get('/userCourse/:userId', async(req,res)=>{
   }catch(err){
       res.status(400).json({message:'Something Went Wrong',error:err.message})
   }
-}) 
+})
 
 module.exports = {
   userRouter,

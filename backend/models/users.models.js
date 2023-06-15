@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema(
     job: String,
     course:[{type: mongoose.Schema.Types.ObjectId, ref: 'course'}],
     role: String
+    image: String,
   },
   {
     versionKey: false,

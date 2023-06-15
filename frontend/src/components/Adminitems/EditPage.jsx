@@ -1,11 +1,18 @@
-import { Box, Button, Flex, FormControl, FormLabel,Input, Textarea } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel,Grid,Input, Textarea } from '@chakra-ui/react'
 import React from 'react'
 import "./edit.css"
+import AdminSidebar from '../AdminSidebar'
+import AdminNavTop from '../AdminNavTop'
 
 const EditPage = () => {
   return (
-    
-  <Flex align="center" justify="center" minHeight="88vh" border={'2px solid red'} className="background" color={'white'}>
+
+    <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
+    <AdminSidebar/> 
+       <Box >
+     <AdminNavTop/>
+   {/*  */}
+   <Flex align="center" justify="center" minHeight="88vh" border={'2px solid red'} className="background" color={'white'}>
       <Box width={["100%", "80%", "60%", "40%"]} p={4}>
         <FormControl>
           <FormLabel >Course Name</FormLabel>
@@ -36,6 +43,11 @@ const EditPage = () => {
         </Button>
       </Box>
     </Flex>
+       </Box>
+ 
+     </Grid>
+    
+  
   
   )
 }

@@ -1,10 +1,13 @@
+import { Routes } from "react-router-dom";
+import AllRoute from "./routes/AllRoute";
+import AdminNavbar from "./components/AdminNavbar";
 
-import Navbar from './components/Navbar';
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <AllRoute/>
     </div>
   );
 }
