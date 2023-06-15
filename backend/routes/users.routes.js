@@ -48,7 +48,7 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         // result == true
-        const token = jwt.sign({ userId: user._id, user: user.name }, "arivu", {
+        const token = jwt.sign({ userId: user._id, user: user.name, }, "arivu", {
           expiresIn: "7d",
         });
         const rToken = jwt.sign(
@@ -87,6 +87,7 @@ userRouter.patch("/update/:userId", async (req, res) => {
   }
 });
 
+
 //delete
 userRouter.delete("/delete/:userId", async (req, res) => {
   const { userId } = req.params;
@@ -101,6 +102,8 @@ userRouter.delete("/delete/:userId", async (req, res) => {
   }
 });
 
+
+//logout
 userRouter.get("/logout", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   try {
