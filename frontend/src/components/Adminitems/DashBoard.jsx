@@ -2,6 +2,8 @@ import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Bar, Pie  } from "react-chartjs-2";
 import Chart from 'chart.js/auto'
+import AdminSidebar from '../AdminSidebar';
+import AdminNavTop from '../AdminNavTop';
 
 const DashBoard = () => {
 
@@ -39,7 +41,13 @@ const DashBoard = () => {
   };
 
   return (
-    <Box  h={'130vh'}  p={5}>
+
+    <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
+    <AdminSidebar/> 
+       <Box >
+     <AdminNavTop/>
+   {/*  */}
+   <Box  h={'130vh'}  p={5}>
      <Grid templateColumns={'repeat(4,1fr)'} gap={10} >
       <Box  border={'2px solid gray'} p={5}>
         <Flex justify={'space-between'}>
@@ -131,6 +139,11 @@ const DashBoard = () => {
 {/* Pie graph end */}
 
     </Box>
+       </Box>
+ 
+     </Grid>
+
+    
   )
 }
 

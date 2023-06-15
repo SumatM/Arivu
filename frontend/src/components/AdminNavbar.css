@@ -6,17 +6,17 @@
 }
 
 /* On medium screens */
-@media (min-width: 768px) {
-  grid-template-columns: repeat(2, 20% 80%);
+@media (min-width: 810px) {
+  grid-template-columns: repeat(2, 15% 85%);
 }
 
 /* On large screens */
 @media (min-width: 992px) {
-  grid-template-columns: repeat(2, 20% 70%);
+  grid-template-columns: repeat(2, 15% 85%);
 }
 
 /* On extra-large screens */
 @media (min-width: 1200px) {
-  grid-template-columns: repeat(2, 20% 79%);
+  grid-template-columns: repeat(2, 15% 85%);
 }
 }

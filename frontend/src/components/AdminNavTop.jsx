@@ -7,7 +7,7 @@ import { AiOutlineBell } from "react-icons/ai";
 import { TbCircleLetterM } from "react-icons/tb";
 
 
-const NavTop = () => {
+const AdminNavTop = () => {
   return (
     <Flex h='10vh' justifyContent={'space-between'}  w={'wrap'}  >
         <Flex w={'60%'}  >
@@ -19,14 +19,14 @@ const NavTop = () => {
       <Input placeholder='Search Anything' border={'none'}  h={'8vh'} w='100%' />
         </Box>
         </Flex>
-    <Flex  gap={20} flexDirection={['column','row']}>
+    <Flex  gap={5} flexDirection={['column','row']}>
       <Link  to="/"> < AiOutlineQuestionCircle style={{fontSize:'4vh', color:'black', marginTop:"10px"}} /> </Link>
       <Link> < AiOutlineBell style={{fontSize:'4vh', color:'black', marginTop:"10px"}}/> </Link>
-      <Button border='none' bg='white' cursor='pointer'> < TbCircleLetterM style={{fontSize:'4vh', color:'red',marginBottom:'15px'}}/> </Button>
+      <Button border='none' bg='white' cursor='pointer'> < TbCircleLetterM style={{fontSize:'4vh', color:'red', marginTop:"10px"}}/> </Button>
     </Flex>
 
     </Flex>
   )
 }
 
-export default NavTop
+export default AdminNavTop
