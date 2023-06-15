@@ -114,20 +114,21 @@ userRouter.get("/logout", (req, res) => {
   }
 });
 
-userRouter.get("/", async (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (token) {
-    try {
-      const users = await UserModel.find();
-      res.status(202).json({ users });
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  } else {
-    res.status(400).json({ msg: "please login" });
+
+// user course list 
+userRouter.get('/userCourse/:userId', async(req,res)=>{
+  try{
+      const userId = req.params.userId;
+      const user = await UserModel.findById({_id:userId}).populate('course')
+      console.log(user.course,userId);
+      res.status(200).json({course:user.course})
+  }catch(err){
+      res.status(400).json({message:'Something Went Wrong',error:err.message})
   }
-});
+})
 
 module.exports = {
   userRouter,
 };
+
+

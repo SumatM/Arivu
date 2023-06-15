@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema(
     age: Number,
     city: String,
     job: String,
-    course:[{type: mongoose.Schema.Types.ObjectId}],
+    course:[{type: mongoose.Schema.Types.ObjectId, ref: 'course'}],
     role: String
     image: String,
   },
