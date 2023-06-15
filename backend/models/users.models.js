@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema(
     age: Number,
     city: String,
     job: String,
+    image: String,
   },
   {
     versionKey: false,

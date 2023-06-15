@@ -3,12 +3,13 @@ const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/users.models");
 const jwt = require("jsonwebtoken");
 const { blacklist } = require("../blacklist");
+const multer = require("multer");
 
 const userRouter = express.Router();
 
 //registration
 userRouter.post("/register", async (req, res) => {
-  const { name, email, password, age, city, job } = req.body;
+  const { name, email, password, age, city, job, image } = req.body;
   const registeredUser = await UserModel.findOne({ email });
 
   if (registeredUser) {
@@ -27,6 +28,7 @@ userRouter.post("/register", async (req, res) => {
             age,
             city,
             job,
+            image,
           });
           await user.save();
           res.status(201).json({ msg: "user created succesfully" });
@@ -106,6 +108,20 @@ userRouter.get("/logout", (req, res) => {
     res.status(200).json({ msg: "The user has logged out" });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+
+userRouter.get("/", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (token) {
+    try {
+      const users = await UserModel.find();
+      res.status(202).json({ users });
+    } catch (error) {
+      res.status(400).json({ msg: error.message });
+    }
+  } else {
+    res.status(400).json({ msg: "please login" });
   }
 });
 
