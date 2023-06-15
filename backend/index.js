@@ -3,6 +3,7 @@ const { connection } = require("./db");
 const { userRouter } = require("./routes/users.routes");
 const { courseRoute } = require("./routes/courses.route");
 const { videoRoute } = require("./routes/videos.route");
+
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
@@ -12,9 +13,9 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 
-app.use("/courses",courseRoute);
+app.use("/courses", courseRoute);
 
-app.use('/videos',videoRoute)
+app.use("/videos", videoRoute);
 
 app.get("/regenerateToken", (req, res) => {
   const rToken = req.headers.authorization?.split(" ")[1];
@@ -33,7 +34,6 @@ app.get("/regenerateToken", (req, res) => {
     res.status(400).json({ msg: "not a valid Refresh Token" });
   }
 });
-
 
 app.listen(process.env.port, async () => {
   try {
