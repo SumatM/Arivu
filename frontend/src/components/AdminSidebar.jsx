@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const AdminSidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -25,19 +25,17 @@ const Sidebar = () => {
   return (
     <Flex
       as="nav"
-      align="center"
-      justify="space-between"
-      padding={4}
-      bg="gray.800"
+    
+     justify="space-between"
+      bg="white"
       color="black"
       display={'column'}
-      
       w={'wrap'}
      borderRight='2px solid gray'
-      h={{xl:'98vh',lg:'98vh',sm:'20vh'}}
+      h='wrap'
       gap={20}
     >
-        <Box>Welcome Admin!</Box>
+        <Text mt={5} p={2} >Welcome Admin!</Text>
       <Box>
         <IconButton
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -49,35 +47,35 @@ const Sidebar = () => {
         />
       </Box>
       <Flex
-        align="center"
+        
         fontSize="lg"
         fontWeight="bold"
         display={!isMobile || isOpen ? 'inherit' : 'none'}
       >
-        <Box mt={50}>
-<Link to="/">
-        <Box p={5} >Dashboard</Box>
+        <Box mt={5}>
+<Link to="/admin/dashboard">
+        <Box p={2} >Dashboard</Box>
 </Link>
-<Link to="/edit">
-        <Box p={5} mt={10}>Order</Box>
+<Link to="/admin/edit/:id">
+        <Box p={2} >Order</Box>
 </Link>
-<Link to="/courses">
-        <Box p={5} mt={10}>Products</Box>
+<Link to="/admin/courses">
+        <Box p={2}>Products</Box>
 </Link>
-<Link to="/">
-        <Box p={5} mt={10}>Customers</Box>
+<Link to="/admin/addCourse">
+        <Box p={2} >AddCourse</Box>
 </Link>
-<Link to="/">
-        <Box p={5} mt={10}>Discounts</Box>
+<Link to="/admin/dashboard">
+        <Box p={2} >Discounts</Box>
 </Link>
-<Link to="/">
-        <Box p={5} mt={10}>GiftCards</Box>
+<Link to="/admin/dashboard">
+        <Box p={2} >GiftCards</Box>
 </Link>
-<Link to="/">
-        <Box p={5} mt={10}>Pricing</Box>
+<Link to="/admin/dashboard">
+        <Box p={2} >Pricing</Box>
 </Link>
-<Link to="/">
-        <Box p={5} mt={10}>Settings</Box>
+<Link to="/admin/dashboard">
+        <Box p={2}>Settings</Box>
 </Link>
       </Box>
       </Flex>
@@ -85,4 +83,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;
