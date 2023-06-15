@@ -1,31 +1,76 @@
 const express  = require('express');
 const courseModel = require('../models/courses.model');
+const { auth } = require('../middlewares/users.middleware');
+const {UserModel}  = require('../models/users.models.js')
 
 
 const courseRoute = express.Router();
 
-// all course get request 
+      courseRoute.use(auth)
+
+
+
+// all course get request user access
+courseRoute.get('/userCourse', async(req,res)=>{
+    try{
+ 
+        let {q,sortBy,sortOrder,page,limit} = req.query;
+        let filter = {};
+        if(q){
+           filter.title = {$regex: q, $options: 'i'}
+        }
+    
+        const sort = {};
+        if(sortBy){
+            sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        }
+    
+        page  = page ? page : 1;
+    
+        limit = limit ? limit : 10;
+    
+        console.log(filter,sort)
+        const data = req.body;
+        const course = await courseModel.find(filter).sort(sort).skip((page-1)*limit).limit(limit);
+        res.status(200).json({course})
+    
+
+    }catch(err){
+        res.status(400).json({message:'Something Went Wrong',error:err.message})
+    }
+})      
+
+
+
+
+// all course get request admin access
 courseRoute.get('/', async(req,res)=>{
     try{
-    let {q,sortBy,sortOrder,page,limit} = req.query;
-    let filter = {};
-    if(q){
-       filter.title = {$regex: q, $options: 'i'}
+        const user = await UserModel.findOne({_id:req.body.userId})
+    if(user.role==='admin'){
+        let {q,sortBy,sortOrder,page,limit} = req.query;
+        let filter = {};
+        if(q){
+           filter.title = {$regex: q, $options: 'i'}
+        }
+    
+        const sort = {};
+        if(sortBy){
+            sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        }
+    
+        page  = page ? page : 1;
+    
+        limit = limit ? limit : 10;
+    
+        console.log(filter,sort)
+        const data = req.body;
+        const course = await courseModel.find(filter).sort(sort).skip((page-1)*limit).limit(limit);
+        res.status(200).json({course})
+    }else{
+        res.status(401).json({error:'you are not authorized to acces this part'})
     }
-
-    const sort = {};
-    if(sortBy){
-        sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
-    }
-
-    page  = page ? page : 1;
-
-    limit = limit ? limit : 10;
-
-    console.log(filter,sort)
-    const data = req.body;
-    const course = await courseModel.find(filter).sort(sort).skip((page-1)*limit).limit(limit);
-    res.status(200).json({course})
+    
 
     }catch(err){
         res.status(400).json({message:'Something Went Wrong',error:err.message})
