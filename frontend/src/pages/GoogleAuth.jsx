@@ -2,8 +2,8 @@ import React from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { signUp } from "../redux/auth/action";
-import { signInAuth } from "../redux/auth/action";
+// import { signUp } from "../redux/auth/action";
+// import { signInAuth } from "../redux/auth/action";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -35,13 +35,13 @@ const GoogleAuth = () => {
         data
       );
       if (isUser) {
-        await dispatch(signInAuth(data));
+        // await dispatch(signInAuth(data));
         navigate("/dashboard");
       } else {
         throw Error;
       }
     } catch (error) {
-      await dispatch(signUp(data));
+      // await dispatch(signUp(data));
       navigate("/dashboard");
     }
   };
@@ -51,13 +51,13 @@ const GoogleAuth = () => {
     // Handle the failed login response
   };
 
-  const handleClick = () => {
-    // Manually trigger the Google sign-in process
-    const googleButton = document.getElementById("google-login-button");
-    if (googleButton) {
-      googleButton.click();
-    }
-  };
+  // const handleClick = () => {
+  //   // Manually trigger the Google sign-in process
+  //   const googleButton = document.getElementById("google-login-button");
+  //   if (googleButton) {
+  //     googleButton.click();
+  //   }
+  // };
 
   return (
     <div>
