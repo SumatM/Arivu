@@ -18,6 +18,10 @@ const courseSchema = new mongoose.Schema({
     type: String,
     require:true
   },
+  teacherId:{
+    type: mongoose.Schema.Types.ObjectId,
+    require:true
+  },
   price:{
     type:String,
     require:true,

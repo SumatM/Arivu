@@ -3,11 +3,14 @@ const { connection } = require("./db");
 const { userRouter } = require("./routes/users.routes");
 const { courseRoute } = require("./routes/courses.route");
 const { videoRoute } = require("./routes/videos.route");
+const cors = require('cors')
 
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 
