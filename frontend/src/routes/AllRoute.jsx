@@ -4,7 +4,7 @@ import DashBoard from "../components/Adminitems/DashBoard";
 import EditPage from "../components/Adminitems/EditPage";
 import AddCourse from "../components/Adminitems/AddCourse";
 import LandingPage from "../Pages/LandingPage";
-
+import PageNotFound from "../Pages/PageNotFound";
 import UserDashboard from "../Pages/UserDashboard";
 
 
@@ -18,6 +18,7 @@ import GiftCard from "../components/Adminitems/GiftCard";
 
 
 
+
 const AllRoute = () => {
   return (
     <Routes>
@@ -26,16 +27,14 @@ const AllRoute = () => {
       <Route path="/admin/courses" element={<Courses />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
       <Route path="/admin/addCourse" element={<AddCourse />} />
-
       <Route path="/dashboard" element={<UserDashboard />} />
-
-
       <Route path="/admin/discount" element={<Discount/>} />
       <Route path="/admin/statistic" element={<Statistics/>} />
       <Route path="/admin/giftcard" element={<GiftCard/>} />
       <Route path="/admin/setting" element={<Setting/>} />
-
       <Route path="/" element={<LandingPage />} />
+      <Route path="*" element={<PageNotFound />} />
+
     </Routes>
   );
 };
