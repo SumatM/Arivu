@@ -31,7 +31,7 @@ const AdminSidebar = () => {
       color="black"
       display={'column'}
       w={'wrap'}
-     borderRight='2px solid gray'
+     borderRight={{xl:'2px solid gray',base:'0px'}}
       h='wrap'
       gap={20}
     >
@@ -56,25 +56,22 @@ const AdminSidebar = () => {
 <Link to="/admin/dashboard">
         <Box p={2} >Dashboard</Box>
 </Link>
-<Link to="/admin/edit/:id">
-        <Box p={2} >Order</Box>
-</Link>
 <Link to="/admin/courses">
-        <Box p={2}>Products</Box>
+        <Box p={2}>Courses</Box>
 </Link>
 <Link to="/admin/addCourse">
         <Box p={2} >AddCourse</Box>
 </Link>
-<Link to="/admin/dashboard">
+<Link to="/admin/discount">
         <Box p={2} >Discounts</Box>
 </Link>
-<Link to="/admin/dashboard">
+<Link to="/admin/giftcard">
         <Box p={2} >GiftCards</Box>
 </Link>
-<Link to="/admin/dashboard">
-        <Box p={2} >Pricing</Box>
+<Link to="/admin/statistic">
+        <Box p={2} >Statistics</Box>
 </Link>
-<Link to="/admin/dashboard">
+<Link to="/admin/setting">
         <Box p={2}>Settings</Box>
 </Link>
       </Box>
