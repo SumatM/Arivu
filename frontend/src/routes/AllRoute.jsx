@@ -7,7 +7,6 @@ import LandingPage from "../Pages/LandingPage";
 import PageNotFound from "../Pages/PageNotFound";
 import UserDashboard from "../Pages/UserDashboard";
 
-
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Discount from "../components/Adminitems/Discount";
@@ -15,6 +14,8 @@ import Statistics from "../components/Adminitems/Statistics";
 import Setting from "../components/Adminitems/Setting";
 import GiftCard from "../components/Adminitems/GiftCard";
 
+import GoogleAuth from '../pages/GoogleAuth'
+import SinglePage from '../components/SinglePage'
 
 
 
@@ -22,6 +23,8 @@ import GiftCard from "../components/Adminitems/GiftCard";
 const AllRoute = () => {
   return (
     <Routes>
+      <Route path="/googleauth" element={<GoogleAuth/>} />
+      <Route path="/singlePage" element={<SinglePage/>}
       <Route path="/admin" element={<DashBoard />} />
       <Route path="/admin/dashboard" element={<DashBoard />} />
       <Route path="/admin/courses" element={<Courses />} />
