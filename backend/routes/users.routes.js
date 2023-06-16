@@ -31,7 +31,7 @@ userRouter.post("/register", async (req, res) => {
             image,
           });
           await user.save();
-          res.status(201).json({ msg: "user created succesfully" });
+          res.status(201).json({ msg: "user created succesfully", user });
         }
       });
     } catch (error) {
@@ -48,7 +48,7 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         // result == true
-        const token = jwt.sign({ userId: user._id, user: user.name, }, "arivu", {
+        const token = jwt.sign({ userId: user._id, user: user.name }, "arivu", {
           expiresIn: "7d",
         });
         const rToken = jwt.sign(
@@ -87,7 +87,6 @@ userRouter.patch("/update/:userId", async (req, res) => {
   }
 });
 
-
 //delete
 userRouter.delete("/delete/:userId", async (req, res) => {
   const { userId } = req.params;
@@ -102,33 +101,31 @@ userRouter.delete("/delete/:userId", async (req, res) => {
   }
 });
 
-
 //logout
 userRouter.get("/logout", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   try {
-    blacklist.push(token);
+    // blacklist.push(token);
     res.status(200).json({ msg: "The user has logged out" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-
-// user course list 
-userRouter.get('/userCourse/:userId', async(req,res)=>{
-  try{
-      const userId = req.params.userId;
-      const user = await UserModel.findById({_id:userId}).populate('course')
-      console.log(user.course,userId);
-      res.status(200).json({course:user.course})
-  }catch(err){
-      res.status(400).json({message:'Something Went Wrong',error:err.message})
+// user course list
+userRouter.get("/userCourse/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await UserModel.findById({ _id: userId }).populate("course");
+    console.log(user.course, userId);
+    res.status(200).json({ course: user.course });
+  } catch (err) {
+    res
+      .status(400)
+      .json({ message: "Something Went Wrong", error: err.message });
   }
-})
+});
 
 module.exports = {
   userRouter,
 };
-
-

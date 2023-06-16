@@ -2,47 +2,56 @@ import React from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import { useDispatch } from "react-redux";
-// import { signUp } from "../redux/auth/action";
+// import { signUp } from '../redux/auth/action';
 // import { signInAuth } from "../redux/auth/action";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const clientId =
-  "715608412851-5267tsdhnetciohip2kkqfvb1savkno9.apps.googleusercontent.com"; // Replace with your actual client ID
+  "1932194339-ugmhoo66hgqio243b0p1mr92rk9i27s5.apps.googleusercontent.com"; // Replace with your actual client ID
 
-const GoogleAuth = () => {
+const GoogleSignup = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  
+
   const handleSuccess = async (response) => {
     const { credential } = response;
     const decodedToken = jwtDecode(credential);
-    const userName = decodedToken.name;
-    const userEmail = decodedToken.email;
 
-    //   console.log('Google login successful');
-    //   console.log('User email:', userEmail);
-
+    console.log(decodedToken);
     const data = {
-      email: userEmail,
-      password: userEmail,
-      fullName: userName,
+      email: decodedToken.email,
+      password: decodedToken.email,
+      name: decodedToken.name,
+      image: decodedToken.picture,
     };
 
     try {
       const isUser = await axios.post(
-        "https://deploying-eo0h.onrender.com/auth/signin",
+        `http://localhost:8080/users/register`,
         data
       );
+      await axios
+        .post(`http://localhost:8080/users/login`, {
+          email: decodedToken.email,
+          password: decodedToken.email,
+        })
+        .then((res) => {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          console.log(res.data.token);
+        })
+        .catch((err) => console.log(err));
       if (isUser) {
         // await dispatch(signInAuth(data));
+
         navigate("/dashboard");
+        // console.log("done");
       } else {
         throw Error;
       }
     } catch (error) {
-      // await dispatch(signUp(data));
-      navigate("/dashboard");
+      //  await dispatch(signUp(data));
+      // navigate("/dashboard");
+      console.log("Something went wrong");
     }
   };
 
@@ -51,21 +60,11 @@ const GoogleAuth = () => {
     // Handle the failed login response
   };
 
-  // const handleClick = () => {
-  //   // Manually trigger the Google sign-in process
-  //   const googleButton = document.getElementById("google-login-button");
-  //   if (googleButton) {
-  //     googleButton.click();
-  //   }
-  // };
-
   return (
     <div>
-      {/* <h2>Google Signup</h2> */}
       <GoogleOAuthProvider clientId={clientId}>
-        {/* <button onClick={handleClick}></button> */}
         <GoogleLogin
-          id="google-login-button" // Add an ID to the GoogleLogin component
+          id="google-login-button"
           onSuccess={handleSuccess}
           onError={handleFailure}
         />
@@ -74,4 +73,4 @@ const GoogleAuth = () => {
   );
 };
 
-export default GoogleAuth;
+export default GoogleSignup;
