@@ -15,10 +15,20 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
-import GoogleAuth from "./GoogleAuth";
+import axios from "axios";
 
 const Navbar = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
+
+  const handleLogout = () => {
+    axios
+      .get("http://localhost:8080/users/logout")
+      .then((res) => {
+        localStorage.clear();
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Flex
@@ -36,7 +46,7 @@ const Navbar = () => {
           {/* Logo */}
           {/* <img src={image} alt="Logo" width="30%" /> */}
           <Text fontSize={30} fontWeight="extrabold" color="#0056d2">
-            ARIVU
+            AṞIVU
           </Text>
         </Box>
         {!isMobile && (
@@ -133,29 +143,10 @@ const Navbar = () => {
             </Link>
           </Box>
           <Box mr={4}>
-            <Link textDecoration="none" color="#0056d2" href="/login">
-              Login
-            </Link>
+            <Button colorScheme="red" size="md" onClick={handleLogout}>
+              Logout
+            </Button>
           </Box>
-
-          {/* Join for Free Button */}
-          <Button
-            bg="#0056d2"
-            color="white"
-            borderRadius="5px"
-            _hover={{ bg: "#003e9c" }}
-          >
-            Join for free
-          </Button>
-          {/* sign up with google */}
-          <Button
-            bg="#0056d2"
-            color="white"
-            borderRadius="5px"
-            _hover={{ bg: "#003e9c" }}
-          >
-            <GoogleAuth />
-          </Button>
         </Flex>
       )}
     </Flex>

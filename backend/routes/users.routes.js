@@ -62,7 +62,7 @@ userRouter.post("/register", async (req, res) => {
             image,
           });
           await user.save();
-          res.status(201).json({ msg: "user created succesfully" });
+          res.status(201).json({ msg: "user created succesfully", user });
         }
       });
     } catch (error) {
@@ -83,7 +83,9 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         // result == true
+
         const token = jwt.sign({ userId: user._id, user: user.name, role: user.role }, "arivu", {
+
           expiresIn: "7d",
         });
         const rToken = jwt.sign(
@@ -126,12 +128,14 @@ userRouter.patch("/update/:userId", async (req, res) => {
 });
 
 
+
 //delete the user ;
 // Access: Admin 
 // EndPoint: /users/delete/:userId;
 // FRONTEND: when admin want to delete user/teacher
 userRouter.delete("/delete/:userId", auth, async (req, res) => {
   
+
   try {
     if (req.body.role == "admin"){
       const { userId } = req.params;
@@ -150,7 +154,6 @@ userRouter.delete("/delete/:userId", auth, async (req, res) => {
   }
 });
 
-
 //logout
 // Access: All 
 // EndPoint: /users/logout
@@ -158,12 +161,13 @@ userRouter.delete("/delete/:userId", auth, async (req, res) => {
 userRouter.get("/logout", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   try {
-    blacklist.push(token);
+    // blacklist.push(token);
     res.status(200).json({ msg: "The user has logged out" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
+
 
 
 // list to courses user purchased
@@ -179,8 +183,9 @@ userRouter.get('/userCourse/:userId', async(req,res)=>{
       res.status(200).json({course:user.course})
   }catch(err){
       res.status(400).json({message:'Something Went Wrong',error:err.message})
+
   }
-})
+});
 
 
 // add courseId to the user course array;
@@ -217,5 +222,3 @@ await UserModel.findOne({ _id: id, course: { $in: [courseId] } })
 module.exports = {
   userRouter,
 };
-
-

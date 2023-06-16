@@ -5,6 +5,9 @@ import EditPage from "../components/Adminitems/EditPage";
 import AddCourse from "../components/Adminitems/AddCourse";
 import LandingPage from "../Pages/LandingPage";
 
+import UserDashboard from "../Pages/UserDashboard";
+
+
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Discount from "../components/Adminitems/Discount";
@@ -14,19 +17,24 @@ import GiftCard from "../components/Adminitems/GiftCard";
 
 
 
+
 const AllRoute = () => {
   return (
     <Routes>
-
       <Route path="/admin" element={<DashBoard />} />
       <Route path="/admin/dashboard" element={<DashBoard />} />
       <Route path="/admin/courses" element={<Courses />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
       <Route path="/admin/addCourse" element={<AddCourse />} />
+
+      <Route path="/dashboard" element={<UserDashboard />} />
+
+
       <Route path="/admin/discount" element={<Discount/>} />
       <Route path="/admin/statistic" element={<Statistics/>} />
       <Route path="/admin/giftcard" element={<GiftCard/>} />
       <Route path="/admin/setting" element={<Setting/>} />
+
       <Route path="/" element={<LandingPage />} />
     </Routes>
   );
