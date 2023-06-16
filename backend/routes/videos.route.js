@@ -51,7 +51,6 @@ videoRoute.post('/add/:courseId', async (req,res)=>{
 
     res.status(201).json({message:'Video Added',video})
     }else{
-        console.log('yes')
         res.status(400).json({error:'video already Present'})
     }
         
@@ -68,7 +67,7 @@ videoRoute.get('/courseVideos/:courseId', async(req,res)=>{
     try{
         const courseId = req.params.courseId;
         const course = await courseModel.findById({_id:courseId}).populate('videos')
-        console.log(course)
+        //console.log(course)
         res.status(200).json({course})
     }catch(err){
         res.status(400).json({message:'Something Went Wrong',error:err.message})

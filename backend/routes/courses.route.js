@@ -40,6 +40,7 @@ courseRoute.get('/', async(req,res)=>{
 
 
 // indivual course
+
 courseRoute.get('/:courseID', async(req,res)=>{
 
     try{
