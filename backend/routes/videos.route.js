@@ -1,23 +1,26 @@
 const express  = require('express');
 const courseModel = require('../models/courses.model');
+const { UserModel } = require('../models/users.models');
+const { VideoModel } = require('../models/video.model');
+const { auth } = require('../middlewares/users.middleware');
 
 const videoRoute = express.Router();
 
+     videoRoute.use(auth)
 
 // get all videos;
-
+// Access : all;
+// EndPoint: /videos/
+// resticted to admin only
+// FRONTEND: WE can use to get all the videos uploaded in system for admin user only;
 videoRoute.get('/', async (req,res)=>{
     try{
-    const course = await courseModel.find({});
-    let videos = [];
-     course.forEach((user)=>{
-         videos.push(...user.videos)
-    })
-    if(!course){
-        res.status(404).json({message:"Videos not found"})
-    }else{
-        res.status(202).json({message:"videos", videos})
-    }
+        if(req.body.role==='admin'){
+        const videos = await VideoModel.find({});
+        res.status(200).json(videos)
+        }else{
+            res.status(401).json({error:"you don't have access for videos"})
+        }
     }catch(err){
         console.log(err);
         res.status(400).json({message:'Something Went Wrong',error:err.message})
@@ -25,25 +28,14 @@ videoRoute.get('/', async (req,res)=>{
 })
 
 // get single video
-
+// Access : all;
+// EndPoint: /videos/:videoID
+// FRONTEND: We can get the desired video by passing videoID as params;
 videoRoute.get('/:videoID', async (req,res)=>{
-
     try{
     const videoID = req.params.videoID;
-    const course = await courseModel.find({});
-    let video = [];
-     course.forEach((user)=>{
-          for(let i=0; i<user.videos.length; i++){
-                if(user.videos[i]._id==videoID){
-                    video.push(user.videos[i])
-                }
-          }
-    })
-    if(!course){
-        res.status(404).json({message:"Videos not found"})
-    }else{
-        res.status(202).json({message:"video", video})
-    }
+    const video = await VideoModel.find({_id:videoID});
+    res.status(200).json({video})
     }catch(err){
         console.log(err);
         res.status(400).json({message:'Something Went Wrong',error:err.message})
@@ -53,47 +45,53 @@ videoRoute.get('/:videoID', async (req,res)=>{
 
 
 // add videos;
-// we have use VIDEO key word in frontend for sending request;
-videoRoute.put('/add/:courseID', async (req,res)=>{
+// Access : admin/teacher
+// EndPoint: /videos/add/:courseId
+// restricted to admin and teachers only;
+// FRONTEND: when teacher want to add videos to the his course
+
+videoRoute.post('/add/:courseId', async (req,res)=>{
     try{
-        const courseID = req.params.courseID;
-    const [course] = await courseModel.find({_id:courseID});
-    //console.log(course)
-    let videos = course.videos;
-        videos.push(req.body);
-   // console.log(course.videos,req.body)
-    if(!course){
-        res.status(404).json({message:"course not found"})
+    if(req.body.role==='admin' || req.body.role=='teacher'){
+    const data = req.body
+    const courseId = req.params.courseId;
+      const video = await  VideoModel.findOne({title:req.body.title,link:req.body.link})
+     // console.log(video)
+    if(!video){
+         const video = new VideoModel({...data,courseId:courseId,teacher:req.body.username,teacherId:req.body.userId});
+           video.save();
+    await courseModel.findByIdAndUpdate(courseId,
+            { $push: { videos: video._id } }
+          );
+        res.status(201).json({message:'Video Added',video})
     }else{
-        await courseModel.findByIdAndUpdate({_id:courseID},{videos})
-        res.status(202).json({message:"video added", videos})
+        res.status(401).json({error:"you don't have access for videos"})
     }
+    }else{
+        res.status(400).json({error:'video already Present'})
+    }   
     }catch(err){
         res.status(400).json({message:'Something Went Wrong',error:err.message})
     }
 })
 
 
-// delete videos;
 
-// videoRoute.delete('/delete/:courseID', async (req,res)=>{
+// user course with video;
+// Access : all;
+// EndPoint : /videos/courseVideos/:courseId
+// FRONTEND: When user want to access the videos of purchases courses
 
-//     try{
-//     const courseID = req.params.courseID;
-//     const course = await courseModel.find({_id:courseID});
-//     if(!course){
-//         res.status(404).json({message:"Video not found"})
-//     }else{
-//         let videos = course.videos;
-            
-//         //await courseModel.findByIdAndUpdate({_id:courseID},{video})
-//         res.status(202).json({message:"video updated",})
-//     }
-//     }catch(err){
-//         console.log(err);
-//         res.status(400).json({message:'Something Went Wrong',error:err.message})
-//     }
-// })
+videoRoute.get('/courseVideos/:courseId', async(req,res)=>{
+    try{
+        const courseId = req.params.courseId;
+        const course = await courseModel.findById({_id:courseId}).populate('videos')
+        //console.log(course)
+        res.status(200).json({course})
+    }catch(err){
+        res.status(400).json({message:'Something Went Wrong',error:err.message})
+    }
+})  
 
 
 module.exports = {videoRoute}

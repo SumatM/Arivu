@@ -18,6 +18,10 @@ const courseSchema = new mongoose.Schema({
     type: String,
     require:true
   },
+  teacherId:{
+    type: mongoose.Schema.Types.ObjectId,
+    require:true
+  },
   price:{
     type:String,
     require:true,
@@ -27,37 +31,10 @@ const courseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  videos: [
-    {
-      title: {
-        type: String,
-        required: true
-      },
-      description: {
-        type: String,
-        required: true
-      },
-      views: {
-        type: Number,
-        default: 0
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now
-      },
-      "link" : {
-        type: String,
-        required: true
-      },
-      "Video_length":{
-       type: Number,
-       default:0 
-      }
-    }
-  ]
+  videos: [{type: mongoose.Schema.Types.ObjectId, ref: "videos"}]
 });
 
 //  course
-const courseModel = mongoose.model('Course', courseSchema);
+const courseModel = mongoose.model('course', courseSchema);
 
 module.exports = courseModel;

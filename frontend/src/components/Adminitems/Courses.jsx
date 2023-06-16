@@ -57,7 +57,7 @@ const Courses = () => {
    <Box >
       <Flex justify='space-between' align={'center'}>
         <Text>Welcome To Course</Text>
-        <Link to="/addCourse">Create</Link>
+        <Link to="/admin/addCourse">Create</Link>
       </Flex>
 <Box  maxWidth="100%" overflowX="auto">
 
@@ -83,7 +83,7 @@ const Courses = () => {
     <Td>{el.title}</Td>
     <Box >
     <Button  onClick={()=>handleDelete(el.id)}>Delete</Button>
-      <Link to={`/edit/${el.id}`}>
+      <Link to={`/admin/edit/${el.id}`}>
     <ButtonGroup size='sm' isAttached variant='outline'>
 <Button>Edit</Button>
 <IconButton aria-label='Add to friends' icon={<AddIcon />} />
