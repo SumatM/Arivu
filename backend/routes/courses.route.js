@@ -68,7 +68,8 @@ courseRoute.post("/add", async (req, res) => {
       if (course.length) {
         res.status(403).json({ message: "Course Already Present" });
       } else {
-        const newCourse = new courseModel(req.body);
+        let data = req.body
+        const newCourse = new courseModel({...data,teacher:req.body.username,teacherId:req.body.userId});
         await newCourse.save();
         res.status(201).json({ message: "Course Added", data: newCourse });
       }

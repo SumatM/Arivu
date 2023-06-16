@@ -8,6 +8,33 @@ const { auth } = require("../middlewares/users.middleware");
 
 const userRouter = express.Router();
 
+//give all user list
+// Access: admin
+// EndPoint: /users/;
+// FRONTEND: when user/admin/teacher want to register in site;
+
+
+userRouter.get('/',auth,async(req,res)=>{
+
+  try{
+  if(req.body.role=='admin'){
+   let users = await await UserModel.find();
+   res.status(200).json({users})
+
+  }else{
+    res.status(401).json({ error: "you don't have access to users" });
+  }
+
+
+  }catch(err){
+     console.log(err);
+     res.status(400).json({message:'something went wrong',error:err.message})
+  }
+})
+
+
+
+
 //registration
 // Access: all
 // EndPoint: /user/register;
