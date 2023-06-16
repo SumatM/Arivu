@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, FormLabel,Grid,Input, Textarea } from '
 import React from 'react'
 import "./edit.css"
 import AdminSidebar from '../AdminSidebar'
-import AdminNavTop from '../AdminNavTop'
+import AdminNavTop from '../AdminNavTop';
 
 const EditPage = () => {
   return (
@@ -12,7 +12,7 @@ const EditPage = () => {
        <Box >
      <AdminNavTop/>
    {/*  */}
-   <Flex align="center" justify="center" minHeight="88vh" border={'2px solid red'} className="background" color={'white'}>
+   <Flex align="center" justify="center"  border={'2px solid white'} borderRadius={10} className="background" color={'white'}>
       <Box width={["100%", "80%", "60%", "40%"]} p={4}>
         <FormControl>
           <FormLabel >Course Name</FormLabel>

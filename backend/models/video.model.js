@@ -9,6 +9,14 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  teacher:{
+    type: String,
+    require:true
+  },
+  teacherId:{
+    type: mongoose.Schema.Types.ObjectId,
+    require:true
+  },
   views: {
     type: Number,
     default: 0
