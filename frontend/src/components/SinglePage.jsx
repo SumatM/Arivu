@@ -14,7 +14,7 @@ import {
 import { FaAngleRight } from "react-icons/fa";
 // import theme from './Font';
 
-function SinglePage() {
+export default function SinglePage() {
 
 
   // const course = {
