@@ -6,7 +6,7 @@ import DashBoard from '../components/Adminitems/DashBoard'
 import EditPage from '../components/Adminitems/EditPage'
 import AddCourse from '../components/Adminitems/AddCourse'
 import GoogleAuth from '../pages/GoogleAuth'
-
+import SinglePage from '../components/SinglePage'
 
 const AllRoute = () => {
   return (
@@ -18,6 +18,7 @@ const AllRoute = () => {
       <Route path="/admin/edit/:id" element={<EditPage/>} />
       <Route path='/admin/addCourse' element={<AddCourse/>}/>
       <Route path="/googleauth" element={<GoogleAuth/>} />
+      <Route path="/singlePage" element={<SinglePage/>}
 
     </Routes>
   )
