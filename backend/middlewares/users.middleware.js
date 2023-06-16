@@ -12,6 +12,8 @@ const auth = (req, res, next) => {
       if (decoded) {
         req.body.username = decoded.user;
         req.body.userId = decoded.userId;
+        req.body.role = decoded.role;
+        console.log(decoded)
         next();
       } else {
         res.status(200).json({ msg: "not authorized" });
