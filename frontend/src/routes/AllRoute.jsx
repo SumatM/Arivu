@@ -23,7 +23,7 @@ import SinglePage from '../components/SinglePage'
 const AllRoute = () => {
   return (
     <Routes>
-//       <Route path="/googleauth" element={<GoogleAuth/>} />
+    {/* <Route path="/googleauth" element={<GoogleAuth/>} /> */}
       <Route path="/singlePage" element={<SinglePage/>} />
       <Route path="/admin/dashboard" element={<DashBoard />} />
       <Route path="/admin/courses" element={<Courses />} />
