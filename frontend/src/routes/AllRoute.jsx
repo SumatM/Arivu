@@ -1,5 +1,4 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+
 import Courses from "../components/Adminitems/Courses";
 import DashBoard from "../components/Adminitems/DashBoard";
 import EditPage from "../components/Adminitems/EditPage";
@@ -8,12 +7,11 @@ import LandingPage from "../Pages/LandingPage";
 
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Discount from "../components/Adminitems/Discount";
+import Statistics from "../components/Adminitems/Statistics";
+import Setting from "../components/Adminitems/Setting";
+import GiftCard from "../components/Adminitems/GiftCard";
 
-import Courses from '../components/Adminitems/Courses'
-import DashBoard from '../components/Adminitems/DashBoard'
-import EditPage from '../components/Adminitems/EditPage'
-import AddCourse from '../components/Adminitems/AddCourse'
-import GoogleAuth from '../pages/GoogleAuth'
 
 
 const AllRoute = () => {
@@ -25,8 +23,11 @@ const AllRoute = () => {
       <Route path="/admin/courses" element={<Courses />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
       <Route path="/admin/addCourse" element={<AddCourse />} />
+      <Route path="/admin/discount" element={<Discount/>} />
+      <Route path="/admin/statistic" element={<Statistics/>} />
+      <Route path="/admin/giftcard" element={<GiftCard/>} />
+      <Route path="/admin/setting" element={<Setting/>} />
       <Route path="/" element={<LandingPage />} />
-      <Route path="/googleauth" element={<GoogleAuth/>} />
     </Routes>
   );
 };

@@ -5,6 +5,7 @@ import Chart from 'chart.js/auto'
 import AdminSidebar from '../AdminSidebar';
 import AdminNavTop from '../AdminNavTop';
 
+
 const DashBoard = () => {
 
   const data = {
@@ -49,9 +50,9 @@ const DashBoard = () => {
    {/*  */}
    <Box  h={'130vh'}  p={5}>
      <Grid templateColumns={'repeat(4,1fr)'} gap={10} >
-      <Box  border={'2px solid gray'} p={5}>
+      <Box  border={'2px solid gray'} borderRadius={10} p={5}>
         <Flex justify={'space-between'}>
-          <Text>Total Customers</Text>
+          <Text fontWeight={'bold'}>Total Customers</Text>
           <Text>Icons</Text>
         </Flex >
         <Text mt={15}>Count 2344</Text>
@@ -60,9 +61,9 @@ const DashBoard = () => {
           <Text>Since last month</Text>
         </Flex>
       </Box>
-      <Box  border={'2px solid gray'} p={5}>
+      <Box  border={'2px solid gray'} borderRadius={10} p={5}>
         <Flex justify={'space-between'}>
-          <Text>Total Customers</Text>
+          <Text fontWeight={'bold'}>Total Customers</Text>
           <Text>Icons</Text>
         </Flex >
         <Text mt={15}>Count 2344</Text>
@@ -71,9 +72,9 @@ const DashBoard = () => {
           <Text>Since last month</Text>
         </Flex>
       </Box>
-      <Box  border={'2px solid gray'} p={5}>
+      <Box  border={'2px solid gray'} borderRadius={10} p={5}>
         <Flex justify={'space-between'}>
-          <Text>Total Customers</Text>
+          <Text fontWeight={'bold'}>Total Customers</Text>
           <Text>Icons</Text>
         </Flex >
         <Text mt={15}>Count 2344</Text>
@@ -82,9 +83,9 @@ const DashBoard = () => {
           <Text>Since last month</Text>
         </Flex>
       </Box>
-      <Box  border={'2px solid gray'} p={5}>
+      <Box  border={'2px solid gray'} borderRadius={10} p={5}>
         <Flex justify={'space-between'}>
-          <Text>Total Customers</Text>
+          <Text fontWeight={'bold'}>Total Customers</Text>
           <Text>Icons</Text>
         </Flex >
         <Text mt={15}>Count 2344</Text>
