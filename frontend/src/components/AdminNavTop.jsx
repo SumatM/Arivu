@@ -19,7 +19,7 @@ const AdminNavTop = () => {
       <Input placeholder='Search Anything' border={'none'}  h={'8vh'} w='100%' />
         </Box>
         </Flex>
-    <Flex  gap={5} flexDirection={['column','row']}>
+    <Flex  gap={5} flexDirection={['none','row']} display={{xl:'flex',lg:"flex",md:"flex",base:'none'}}>
       <Link  to="/"> < AiOutlineQuestionCircle style={{fontSize:'4vh', color:'black', marginTop:"10px"}} /> </Link>
       <Link> < AiOutlineBell style={{fontSize:'4vh', color:'black', marginTop:"10px"}}/> </Link>
       <Button border='none' bg='white' cursor='pointer'> < TbCircleLetterM style={{fontSize:'4vh', color:'red', marginTop:"10px"}}/> </Button>
