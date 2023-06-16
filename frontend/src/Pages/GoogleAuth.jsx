@@ -13,7 +13,7 @@ const clientId =
 const GoogleAuth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleSuccess = async (response) => {
     const { credential } = response;
     const decodedToken = jwtDecode(credential);
