@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Flex, Grid, IconButton, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Grid, IconButton, Select, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
@@ -10,9 +10,9 @@ import {
   Td,
   
 } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
+import { AddIcon, EditIcon } from '@chakra-ui/icons'
 import {useDispatch, useSelector} from "react-redux"
-import { deleteProduct, getUser } from '../../Redux/AdminReducer/action'
+import convertDateFormat, { deleteProduct, deleteUsers, getUser } from '../../Redux/AdminReducer/action'
 import Pagination from './Pagination'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
@@ -33,15 +33,17 @@ const Users = () => {
   },[page])
   
 
-  const handleDelete=(id)=>{
+  const handleDelete=(id,name)=>{
  console.log(id)
+ dispatch(deleteUsers(id))
+ alert(`${name} is Deleted`)
   }
 
   const handlePageChange=(page)=>{
     setPage(page)
   }
-
- const count=store.length
+console.log(store.length)
+  const count=store.length
 
 
  const handlePageButton=(val)=>{
@@ -59,7 +61,12 @@ const Users = () => {
    <Box >
       <Flex justify='space-between' align={'center'}>
         <Text>Welcome To Course</Text>
-        <Link to="/admin/addCourse">Create</Link>
+        <Select w={'80%'}>
+          <option value="">Price_Sort</option>
+          <option value="asc">Asc Price</option>
+          <option value="desc">Desc_Price</option>
+        </Select>
+        <Link to="/admin/users/add">Create</Link>
       </Flex>
 <Box  maxWidth="100%" overflowX="auto">
 
@@ -84,11 +91,11 @@ const Users = () => {
           <Td>{el.age}</Td>
           <Td>{el.course.length}</Td>
           <Box >
-          <Button  onClick={()=>handleDelete(el.id)}>Delete</Button>
-            <Link to={`/admin/edit/${el.id}`}>
+          <Button  onClick={()=>handleDelete(el._id,el.name)}>Delete</Button>
+            <Link to={`/admin/users/edit/${el._id}`}>
           <ButtonGroup size='sm' isAttached variant='outline'>
       <Button>Edit</Button>
-      <IconButton aria-label='Add to friends' icon={<AddIcon />} />
+      <IconButton aria-label='Add to friends' icon={<EditIcon />} />
       </ButtonGroup>
             </Link>
             

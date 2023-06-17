@@ -3,23 +3,24 @@ import React, { useState } from 'react'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../Redux/AdminReducer/action'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { addVideo } from '../../Redux/AdminReducer/action'
 
 
-const AddCourse = () => {
+const AddVideo = () => {
 
   const dispatch=useDispatch();
   const store=useSelector(store=>console.log(store))
   const navigate=useNavigate()
-
-
+  const {courseId}=useParams()
+console.log(courseId)
   let obj={
-  title:"",
-  description:"",
-  category:"",
-  price:""
-  }
+title:"",
+description:"",
+link:"",
+views:""
+  
+}
 
   const [detail,setDetail]=useState(obj)
 
@@ -31,11 +32,9 @@ const AddCourse = () => {
   }
   const handleSubmit=()=>{
      console.log(detail);
-
-     dispatch(addProduct(detail));
-
-     alert("Course Added Successfully")
-navigate("/admin/courses")
+  dispatch(addVideo(detail,courseId))
+  alert("User Added Successfully")
+  navigate("/admin/videos")
   }
 
 
@@ -52,15 +51,15 @@ navigate("/admin/courses")
         </FormControl>
         <FormControl mt={4}>
           <FormLabel>Description</FormLabel>
-          <Textarea placeholder="Enter Course description" name="description" value={detail.description} onChange={handleChange} />
+          <Textarea type="text" placeholder="Enter Description" name="description" value={detail.description} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
-          <FormLabel>Category</FormLabel>
-          <Input type="text" placeholder="Enter Course Category" name="category" value={detail.category} onChange={handleChange} />
+          <FormLabel>Link</FormLabel>
+          <Input type="text" placeholder="Enter video Link" name="link" value={detail.link} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
-          <FormLabel>Price</FormLabel>
-          <Input type="number" placeholder="Enter Course price" name="price" value={Number(detail.price)} onChange={handleChange} />
+          <FormLabel>Views</FormLabel>
+          <Input type="text" placeholder="Enter Total Views" name="views" value={(detail.views)} onChange={handleChange} />
         </FormControl>
         <Button mt={4} colorScheme="blue" size="md" isFullWidth onClick={handleSubmit}>
           Submit
@@ -72,4 +71,4 @@ navigate("/admin/courses")
   )
 }
 
-export default AddCourse
+export default AddVideo
