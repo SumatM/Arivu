@@ -16,6 +16,9 @@ import GiftCard from "../components/Adminitems/GiftCard";
 
 import Users from "../components/Adminitems/Users";
 import SinglePage from '../components/singlePageComps/SinglePage'
+import Login from "../components/LogIn";
+import SignUp from "../components/SignUp";
+import Payment from "../Pages/Payment/Payment";
 
 
 
@@ -29,7 +32,7 @@ const AllRoute = () => {
       <Route path="/admin/courses" element={<Courses />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
       <Route path="/admin/addCourse" element={<AddCourse />} />
-      <Route path="/dashboard" element={<UserDashboard />} />
+      <Route path="/arivu" element={<UserDashboard />} />
       <Route path="/admin/discount" element={<Discount/>} />
       <Route path="/admin/statistic" element={<Statistics/>} />
       <Route path="/admin/giftcard" element={<GiftCard/>} />
@@ -37,7 +40,9 @@ const AllRoute = () => {
       <Route path="/admin/users" element={<Users/>} />
       <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<PageNotFound />} />
-
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signup" element={<SignUp/>}/>
+      <Route path='/payment' element={<Payment/>} />
     </Routes>
   );
 };
