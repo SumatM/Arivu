@@ -14,8 +14,9 @@ import Statistics from "../components/Adminitems/Statistics";
 import Setting from "../components/Adminitems/Setting";
 import GiftCard from "../components/Adminitems/GiftCard";
 
-//import GoogleAuth from '../pages/GoogleAuth'
+import Users from "../components/Adminitems/Users";
 import SinglePage from '../components/singlePageComps/SinglePage'
+
 
 
 
@@ -23,7 +24,6 @@ import SinglePage from '../components/singlePageComps/SinglePage'
 const AllRoute = () => {
   return (
     <Routes>
-    {/* <Route path="/googleauth" element={<GoogleAuth/>} /> */}
       <Route path="/singlePage" element={<SinglePage/>} />
       <Route path="/admin/dashboard" element={<DashBoard />} />
       <Route path="/admin/courses" element={<Courses />} />
@@ -34,6 +34,7 @@ const AllRoute = () => {
       <Route path="/admin/statistic" element={<Statistics/>} />
       <Route path="/admin/giftcard" element={<GiftCard/>} />
       <Route path="/admin/setting" element={<Setting/>} />
+      <Route path="/admin/users" element={<Users/>} />
       <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<PageNotFound />} />
 
