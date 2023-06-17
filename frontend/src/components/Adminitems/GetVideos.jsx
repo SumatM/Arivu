@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Flex, Grid, IconButton, Select, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Grid, IconButton, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
@@ -10,52 +10,49 @@ import {
   Td,
   
 } from '@chakra-ui/react'
-import { AddIcon, EditIcon } from '@chakra-ui/icons'
+import { AddIcon } from '@chakra-ui/icons'
 import {useDispatch, useSelector} from "react-redux"
-import convertDateFormat, { deleteProduct, getProduct } from '../../Redux/AdminReducer/action'
+import convertDateFormat, { deleteProduct, getProduct, getvideo } from '../../Redux/AdminReducer/action'
 import Pagination from './Pagination'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
 
-const Courses = () => {
+const GetVideos = () => {
 
-  const store=useSelector((store)=>store.AdminReducer.data);
+  const store=useSelector((store)=>store.AdminReducer.videos);
   const dispatch=useDispatch();
   const navigate=useNavigate()
   const [page,setPage]=useState(1)
-  const [check,setCheck]=useState("")
   const limit =4
 
   console.log(store,"storeAll")
   
 
   useEffect(()=>{
-  dispatch(getProduct(page,limit))  
-
+  dispatch(getvideo(page,limit))  
+  
   },[page])
   
 
   const handleDelete=(id,title)=>{
     console.log(id)
-  dispatch(deleteProduct(id))
+    dispatch(deleteProduct(id))
   alert(`${title} is Deleted`)
+  
   }
 
   const handlePageChange=(page)=>{
     setPage(page)
   }
-console.log(store.length)
-  const count=store.length
 
-  const handleSelect=(e)=>{
-  const {value}=e.target
-  console.log(value)
-  }
+ const count=Math.ceil(store.length/limit);
+//  console.log(count)
+console.log(count)
+
 
  const handlePageButton=(val)=>{
   setPage(prev=>prev+val)
  }
-
 
   return (
 
@@ -65,26 +62,20 @@ console.log(store.length)
      <AdminNavTop/>
    {/*  */}
    <Box >
-      <Flex justify='space-between' align={'center'}>
+     
         <Text>Welcome To Course</Text>
-        <Select w={'80%'} onChange={handleSelect}>
-          <option value="">Price_Sort</option>
-          <option value="asc">Asc Price</option>
-          <option value="desc">Desc_Price</option>
-        </Select>
-        <Link to="/admin/addCourse">Create</Link>
-      </Flex>
+       
+      
 <Box  maxWidth="100%" overflowX="auto">
 
       <Table variant="striped" borderRadius="md" w='100%'>
       <Thead>
         <Tr>
-          <Th>Title</Th>
-          <Th>Date</Th>
-          <Th>Category</Th>
+          <Th>Title</Th>      
+          <Th>Uploaded At</Th>      
           <Th>Description</Th>
-          <Th>Price</Th>
-          <Th>Teacher</Th>
+          <Th>Views</Th>
+          <Th>Link</Th>
         </Tr>
       </Thead>
       {store.length>0 && store.map((el,i)=>{
@@ -92,16 +83,14 @@ console.log(store.length)
   <Tr>
     <Td>{el.title}</Td>
     <Td>{convertDateFormat(el.createdAt)}</Td>
-    <Td>{el.category}</Td>
     <Td>{el.description}</Td>
-    <Td>{el.price}</Td>
-    <Td>{el.teacher}</Td>
+    <Td>{el.views}</Td>
+    <Td>{el.link}</Td>
     <Box >
-    <Button  onClick={()=>handleDelete(el._id,el.title)}>Delete</Button>
-      <Link to={`/admin/edit/${el._id}`}>
+      <Link to={`/admin/videos/add/${el.courseId}`}>
     <ButtonGroup size='sm' isAttached variant='outline'>
-<Button>Edit</Button>
-<IconButton aria-label='Add to friends' icon={<EditIcon />} />
+<Button>Add</Button>
+<IconButton aria-label='Add to friends' icon={<AddIcon />} />
 </ButtonGroup>
       </Link>
       
@@ -130,4 +119,5 @@ console.log(store.length)
   )
 }
 
-export default Courses
+export default GetVideos
+
