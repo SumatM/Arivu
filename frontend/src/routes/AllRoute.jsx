@@ -15,7 +15,7 @@ import Setting from "../components/Adminitems/Setting";
 import GiftCard from "../components/Adminitems/GiftCard";
 
 //import GoogleAuth from '../pages/GoogleAuth'
-import SinglePage from '../components/SinglePage'
+import SinglePage from '../components/singlePageComps/SinglePage'
 
 
 
