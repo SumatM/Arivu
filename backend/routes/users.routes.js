@@ -44,7 +44,7 @@ userRouter.post("/register", async (req, res) => {
   const registeredUser = await UserModel.findOne({ email });
 
   if (registeredUser) {
-    res.status(200).json({ msg: "User already exist. Please Login!!" });
+    res.status(409).json({ msg: "User already exist. Please Login!!" });
   } else {
     try {
       bcrypt.hash(password, 5, async (err, hash) => {
@@ -96,7 +96,7 @@ userRouter.post("/login", async (req, res) => {
           }
         );
         if (result) {
-          res.status(202).json({ msg: "logged in ", token, rToken });
+          res.status(202).json({ msg: "logged in ", token, rToken,user });
         } else {
           res.status(401).json({ msg: "invalid credentials" });
         }
