@@ -16,19 +16,12 @@ import {
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import axios from "axios";
+import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  const handleLogout = () => {
-    axios
-      .get("http://localhost:8080/users/logout")
-      .then((res) => {
-        localStorage.clear();
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
+ 
 
   return (
     <Flex
@@ -142,10 +135,13 @@ const Navbar = () => {
               For Universities
             </Link>
           </Box>
-          <Box mr={4}>
+          {/* <Box mr={4}>
             <Button colorScheme="red" size="md" onClick={handleLogout}>
               Logout
             </Button>
+          </Box> */}
+          <Box>
+            <Dropdown />
           </Box>
         </Flex>
       )}
