@@ -5,9 +5,9 @@ import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { patchProduct } from '../../Redux/AdminReducer/action';
+import { patchProduct, patchUser } from '../../Redux/AdminReducer/action';
 
-const EditPage = () => {
+const EditUser = () => {
 
   const {id}=useParams()
   const dispatch=useDispatch();
@@ -17,13 +17,12 @@ const EditPage = () => {
  
 console.log(id)
 
-  let obj={
-  title:"",
-  description:"",
-  category:"",
-  price:""
-  }
-
+let obj={
+    name:"",
+    email:"",
+    password:"",
+    city:"",
+    }
   const [detail,setDetail]=useState(obj)
 
   const handleChange=(e)=>{
@@ -34,9 +33,9 @@ console.log(id)
   }
   const handleSubmit=()=>{
      console.log(detail);
-   dispatch(patchProduct(id,detail))
+   dispatch(patchUser(id,detail))
    alert("Data Updated Successfully")
-   navigate("/admin/courses")
+   navigate("/admin/users")
   }
 
 
@@ -50,23 +49,22 @@ console.log(id)
    {/*  */}
    <Flex align="center" justify="center"  border={'2px solid white'} borderRadius={10} className="background" color={'white'}>
       <Box width={["100%", "80%", "60%", "40%"]} p={4}>
-        <FormControl>
-          <FormLabel >Course Title</FormLabel>
-          <Input type="text" placeholder="Enter Course Title" name="title" value={detail.title} onChange={handleChange} />
+      <FormControl>
+          <FormLabel >Name</FormLabel>
+          <Input type="text" placeholder="Enter Course Title" name="name" value={detail.name} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
-          <FormLabel>Course Description</FormLabel>
-          <Textarea placeholder="Enter Course description" name="description" value={detail.description} onChange={handleChange} />
+          <FormLabel>Email</FormLabel>
+          <Textarea type="email" placeholder="Enter Email" name="email" value={detail.email} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
-          <FormLabel>Category</FormLabel>
-          <Input type="text" placeholder="Enter Course Category" name="category" value={detail.category} onChange={handleChange}/>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" placeholder="Enter Password" name="password" value={detail.password} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
-          <FormLabel>Course Price</FormLabel>
-          <Input type="number" placeholder="Enter Course price"  name="price" value={detail.price} onChange={handleChange}/>
+          <FormLabel>City</FormLabel>
+          <Input type="text" placeholder="Enter City" name="city" value={(detail.city)} onChange={handleChange} />
         </FormControl>
-        
         <Button mt={4} colorScheme="blue" size="md" isFullWidth onClick={handleSubmit}>
           Submit
         </Button>
@@ -81,4 +79,4 @@ console.log(id)
   )
 }
 
-export default EditPage
+export default EditUser
