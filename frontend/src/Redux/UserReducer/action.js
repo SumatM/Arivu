@@ -41,3 +41,12 @@ export const signUpFetch = (value) => (dispatch) => {
         console.log(err.response.data.msg);
     })
 }
+
+
+// conver 1 letter to upper case and rest to lower 
+export function capitalizeFirstLetter(string) {
+  console.log(string);
+  const words = string?.split(' ');
+  const capitalizedWords = words?.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  return capitalizedWords?.join(' ');
+}
