@@ -16,6 +16,7 @@ import GiftCard from "../components/Adminitems/GiftCard";
 
 //import GoogleAuth from '../pages/GoogleAuth'
 import SinglePage from '../components/SinglePage'
+import Users from "../components/Adminitems/Users";
 
 
 
@@ -34,6 +35,7 @@ const AllRoute = () => {
       <Route path="/admin/statistic" element={<Statistics/>} />
       <Route path="/admin/giftcard" element={<GiftCard/>} />
       <Route path="/admin/setting" element={<Setting/>} />
+      <Route path="/admin/users" element={<Users/>} />
       <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<PageNotFound />} />
 

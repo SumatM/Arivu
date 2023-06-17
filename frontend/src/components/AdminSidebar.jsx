@@ -62,6 +62,9 @@ const AdminSidebar = () => {
 <Link to="/admin/addCourse">
         <Box p={2} >AddCourse</Box>
 </Link>
+<Link to="/admin/users">
+        <Box p={2} >Users</Box>
+</Link>
 <Link to="/admin/discount">
         <Box p={2} >Discounts</Box>
 </Link>

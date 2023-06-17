@@ -1,6 +1,10 @@
 
 import axios from "axios"
-import { ADD_PRODUCT_SUCCESS, GET_PRODUCT_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType"
+import { ADD_PRODUCT_SUCCESS, GET_PRODUCT_SUCCESS, GET_User_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType"
+
+const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug"
+
+localStorage.setItem("token",token)
 
 export const addProduct=(data)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
@@ -12,9 +16,25 @@ dispatch({type:ADD_PRODUCT_SUCCESS,payload:res.data})
 
 export const getProduct=(page,limit)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get(`${process.env.REACT_APP_URL}?_page=${page}&_limit=${limit}`).then((res)=>{console.log(res,"getProduct");
-    dispatch({type:GET_PRODUCT_SUCCESS,payload:res.data})
+    axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}`,{
+      headers:{
+        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      }
+    }).then((res)=>{console.log("getProduct",res);
+    dispatch({type:GET_PRODUCT_SUCCESS,payload:res.data.course})
     }).catch(e=>dispatch({type:PRODUCT_FAILURE}))
+   
+}
+export const getUser=(page,limit)=>(dispatch)=>{
+    dispatch({type:PRODUCT_REQUEST})
+    axios.get(`https://arivu-sever-link.onrender.com/users`,{
+      headers:{
+        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      }
+    }).then((res)=>{console.log("getUsers",res);
+    dispatch({type:GET_User_SUCCESS,payload:res.data.users})
+    }).catch(e=>dispatch({type:PRODUCT_FAILURE}))
+   
 }
 
 export const patchProduct=(id,data)=>(dispatch)=>{

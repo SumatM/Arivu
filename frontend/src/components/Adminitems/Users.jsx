@@ -12,31 +12,29 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import {useDispatch, useSelector} from "react-redux"
-import { deleteProduct, getProduct } from '../../Redux/AdminReducer/action'
+import { deleteProduct, getUser } from '../../Redux/AdminReducer/action'
 import Pagination from './Pagination'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
 
-const Courses = () => {
+const Users = () => {
 
-  const store=useSelector((store)=>store.AdminReducer.data);
+  const store=useSelector((store)=>store.AdminReducer.users);
   const dispatch=useDispatch();
   const navigate=useNavigate()
   const [page,setPage]=useState(1)
-  const limit =4
+  const limit =8
 
   console.log(store,"storeAll")
   
 
   useEffect(()=>{
-  dispatch(getProduct(page,limit))  
-
+  dispatch(getUser(page,limit))  
   },[page])
   
 
   const handleDelete=(id)=>{
-  navigate();
-  dispatch(deleteProduct(id))
+ console.log(id)
   }
 
   const handlePageChange=(page)=>{
@@ -45,9 +43,11 @@ const Courses = () => {
 
  const count=store.length
 
+
  const handlePageButton=(val)=>{
   setPage(prev=>prev+val)
  }
+
 
   return (
 
@@ -66,34 +66,37 @@ const Courses = () => {
       <Table variant="striped" borderRadius="md" w='100%'>
       <Thead>
         <Tr>
-          <Th>Title</Th>
-          <Th>Category</Th>
-          <Th>Description</Th>
-          <Th>Price</Th>
-          <Th>Teacher</Th>
+          <Th>Name</Th>
+          <Th>Role</Th>
+          <Th>Email</Th>
+          <Th>City</Th>
+          <Th>Age</Th>
+          <Th>Subscribed Course</Th>
         </Tr>
       </Thead>
-      {store.length>0 && store.map((el,i)=>{
-  return  <Tbody>
-  <Tr>
-    <Td>{el.title}</Td>
-    <Td>{el.category}</Td>
-    <Td>{el.description}</Td>
-    <Td>{el.price}</Td>
-    <Td>{el.teacher}</Td>
-    <Box >
-    <Button  onClick={()=>handleDelete(el.id)}>Delete</Button>
-      <Link to={`/admin/edit/${el.id}`}>
-    <ButtonGroup size='sm' isAttached variant='outline'>
-<Button>Edit</Button>
-<IconButton aria-label='Add to friends' icon={<AddIcon />} />
-</ButtonGroup>
-      </Link>
-      
-    </Box>
-  </Tr>
-  </Tbody>
-      })}
+     {store.length>0 && store.map((el)=>{
+        return  <Tbody>
+        <Tr>
+          <Td>{el.name}</Td>
+          <Td>{el.role}</Td>
+          <Td>{el.email}</Td>
+          <Td>{el.city}</Td>
+          <Td>{el.age}</Td>
+          <Td>{el.course.length}</Td>
+          <Box >
+          <Button  onClick={()=>handleDelete(el.id)}>Delete</Button>
+            <Link to={`/admin/edit/${el.id}`}>
+          <ButtonGroup size='sm' isAttached variant='outline'>
+      <Button>Edit</Button>
+      <IconButton aria-label='Add to friends' icon={<AddIcon />} />
+      </ButtonGroup>
+            </Link>
+            
+          </Box>
+        </Tr>
+        </Tbody>
+     })}
+   
 
 
 
@@ -115,4 +118,4 @@ const Courses = () => {
   )
 }
 
-export default Courses
+export default Users
