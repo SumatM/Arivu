@@ -46,16 +46,6 @@ const AllRoute = () => {
       <Route path="/admin/addCourse" element={<AddCourse />} />
 
     
-      <Route path="/admin/discount" element={<Discount/>} />
-      <Route path="/admin/statistic" element={<Statistics/>} />
-      <Route path="/admin/giftcard" element={<GiftCard/>} />
-      <Route path="/admin/setting" element={<Setting/>} />
-      <Route path="/admin/users" element={<Users/>} />
-      <Route path="/admin/users/add" element={<AddUser/>} />
-      <Route path="/admin/users/edit/:id" element={<EditUser/>} />
-      <Route path="/admin/videos" element={<GetVideos/>} />
-      <Route path="/admin/videos/add/:courseId" element={<AddVideo/>} />
-      <Route path="/" element={<LandingPage />} />
 
       <Route path="/arivu" element={<UserDashboard />} />
       <Route path="/admin/discount" element={<Discount />} />
@@ -66,6 +56,7 @@ const AllRoute = () => {
       <Route path="/admin/users/add" element={<AddUser />} />
       <Route path="/admin/users/edit/:id" element={<EditUser />} />
       <Route path="/admin/videos" element={<GetVideos />} />
+
       <Route path="/admin/videos/add/:courseId" element={<AddVideo />} />
       <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<PageNotFound />} />
@@ -73,8 +64,6 @@ const AllRoute = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="*" element={<PageNotFound />} />
-
     </Routes>
   );
 };

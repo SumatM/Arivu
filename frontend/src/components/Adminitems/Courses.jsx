@@ -78,7 +78,7 @@ console.log("count",count)
    {/*  */}
    <Box className={`course ${courseSize}`}>
       <Grid templateColumns={{xl:'repeat(3,20% 60% 20%)',lg:'repeat(3,20% 60% 20%)',base:'repeat(1,1fr)'}} gap={{xl:0,lg:0,base:7}} >
-        <Text>Welcome To Course</Text>
+        <Text fontWeight={'bold'}  >Welcome To Course</Text>
         <Select w={'80%'} onChange={handleSelect}>
           <option value="asc">Price Sort in Ascending Order</option>
           <option value="desc">Price Sort in Descending Order</option>

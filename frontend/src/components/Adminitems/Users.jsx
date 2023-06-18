@@ -72,8 +72,8 @@ console.log(store.length)
      <AdminNavTop handleSearch={handleSearch}/>
    {/*  */}
    <Box >
-      <Grid templateColumns={{xl:'repeat(3,20% 60% 20%)',lg:'repeat(3,20% 60% 20%)',base:'repeat(1,1fr)'}} gap={{xl:0,lg:0,base:7}} >
-        <Text>Welcome To Course</Text>
+      <Grid templateColumns={{xl:'repeat(3,20% 60% 20%)',lg:'repeat(3,20% 60% 20%)',base:'repeat(1,1fr)'}} gap={{xl:0,lg:0,base:7}} m={3} >
+        <Text fontWeight={'bold'}>User Details</Text>
         <Select w={'80%'} onChange={handleSelect}>
           <option value="asc">Age Sort in Ascending Order</option>
           <option value="desc">Age Sort in Descending Order</option>

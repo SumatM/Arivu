@@ -27,7 +27,8 @@ console.log(id)
   title:existedUser[0].title,
   description:existedUser[0].description,
   category:existedUser[0].category,
-  price:existedUser[0].price
+  price:existedUser[0].price,
+  teacher:existedUser[0].teacher
   }
   
 console.log("obj",obj)
@@ -83,6 +84,10 @@ console.log("obj",obj)
         <FormControl mt={4}>
           <FormLabel>Course Price</FormLabel>
           <Input type="number" placeholder="Enter Course price" border={'1px solid'}  name="price" value={detail.price} onChange={handleChange}/>
+        </FormControl>
+        <FormControl mt={4}>
+          <FormLabel>Instructor</FormLabel>
+          <Input type="text"  border={'1px solid'}  name="teacher" value={detail.teacher} onChange={handleChange}/>
         </FormControl>
         
         <Button mt={4} colorScheme="blue" size="md" isFullWidth onClick={handleSubmit}>
