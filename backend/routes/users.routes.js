@@ -177,7 +177,7 @@ userRouter.get("/userCourse/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
     const user = await UserModel.findById({ _id: userId }).populate("course");
-    console.log(user.course, userId);
+    // console.log(user.course, userId);
     res.status(200).json({ course: user.course });
   } catch (err) {
     res

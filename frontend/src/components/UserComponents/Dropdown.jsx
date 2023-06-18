@@ -15,7 +15,7 @@ const Dropdown = () => {
   const handleProfileClick = () => {
     // Handle profile click logic
     console.log("Profile clicked");
-    navigate('/profile')
+    navigate("/profile");
   };
 
   const handleLogoutClick = () => {
@@ -32,7 +32,18 @@ const Dropdown = () => {
     <ChakraProvider>
       <Box p="4">
         <Menu>
-          <MenuButton as={Button} variant="outline">
+          <MenuButton
+            as={Button}
+            bgColor={"#0056d2"}
+            color={"white"}
+            variant="outline"
+            _hover={{
+              bg: "white",
+              color: "#0056d2",
+              border: "2px solid black",
+              cursor: "pointer",
+            }}
+          >
             options
           </MenuButton>
           <MenuList>
