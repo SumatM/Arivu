@@ -63,7 +63,7 @@ console.log(count)
    {/*  */}
    <Box >
      
-        <Text>Welcome To Course</Text>
+        <Text fontWeight={'bold'} m={5}>Courses Video</Text>
        
       
 <Box  maxWidth="100%" overflowX="auto">
@@ -72,7 +72,7 @@ console.log(count)
       <Thead>
         <Tr>
           <Th>Title</Th>      
-          <Th>Uploaded At</Th>      
+          <Th>Uploaded</Th>      
           <Th>Description</Th>
           <Th>Views</Th>
           <Th>Link</Th>
