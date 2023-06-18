@@ -11,7 +11,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
-import GoogleAuth from "./GoogleAuth";
 
 const Navbar = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -144,15 +143,7 @@ const Navbar = () => {
           >
             Join for free
           </Button>
-          {/* sign up with google */}
-          <Button
-            bg="#0056d2"
-            color="white"
-            borderRadius="5px"
-            _hover={{ bg: "#003e9c" }}
-          >
-            <GoogleAuth />
-          </Button>
+          
         </Flex>
       )}
     </Flex>

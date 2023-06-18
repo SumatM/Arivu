@@ -72,7 +72,7 @@ const LandingPageCarousel = () => {
       })
       .then((data) => {
         setCourse(data.course);
-        console.log(data.course);
+        // console.log(data.course);
         setLoading(false);
       })
       .catch((error) => {
