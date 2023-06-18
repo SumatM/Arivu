@@ -31,7 +31,7 @@ const GetVideos = () => {
   useEffect(()=>{
   dispatch(getvideo(page,limit))  
   
-  },[page])
+  },[page,limit])
   
 
   const handleDelete=(id,title)=>{
@@ -103,7 +103,7 @@ console.log(count)
 
     </Table>
 </Box>
-<Box textAlign={'right'}>
+<Box textAlign={{xl:'right',lg:'right',base:'left'}}>
   <Button disabled={page<=1} onClick={()=>handlePageButton(-1)}>Prev</Button>
   <Pagination totalCount={count} current_page={page} handlePageChange={handlePageChange}/>
   <Button disabled={page>=count} onClick={()=>handlePageButton(1)}>Next</Button>

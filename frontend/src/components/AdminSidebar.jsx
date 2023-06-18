@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const AdminSidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,17 +26,25 @@ const AdminSidebar = () => {
   return (
     <Flex
       as="nav"
-    
+      boxShadow='inner' p='6' rounded='md'
      justify="space-between"
       bg="white"
-      color="black"
+      color="teal"
       display={'column'}
       w={'wrap'}
-     borderRight={{xl:'2px solid gray',base:'0px'}}
-      h='wrap'
+    //  borderRight={{xl:'2px solid gray',base:'0px'}}
+      // h='wrap'
       gap={20}
     >
-        <Text mt={5} p={2} >Welcome Admin!</Text>
+        <Box mt={5}  color={'brown'} >
+        <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+       Welcome Admin!
+      </motion.h1>
+        </Box>
       <Box>
         <IconButton
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}

@@ -46,9 +46,9 @@ export const addVideo=(data,courseId)=>(dispatch)=>{
 }
 
 
-export const getProduct=(page,limit,sort)=>(dispatch)=>{
+export const getProduct=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}&sort=${sort}`,{
+    axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}`,{
       headers:{
         Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
       }
@@ -57,9 +57,9 @@ export const getProduct=(page,limit,sort)=>(dispatch)=>{
     }).catch(e=>dispatch({type:PRODUCT_FAILURE}))
    
 }
-export const getUser=(page,limit)=>(dispatch)=>{
+export const getUser=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get(`https://arivu-sever-link.onrender.com/users`,{
+    axios.get(`https://arivu-sever-link.onrender.com/users?page=${page}&limit=${limit}`,{
       headers:{
         Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
       }
@@ -70,7 +70,7 @@ export const getUser=(page,limit)=>(dispatch)=>{
 }
 export const getvideo=(page,limit)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
-    axios.get(`https://arivu-sever-link.onrender.com/videos`,{
+    axios.get(`https://arivu-sever-link.onrender.com/videos?page=${page}&limit=${limit}`,{
       headers:{
         Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
       }
