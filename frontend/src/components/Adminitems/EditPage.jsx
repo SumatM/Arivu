@@ -9,21 +9,28 @@ import { patchProduct } from '../../Redux/AdminReducer/action';
 
 const EditPage = () => {
 
+  
+  const backgroundImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-K0r9nPZU1CVVkRP6H-MB2LZEc0pFHmZLA&usqp=CAU';
+
   const {id}=useParams()
   const dispatch=useDispatch();
-  const store=useSelector(store=>console.log(store))
+  const store=useSelector(store=>store.AdminReducer.data);
+
+  const existedUser=store.filter(el=>el._id==id);
+  console.log("existedUser",existedUser)
   const navigate=useNavigate()
  
  
 console.log(id)
 
   let obj={
-  title:"",
-  description:"",
-  category:"",
-  price:""
+  title:existedUser[0].title,
+  description:existedUser[0].description,
+  category:existedUser[0].category,
+  price:existedUser[0].price
   }
-
+  
+console.log("obj",obj)
   const [detail,setDetail]=useState(obj)
 
   const handleChange=(e)=>{
@@ -43,28 +50,39 @@ console.log(id)
 
   return (
 
-    <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
+    <Grid className='Nav'  h={'99vh'} w='94%' gap={10} >
     <AdminSidebar/> 
        <Box >
      <AdminNavTop/>
    {/*  */}
-   <Flex align="center" justify="center"  border={'2px solid white'} borderRadius={10} className="background" color={'white'}>
+   <Flex align="center" justify="center"  border={'2px solid white'} borderRadius={10} className="background"  style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '300px',
+        
+      }}
+      color='white'
+      fontWeight={'bold'}
+      >
       <Box width={["100%", "80%", "60%", "40%"]} p={4}>
         <FormControl>
           <FormLabel >Course Title</FormLabel>
-          <Input type="text" placeholder="Enter Course Title" name="title" value={detail.title} onChange={handleChange} />
+          <Input type="text" border={'1px solid'} placeholder="Enter Course Title" name="title" value={detail.title} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
           <FormLabel>Course Description</FormLabel>
-          <Textarea placeholder="Enter Course description" name="description" value={detail.description} onChange={handleChange} />
+          <Textarea placeholder="Enter Course description" border={'1px solid'} name="description" value={detail.description} onChange={handleChange} />
         </FormControl>
         <FormControl mt={4}>
           <FormLabel>Category</FormLabel>
-          <Input type="text" placeholder="Enter Course Category" name="category" value={detail.category} onChange={handleChange}/>
+          <Input type="text" placeholder="Enter Course Category" border={'1px solid'} name="category" value={detail.category} onChange={handleChange}/>
         </FormControl>
         <FormControl mt={4}>
           <FormLabel>Course Price</FormLabel>
-          <Input type="number" placeholder="Enter Course price"  name="price" value={detail.price} onChange={handleChange}/>
+          <Input type="number" placeholder="Enter Course price" border={'1px solid'}  name="price" value={detail.price} onChange={handleChange}/>
         </FormControl>
         
         <Button mt={4} colorScheme="blue" size="md" isFullWidth onClick={handleSubmit}>

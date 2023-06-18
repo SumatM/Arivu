@@ -23,10 +23,23 @@ const Users = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate()
   const [page,setPage]=useState(1)
-  const limit =8
+  const [search,setSearch]=useState("");
+  const [order,setOrder]=useState("")
+  const limit =4
 
   console.log(store,"storeAll")
   
+  const handleSearch=(e)=>{
+    setSearch(e.target.value);
+  }
+  console.log(search)
+
+  const handleSelect=(e)=>{
+    const {value}=e.target
+    setOrder(value)
+    
+    }
+    console.log(order)
 
   useEffect(()=>{
   dispatch(getUser(page,limit))  
@@ -43,7 +56,7 @@ const Users = () => {
     setPage(page)
   }
 console.log(store.length)
-  const count=store.length
+  const count=2
 
 
  const handlePageButton=(val)=>{
@@ -56,19 +69,20 @@ console.log(store.length)
     <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
     <AdminSidebar/> 
        <Box >
-     <AdminNavTop/>
+     <AdminNavTop handleSearch={handleSearch}/>
    {/*  */}
    <Box >
-      <Flex justify='space-between' align={'center'}>
+      <Grid templateColumns={{xl:'repeat(3,20% 60% 20%)',lg:'repeat(3,20% 60% 20%)',base:'repeat(1,1fr)'}} gap={{xl:0,lg:0,base:7}} >
         <Text>Welcome To Course</Text>
-        <Select w={'80%'}>
-          <option value="">Price_Sort</option>
-          <option value="asc">Asc Price</option>
-          <option value="desc">Desc_Price</option>
+        <Select w={'80%'} onChange={handleSelect}>
+          <option value="asc">Age Sort in Ascending Order</option>
+          <option value="desc">Age Sort in Descending Order</option>
         </Select>
+        <Box fontWeight={'bold'}>
         <Link to="/admin/users/add">Create</Link>
-      </Flex>
-<Box  maxWidth="100%" overflowX="auto">
+        </Box>
+      </Grid>
+<Box w={{xl:"100%",lg:'90%',md:"80%",base:'80%'}}  maxWidth="100%" overflowX="auto">
 
       <Table variant="striped" borderRadius="md" w='100%'>
       <Thead>
@@ -81,8 +95,8 @@ console.log(store.length)
           <Th>Subscribed Course</Th>
         </Tr>
       </Thead>
-     {store.length>0 && store.map((el)=>{
-        return  <Tbody>
+     {store.length>0 && store.map((el,i)=>{
+        return  <Tbody key={i}>
         <Tr>
           <Td>{el.name}</Td>
           <Td>{el.role}</Td>
@@ -109,7 +123,7 @@ console.log(store.length)
 
     </Table>
 </Box>
-<Box textAlign={'right'}>
+<Box textAlign={{xl:'right',lg:'right',base:'left'}}>
   <Button disabled={page<=1} onClick={()=>handlePageButton(-1)}>Prev</Button>
   <Pagination totalCount={count} current_page={page} handlePageChange={handlePageChange}/>
   <Button disabled={page>=count} onClick={()=>handlePageButton(1)}>Next</Button>

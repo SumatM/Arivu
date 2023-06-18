@@ -2,8 +2,17 @@ import { Box, Button, Flex, FormLabel, Grid, Heading, Input, Text } from '@chakr
 import React from 'react'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
+import { useSelector } from 'react-redux'
 
 const Setting = () => {
+
+  const store=useSelector(store=>store.AdminReducer.data);
+
+  const name="Admin";
+  const password="Hello_Password"
+
+  console.log(name,password)
+
   return (
     <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
     <AdminSidebar/> 
@@ -14,26 +23,26 @@ const Setting = () => {
     <Heading>Setting</Heading>
 <Box  mt={5}>
  
- <Flex justify={'space-between'} p={5}>
+ <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} p={5} gap={{xl:0,lg:0,base:10}}>
  <Box>
  <Heading size={13}>Profile Information</Heading>
  <Text>Update User Profile Information and Password</Text>
  </Box>
  <Box border={'1px solid gray'}  borderRadius={10} w={"60%"} p={5}>
   <FormLabel>Name</FormLabel>
-  <Input placeholder='Enter Name' />
-  <Button mt={5} >Save</Button>
+  <Input placeholder='Enter Name' value={name} />
+  <Button mt={5}  isDisabled={true}>Save</Button>
  </Box>
 
  </Flex>
- <Flex justify={'space-between'} p={5}>
+ <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} p={5} gap={{xl:0,lg:0,base:10}}>
  <Box>
  <Heading size={13}>Update Password</Heading>
  <Text>Ensure your account is using a long, random password to <br /> stay secure</Text>
  </Box>
  <Box border={'1px solid gray'} borderRadius={10} w={"60%"} p={5}>
   <FormLabel>Current Password</FormLabel>
-  <Input placeholder='Enter Current Password' />
+  <Input placeholder='Enter Current Password' type='password' value={password} />
   <FormLabel>New Password</FormLabel>
   <Input placeholder='Enter New Password' />
   <FormLabel>Confirm Password</FormLabel>
