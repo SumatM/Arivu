@@ -1,4 +1,5 @@
 
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_LOADING = "LOGIN_LOADING";
@@ -32,3 +33,4 @@ export function actionsingUpSuccess(){
 export function actionsingUpError(payload){
     return {type:SINGUP_ERROR,payload}
 }
+

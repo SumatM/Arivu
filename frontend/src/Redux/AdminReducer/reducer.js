@@ -1,4 +1,13 @@
+
 import { ADD_PRODUCT_SUCCESS, ADD_User_SUCCESS, ADD_Video_SUCCESS, DELETE_PRODUCT_SUCCESS, DELETE_User_SUCCESS, DELETE_Video_SUCCESS, GET_PRODUCT_SUCCESS, GET_User_SUCCESS, GET_Video_SUCCESS, PATCH_PRODUCT_SUCCESS, PATCH_User_SUCCESS, PATCH_Video_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType"
+
+
+const initState = {
+  users: [],
+  data: [],
+  isLoading: false,
+  isError: false,
+};
 
 
 const initState={
@@ -29,3 +38,4 @@ export const reducer=(state=initState,{type,payload})=>{
         default :return state
     }
 }
+
