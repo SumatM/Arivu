@@ -1,15 +1,36 @@
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
-export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
-export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
-export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 
-export const DELETE_USER_REQUEST = "DELETE_USER_REQUEST";
-export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
-export const DELETE_USER_FAILURE = "DELETE_USER_FAILURE";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOGIN_LOADING = "LOGIN_LOADING";
+export const SIGNUP_LOADING = "SIGNUP_LOADING";
+export const SINGUP_SUCCESS = "SINGUP_SUCCESS";
+export const SINGUP_ERROR = "SINGUP_ERROR";
 
-export const ADD_USER_REQUEST = "ADD_USER_REQUEST";
-export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
-export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
+export function actionLoginLoading(){
+    return {type: LOGIN_LOADING}
+}
+
+export function actionLoginSuccess(payload){
+    return {type: LOGIN_SUCCESS,payload}
+}
+
+
+export function actionLoginError(payload){
+    return {type: LOGIN_ERROR,payload}
+}
+
+
+export function actionsignUpLoading(){
+    return {type:SIGNUP_LOADING}
+}
+
+export function actionsingUpSuccess(){
+    return {type:SINGUP_SUCCESS}
+}
+
+
+export function actionsingUpError(payload){
+    return {type:SINGUP_ERROR,payload}
+}
+

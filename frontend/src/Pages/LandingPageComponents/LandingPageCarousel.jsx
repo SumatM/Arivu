@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from "react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./LandingPageComponent.css";
+import Card from "./Card";
+import LoadingComponent from "../LoadingComponents/LoadingComponent";
+
+const LandingPageCarousel = () => {
+  const [loading, setLoading] = useState(true);
+  const [course, setCourse] = useState([]);
+  const arr = [1, 2, 3, 4];
+  var settings = {
+    swipe: true,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  useEffect(() => {
+    const url = "https://arivu-sever-link.onrender.com/courses/";
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
+
+    setLoading(true);
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Error: " + response.status);
+        }
+      })
+      .then((data) => {
+        setCourse(data.course);
+        console.log(data.course);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <Flex direction={"column"} width="80%" p={"20px"} m={"auto"}>
+      <Slider {...settings}>
+        {!loading
+          ? course?.map((el) => <Card {...el} key={el._id} />)
+          : arr.map((el, i) => <LoadingComponent key={i} />)}
+      </Slider>
+    </Flex>
+  );
+};
+
+export default LandingPageCarousel;

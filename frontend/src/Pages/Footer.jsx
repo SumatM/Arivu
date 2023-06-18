@@ -6,6 +6,11 @@ const Footer = () => {
     <Flex
       bg="#f5f5f5"
       p={4}
+      paddingBottom={{
+        sm: "60px",
+        md: "60px",
+        lg: "20px",
+      }}
       fontFamily="Source Sans 3"
       pt="60px"
       direction="column"

@@ -1,0 +1,151 @@
+import React, { useRef, useState } from 'react';
+import Navbar from '../Pages/Navbar';
+import { Box, Button, Flex, Heading, Input, Spinner, Text, keyframes } from '@chakra-ui/react';
+import {FcGoogle} from "react-icons/fc"
+import {DiApple} from "react-icons/di"
+import {BsFacebook} from "react-icons/bs"
+import { useDispatch, useSelector } from 'react-redux';
+import { loginFetch } from '../Redux/UserReducer/action';
+import { useNavigate } from 'react-router-dom';
+
+
+
+const Login = () => {
+
+const emailInput = useRef(null);
+const backgroundRef = useRef(null);
+const emailbox = useRef(null);
+const passwordInput = useRef(null);
+const passwordbox = useRef(null);
+const [form,setForm] = useState({email:"",password:""})
+
+const userStore = useSelector((store) => store.UserReducer)
+const dispatch = useDispatch();
+const navigate = useNavigate();
+
+
+// will show the input element when click on element
+ function showInput(e){
+  const  ele = e.target.id
+    if(ele==='email'){
+        emailInput.current.style.display = "block"
+        emailInput.current.focus()
+        emailbox.current.style.padding = "5px 20px"
+       
+    }else if (ele==='password'){
+        passwordInput.current.style.display = "block"
+        passwordInput.current.focus()
+        passwordbox.current.style.padding = "5px 20px"
+    }
+ }
+
+ // will block the input element when click on backgrond
+ function blockInput(event){
+    if (event.target === backgroundRef.current && !form.email) {
+        emailInput.current.style.display = "none"
+        emailbox.current.style.padding = "20px"
+    } 
+     if( event.target === backgroundRef.current &&!form.password ){
+        passwordInput.current.style.display = "none"
+        passwordbox.current.style.padding = "20px"
+    }
+   
+ }
+
+ // form management 
+
+ function handleInput(e){
+ const {value,name} = e.target;
+  if(name=='email'){
+      setForm({...form,email:value})
+  }else{
+    setForm({...form,password:value})
+  }
+ }
+
+
+ // login function
+
+function handleLogin(){
+ console.log(form)
+  dispatch(loginFetch(form)).then((res)=> { setForm({email:"",password:""})})
+}
+
+// if isAuth is true move to dashboard;
+
+    if(userStore.isAuth){
+        navigate('/arivu')
+    }
+
+
+  return (
+    <Box>
+    <Box>
+        <Navbar/>
+    </Box>
+     <Box display='flex' justifyContent="center" pt='100px'  onClick={blockInput} ref={backgroundRef}>
+       <Box w={{base:"90%",sm:'80%',md:'40%',lg:'30%'}}>
+        <Box>
+        <Heading size="xs">Log in to your Aṟivu Account</Heading>
+        </Box>
+ {/* 2nd box  */}
+    <Box mt='15px'>
+            {/* google bar  */}
+            <Flex border="1px solid" p='15px' align='center' m='5px 0'>
+            <Box>
+            <FcGoogle size="32px"/>
+            </Box>
+            <Box ml='15px'>
+                <Heading size="xs">Continue with Google</Heading>
+            </Box>
+        </Flex>
+    {/* facebook bar     */}
+    <Flex border="1px solid" p='15px' align='center' m='5px 0'>
+            <Box>
+            <BsFacebook size="28px" color='#4267B2'/>
+            </Box>
+            <Box ml='15px'>
+                <Heading size="xs">Continue with Facebook</Heading>
+            </Box>
+        </Flex>
+    {/* apple bar  */}
+    <Flex border="1px solid" p='15px' align='center' m='5px 0'>
+            <Box>
+            <DiApple size="35px"/>
+            </Box>
+            <Box ml='15px'>
+                <Heading size="xs">Continue with Apple</Heading>
+            </Box>
+        </Flex>
+    {/* email  */}
+    <Box border="1px solid" p='20px' id='email'  m='5px 0' onClick={showInput} ref={emailbox}>
+    <Box >
+        <Heading id='email' size="xs">Email</Heading>
+    </Box>
+        <Box>
+        <Input display='none' ref={emailInput} border='none' p='0px'  focusBorderColor="transparent"
+      _focus={{ outline: 'none' }} name='email' value={form.email} onChange={handleInput}/>
+        </Box>
+    </Box>
+  {/* password */}
+  <Box border="1px solid" p='20px' id='password'  m='5px 0' onClick={showInput} ref={passwordbox}>
+    <Box >
+        <Heading id='password' size="xs">Password</Heading>
+    </Box>
+        <Box>
+        <Input type='password' display='none' ref={passwordInput} border='none' size='sm' focusBorderColor="transparent"
+      _focus={{ outline: 'none' }} name='password' value={form.password} onChange={handleInput}/>
+        </Box>
+    </Box>
+  {/* button  */}
+     <Box mt='15px'>
+     <Button w='100%' color='white' bg='#0056D2' _hover={{background:"#1E88E5",color:"#CFD8DC"}} borderRadius="0" textAlign='center' onClick={handleLogin}><Heading size="xs">{ userStore.loading ? <Spinner color='white' />: "Log in" }</Heading></Button>
+     </Box>
+    </Box>
+       </Box> 
+     </Box>
+    </Box>
+  );
+};
+
+export default Login;
