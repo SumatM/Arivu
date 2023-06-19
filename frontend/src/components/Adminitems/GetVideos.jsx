@@ -31,7 +31,7 @@ const GetVideos = () => {
   useEffect(()=>{
   dispatch(getvideo(page,limit))  
   
-  },[page])
+  },[page,limit])
   
 
   const handleDelete=(id,title)=>{
@@ -63,7 +63,7 @@ console.log(count)
    {/*  */}
    <Box >
      
-        <Text>Welcome To Course</Text>
+        <Text fontWeight={'bold'} m={5}>Courses Video</Text>
        
       
 <Box  maxWidth="100%" overflowX="auto">
@@ -72,7 +72,7 @@ console.log(count)
       <Thead>
         <Tr>
           <Th>Title</Th>      
-          <Th>Uploaded At</Th>      
+          <Th>Uploaded</Th>      
           <Th>Description</Th>
           <Th>Views</Th>
           <Th>Link</Th>
@@ -103,7 +103,7 @@ console.log(count)
 
     </Table>
 </Box>
-<Box textAlign={'right'}>
+<Box textAlign={{xl:'right',lg:'right',base:'left'}}>
   <Button disabled={page<=1} onClick={()=>handlePageButton(-1)}>Prev</Button>
   <Pagination totalCount={count} current_page={page} handlePageChange={handlePageChange}/>
   <Button disabled={page>=count} onClick={()=>handlePageButton(1)}>Next</Button>

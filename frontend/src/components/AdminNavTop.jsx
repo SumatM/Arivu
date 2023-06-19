@@ -1,5 +1,5 @@
 import { Box, Flex, Input, Button } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from "react-router-dom"
 import { IoSearchCircleOutline } from 'react-icons/io5'
 import { AiOutlineQuestionCircle } from "react-icons/ai";
@@ -7,16 +7,18 @@ import { AiOutlineBell } from "react-icons/ai";
 import { TbCircleLetterM } from "react-icons/tb";
 
 
-const AdminNavTop = () => {
+const AdminNavTop = ({handleSearch}) => {
+
+
   return (
-    <Flex h='10vh' justifyContent={'space-between'}  w={'wrap'}  >
+    <Flex h='10vh' justifyContent={'space-between'}  >
         <Flex w={'60%'}  >
 
         <Link >
           <IoSearchCircleOutline style={{fontSize:'7vh', color:'gray', marginTop:"3px"}} /> 
         </Link>
         <Box w={'50%'}>
-      <Input placeholder='Search Anything' border={'none'}  h={'8vh'} w='100%' />
+      <Input placeholder='Search Anything'  border={'none'}  h={'8vh'} w='100%' onChange={handleSearch} />
         </Box>
         </Flex>
     <Flex  gap={5} flexDirection={['none','row']} display={{xl:'flex',lg:"flex",md:"flex",base:'none'}}>

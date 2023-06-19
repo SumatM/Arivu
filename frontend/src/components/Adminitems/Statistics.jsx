@@ -31,10 +31,10 @@ const Statistics = () => {
         labels: ["January", "February", "March", "April", "May", "June"],
         datasets: [
           {
-            label: "Sales",
+            label: "Courses",
             data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: "rgba(75,192,192,0.6)",
-            borderColor: "rgba(75,192,192,1)",
+            backgroundColor: "#f038d7",
+            borderColor: "teal",
             borderWidth: 1,
           },
         ],
@@ -46,14 +46,14 @@ const Statistics = () => {
        <Box >
      <AdminNavTop/>
    {/*  */}
-   <Flex justify={'space-around'}>
+   <Grid templateColumns={{xl:'repeat(2,1fr)',lg:'repeat(2,1fr)',base:'repeat(1,1fr)'}}>
 
-   <Box w="600px" h="400px" p={4} borderWidth={1} borderColor="gray.200" borderRadius="md">
+   <Box w={{xl:"600px",lg:'600px',base:'50%'}} h="400px" p={4} borderWidth={1} borderColor="gray.200" borderRadius="md">
     <h2>Total Customer Interaction</h2>
           <Line data={data} />
         </Box>
 
-        <Flex align="center" justify="center" maxHeight="60vh">
+        <Flex align="center"  maxHeight="60vh">
       <Box p={4} boxShadow="md">
         <Text fontSize="xl" fontWeight="bold" mb={4}>
           Courses Distribution
@@ -64,9 +64,9 @@ const Statistics = () => {
       </Box>
     </Flex>
 
-   </Flex>
+   </Grid>
 
-   <Flex align="center" justify="center" minHeight="60vh"  >
+   <Flex align="center" justify="center" minHeight={{xl:"60vh",lg:'60vh' ,base:'30vh'}}  w={{xl:"600px",lg:'600px',base:'80%'}}  >
       <Box p={4} boxShadow="md"  w='100%'>
         <Text fontSize="xl" fontWeight="bold" mb={4}>
           Monthly Sales

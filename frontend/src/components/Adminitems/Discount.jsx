@@ -44,7 +44,7 @@ const Discount = () => {
       <Box >
     <AdminNavTop/>
   {/*  */}
-  <Grid templateColumns={'repeat(3,1fr)'} gap={10}>
+  <Grid templateColumns={{xl:'repeat(3,1fr)',lg:'repeat(2,1fr)',base:'repeat(1,1fr)'}} gap={10}>
    {discount.map((el,i)=>{
     return <Box key={i}  border={'2px solid black'} p={2} borderRadius={10}>
   <Box border={'2px solid blue'} w={'50vh'} p={2} borderRadius={10}>
