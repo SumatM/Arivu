@@ -12,6 +12,7 @@ import { FiFilm } from 'react-icons/fi';
 
 const DashBoard = () => {
 
+
   const data = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
