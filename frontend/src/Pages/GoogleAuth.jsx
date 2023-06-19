@@ -27,11 +27,11 @@ const GoogleSignup = () => {
 
     try {
       const isUser = await axios.post(
-        `http://localhost:8080/users/register`,
+        `https://arivu-sever-link.onrender.com/users/register`,
         data
       );
       await axios
-        .post(`http://localhost:8080/users/login`, {
+        .post(`https://arivu-sever-link.onrender.com/users/login`, {
           email: decodedToken.email,
           password: decodedToken.email,
         })
@@ -43,7 +43,7 @@ const GoogleSignup = () => {
       if (isUser) {
         // await dispatch(signInAuth(data));
 
-        navigate("/dashboard");
+        navigate("/arivu");
         // console.log("done");
       } else {
         throw Error;

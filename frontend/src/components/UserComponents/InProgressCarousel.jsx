@@ -53,9 +53,9 @@ const InProgressCarousel = () => {
   };
 
   useEffect(() => {
-    const token = jwtDecode(localStorage.getItem("token"));
+    const user = JSON.parse(localStorage.getItem("user"));
     // console.log(token.userId);
-    const url = `http://localhost:8080/users/userCourse/${token.userId}`;
+    const url = `https://arivu-sever-link.onrender.com/users/userCourse/${user.userId}`;
 
     axios
       .get(url)

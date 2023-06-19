@@ -28,7 +28,7 @@ export default function Payment({courseId}) {
   const upiRef = useRef(null);
   const [input,setinput] = useState("")
 
-  let baseURL = "http://localhost:8080";
+  let baseURL = "https://arivu-sever-link.onrender.com";
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
 
