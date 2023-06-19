@@ -9,7 +9,7 @@ import {
   actionsingUpSuccess,
 } from "./actionType";
 
-let baseURL = "http://localhost:8080/";
+let baseURL = "https://arivu-sever-link.onrender.com/";
 
 export const loginFetch = (value) => (dispatch) => {
   dispatch(actionLoginLoading());
