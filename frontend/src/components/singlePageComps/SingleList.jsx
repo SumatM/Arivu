@@ -27,11 +27,13 @@ const SingleList = () => {
 
 
   return (
-    <div className=" border my-5 py-5 max-w-[600px]  text-black bg-white px-[15px]">
+   <div className='justify-center flex md:flex-none '>
+
+    <div className=" border my-5 py-5 max-w-[598px]  text-black bg-white">
        
        <div><h3 className='text-lg font-bold pb-4'>What you'll learn</h3></div>
 
-       <div className='grid-cols-2 grid  text-[10px] space-y-1.5 '>
+       <div className='sm:grid-cols-2 grid  text-[10px] space-y-1.5 '>
        {list.map((item) => 
       
     <>
@@ -50,6 +52,7 @@ const SingleList = () => {
        </div>
 
     </div>
+   </div>
   )
 }
 
