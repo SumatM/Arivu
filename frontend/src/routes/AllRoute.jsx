@@ -6,7 +6,6 @@ import AddCourse from "../components/Adminitems/AddCourse";
 import LandingPage from "../Pages/LandingPage";
 import PageNotFound from "../Pages/PageNotFound";
 import UserDashboard from "../Pages/UserDashboard";
-
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Discount from "../components/Adminitems/Discount";
@@ -14,14 +13,10 @@ import Statistics from "../components/Adminitems/Statistics";
 import Setting from "../components/Adminitems/Setting";
 import GiftCard from "../components/Adminitems/GiftCard";
 import Users from "../components/Adminitems/Users";
-
-
-
 import SinglePage from "../components/singlePageComps/SinglePage";
 import Login from "../components/LogIn";
 import SignUp from "../components/SignUp";
 import Payment from "../Pages/Payment/Payment";
-
 import AddUser from "../components/Adminitems/AddUser";
 import EditUser from "../components/Adminitems/EditUsers";
 import GetVideos from "../components/Adminitems/GetVideos";
@@ -46,9 +41,6 @@ const AllRoute = () => {
       <Route path="/dashboard" element={<UserDashboard />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
       <Route path="/admin/addCourse" element={<AddCourse />} />
-
-    
-
       <Route path="/arivu" element={<UserDashboard />} />
       <Route path="/admin/discount" element={<Discount />} />
       <Route path="/admin/statistic" element={<Statistics />} />
@@ -60,10 +52,13 @@ const AllRoute = () => {
       <Route path="/admin/videos" element={<GetVideos />} />
 
       <Route path="/admin/videos/add/:courseId" element={<AddVideo />} />
+
+      
       <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<PageNotFound />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+
       <Route path="/payment" element={<Payment />} />
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>

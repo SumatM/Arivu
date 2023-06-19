@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,6 +14,7 @@ import SingleList from "./SingleList";
 import { useParams } from "react-router-dom";
 // import axios from "axios";
 import { useState, useEffect } from "react";
+import Payment from "../../Pages/Payment/Payment";
 
 export default function SinglePage() {
   const [res, setRes] = useState({});
@@ -21,10 +22,16 @@ export default function SinglePage() {
   console.log(id);
 
   console.log("#####", res);
- 
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
+
+
   // /courses/:courseID
 
   const getSinglePageData = (id) => {
+
+
 
     let vdo_url = `https://arivu-sever-link.onrender.com/videos/courseVideos/${id}`;
     const token = JSON.parse(localStorage.getItem('user')).token
@@ -129,7 +136,7 @@ export default function SinglePage() {
             </Box>
           </Box>
           <div className="mt-6 ">
-            <SingleAbsolute {...res?.course?.price} />{" "}
+            <SingleAbsolute props={{...res?.course?.price,onOpen,onClose}} />{" "}
           </div>
         </div>
       </div>
@@ -137,6 +144,9 @@ export default function SinglePage() {
 
       <div className="max-w-[598px] xl:mr-72">
         <SingleList />
+      </div>
+      <div>
+        <Payment isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
       </div>
     </div>
   );
