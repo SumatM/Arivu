@@ -38,7 +38,7 @@ export const signUpFetch = (value) => (dispatch) => {
         console.log(res);
     })
     .catch((err)=>{
-    dispatch(actionsingUpError(err.response.data.msg))
+    dispatch(actionsingUpError(err))
         console.log(err.response.data.msg);
     })
 }

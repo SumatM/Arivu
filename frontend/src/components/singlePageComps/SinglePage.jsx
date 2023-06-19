@@ -26,12 +26,8 @@ export default function SinglePage() {
 
   const getSinglePageData = (id) => {
 
-    console.log("💕💕💕", id);
-    // const token=localStorage.getItem("token") || null;
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
     let vdo_url = `https://arivu-sever-link.onrender.com/videos/courseVideos/${id}`;
-    let course_url = `https://arivu-sever-link.onrender.com/courses/${id}`;
+    const token = JSON.parse(localStorage.getItem('user')).token
 
     fetch(vdo_url, {
       method: "GET",
