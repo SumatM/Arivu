@@ -11,9 +11,20 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { FaSearch, FaBars } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom'
 
 const Navbar = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
+
+  const navigate = useNavigate()
+
+  function signup(){
+    navigate('/signup')
+  }
+
+  function home(){
+    navigate('/')
+  }
 
   return (
     <Flex
@@ -31,7 +42,7 @@ const Navbar = () => {
         <Box>
           {/* Logo */}
           {/* <img src={image} alt="Logo" width="30%" /> */}
-          <Text fontSize={30} fontWeight="extrabold" color="#0056d2">
+          <Text fontSize={30} fontWeight="extrabold" color="#0056d2" onClick={home} _hover={{cursor:"pointer"}}>
             ARIVU
           </Text>
         </Box>
@@ -107,7 +118,7 @@ const Navbar = () => {
           <Box mr={4}>
             <Link
               _hover={{ color: "#003e9c", textDecoration: "underline" }}
-              href="/new-career"
+              href="#"
             >
               Find your New Career
             </Link>
@@ -115,7 +126,7 @@ const Navbar = () => {
           <Box mr={4}>
             <Link
               _hover={{ color: "#003e9c", textDecoration: "underline" }}
-              href="/enterprise"
+              href="#"
             >
               For Enterprise
             </Link>
@@ -123,7 +134,7 @@ const Navbar = () => {
           <Box mr={4}>
             <Link
               _hover={{ color: "#003e9c", textDecoration: "underline" }}
-              href="/universities"
+              href="#"
             >
               For Universities
             </Link>
@@ -140,6 +151,7 @@ const Navbar = () => {
             color="white"
             borderRadius="5px"
             _hover={{ bg: "#003e9c" }}
+            onClick={signup}
           >
             Join for free
           </Button>

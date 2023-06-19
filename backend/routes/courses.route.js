@@ -5,7 +5,44 @@ const { UserModel } = require("../models/users.models.js");
 
 const courseRoute = express.Router();
 
+
+
+
+courseRoute.get("/all", async (req, res) => {
+  try {
+    let { q, sortBy, sortOrder, page, limit } = req.query;
+    let filter = {};
+    if (q) {
+      filter.title = { $regex: q, $options: "i" };
+    }
+    const sort = {};
+    if (sortBy) {
+      sort[sortBy] = sortOrder === "desc" ? -1 : 1;
+    }
+    page = page ? page : 1;
+    limit = limit ? limit : 10;
+    // console.log(filter,sort)
+    const data = req.body;
+    const course = await courseModel
+      .find(filter)
+      .sort(sort)
+      .skip((page - 1) * limit)
+      .limit(limit);
+    res.status(200).json({ course });
+  } catch (err) {
+    res
+      .status(400)
+      .json({ message: "Something Went Wrong", error: err.message });
+  }
+});
+
+
+
+
+
 courseRoute.use(auth);
+// Protected Routes
+
 
 // get request for all courses
 // EndPoint: /courses/
