@@ -23,17 +23,22 @@ import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 import { useParams } from "react-router";
 import { Input } from "@chakra-ui/react";
 
-export default function Payment({courseId}) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function Payment({ isOpen, onOpen, onClose }) {
+  console.log(isOpen,onClose)
+
+  const { id } = useParams();
+  const courseId = id;
   const upiRef = useRef(null);
   const [input,setinput] = useState("")
 
   let baseURL = "https://arivu-sever-link.onrender.com";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
+  const token = JSON.parse(localStorage.getItem('user'))?.token || "";
 
   const [course, setCourse] = useState({});
   const vpiRef = useRef(null)
+
+
+
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -129,7 +134,7 @@ export default function Payment({courseId}) {
                 <Text>Instructor: {capitalizeFirstLetter(course[0]?.teacher)}</Text>
             </Box>
           </Flex>
-          <Text fontSize='12px'>{`Number of video you are getting ${course[0]?.videos.length}`}</Text>
+          <Text fontSize='12px'>{`Number of video you are getting ${course[0]?.videos?.length || 1}`}</Text>
 
                 {/* Address */}
                 <Box>

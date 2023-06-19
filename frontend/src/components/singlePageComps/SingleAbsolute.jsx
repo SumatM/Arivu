@@ -7,6 +7,16 @@ const SingleAbsolute = ({props}) => {
     const [page , setPage] = useState("left");
     const navigate=useNavigate()
     console.log("props 🏃🏃🏃",props)
+
+    const {onOpen,onClose} = props;
+
+
+    function handlePayment(){
+       onOpen()
+    }
+
+
+
   return (
     <div className="xl:border text-white  xl:text-black xl:border-white xl:max-w-[280px] xl:shadow-md shadow-neutral-800  xl:bg-white">
       <div>
@@ -59,7 +69,7 @@ const SingleAbsolute = ({props}) => {
         <p className="text-xs font-bold">52 minutes </p>
         <p className="text-xs">left at this price!</p>
       </div>
-       <button onClick={()=>navigate("/payment")} className=" border-2 w-full py-[7px] text-sm font-bold">
+       <button onClick={handlePayment} className=" border-2 w-full py-[7px] text-sm font-bold">
         Buy this course
        </button>
 
