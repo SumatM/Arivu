@@ -21,17 +21,19 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 import { useParams } from "react-router";
+import { Input } from "@chakra-ui/react";
 
 export default function Payment({courseId}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const upiRef = useRef(null);
+  const [input,setinput] = useState("")
 
   let baseURL = "http://localhost:8080";
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
 
   const [course, setCourse] = useState({});
-
+  const vpiRef = useRef(null)
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -64,15 +66,35 @@ export default function Payment({courseId}) {
     };
   }, []);
 
+  // will show the box when click on upi 
   function showUPI(){
     upiRef.current.style.display = 'block'
   }
 
+  // block display when click on show less 
   function blockUPI() {
     upiRef.current.style.display = 'none'
   }
 
-// console.log(courseId)
+  // handle input 
+  function handleInput(e){
+    setinput((p)=> e.target.value)
+
+    if(input.includes("@")){
+      vpiRef.current.style.background = "#43A047"
+    }else{
+      vpiRef.current.style.background = "#90A4AE"
+    }
+      
+  }
+ 
+ 
+
+  // handle payment 
+  function handlePayment(){
+    console.log('yes')
+    setinput("")
+  }
 
   return (
     <>
@@ -183,7 +205,27 @@ export default function Payment({courseId}) {
                     </Flex>
                   </Flex>
                   <Box ref={upiRef} display='none'>
-                    asdfasdfl
+                    <Box p='8px'>
+                      <Box border='1px solid' p='8px'>
+                  {/* 1st box  */}
+                        <Box>
+                          <Text fontSize='12px' fontWeight='700'>Make a selection on how you would like to use UPI</Text>
+                        </Box>
+                  {/* 2nd box  */}
+                       <Box border='1px solid #0D47A1' borderRadius='5px' p='3px' m="5px 0" mt="10px">
+                       <Button  disabled={true} fontSize='10px' color='#0D47A1' background='#E1F5FE' border='1px solid #0D47A1'>Virtual Payment Address</Button>
+                       </Box>
+                  {/* 3rd box  */}
+                  <Box m="10px 0" mb='25px'>
+                  <Box>
+                  <Text fontSize='12px' fontWeight='700'>Virtual Payment Address</Text>
+                  </Box>
+                  <Box mt='15px' >
+                  <Input borderRadius='0px' border='1px solid black' w='100%' _focus={{ outline: '1px solid' }} focusBorderColor="transparent" onChange={handleInput} value={input}/>
+                  </Box>
+                  </Box>
+                      </Box>
+                    </Box>
                    <Box textAlign='center'>
                    <Text fontWeight='500' fontSize='10px' onClick={blockUPI} _hover={{cursor:'pointer'}}>See Less</Text>
                    </Box>
@@ -232,10 +274,10 @@ export default function Payment({courseId}) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button borderRadius='0px' background="#1565C0" color='white' _hover={{background:"#1E88E5",color:"#CFD8DC"}} mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">PayNow</Button>
+            <Button onClick={handlePayment} isDisabled={input.includes("@")} ref={vpiRef} borderRadius='0px' background="#90A4AE" color='white' _hover={{color:"#004D40"}}>PayNow</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
