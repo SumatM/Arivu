@@ -16,11 +16,11 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 const ProfilePage = () => {
-  const creds = localStorage.getItem("token");
-  const decode = jwtDecode(creds);
-  console.log(decode);
-  const [name, setName] = useState(decode.user);
-  const [email, setEmail] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  // const decode = jwtDecode(creds);
+  // console.log(decode);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [city, setCity] = useState("");
@@ -40,7 +40,7 @@ const ProfilePage = () => {
     };
 
     axios
-      .patch(`https://arivu-sever-link.onrender.com/users/update/${decode.userId}`, obj)
+      .patch(`https://arivu-sever-link.onrender.com/users/update/${user.userId}`, obj)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

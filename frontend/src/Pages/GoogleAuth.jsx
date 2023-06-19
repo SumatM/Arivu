@@ -43,7 +43,7 @@ const GoogleSignup = () => {
       if (isUser) {
         // await dispatch(signInAuth(data));
 
-        navigate("/dashboard");
+        navigate("/arivu");
         // console.log("done");
       } else {
         throw Error;
