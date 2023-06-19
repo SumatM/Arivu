@@ -4,18 +4,22 @@ import { Box,Grid } from '@chakra-ui/react';
 import './AdminNavbar.css'
 import AdminSidebar from './AdminSidebar';
 import AdminNavTop from './AdminNavTop';
+import Navbar from './UserComponents/UserNavbar';
 
 const AdminNavbar = () => {
 
   return (
-    <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
+    <Box>
+      <Grid className='Nav'  h={'99vh'} w='94%' gap={10} bg='red'>
    <AdminSidebar/> 
       <Box >
-    <AdminNavTop/>
+   
+    <AdminNavTop bg='green'/>
   {/*  */}
       </Box>
 
     </Grid>
+    </Box>
   )
 }
 

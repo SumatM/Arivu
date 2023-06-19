@@ -3,15 +3,15 @@ import React from 'react'
 import AdminSidebar from '../AdminSidebar'
 import AdminNavTop from '../AdminNavTop'
 import { useSelector } from 'react-redux'
+import { capitalizeFirstLetter } from '../../Redux/UserReducer/action'
 
 const Setting = () => {
 
   const store=useSelector(store=>store.AdminReducer.data);
-
-  const name="Admin";
+  const userStore = useSelector(store=>store.UserReducer);
+  const name= capitalizeFirstLetter(userStore.name)
   const password="Hello_Password"
 
-  console.log(name,password)
 
   return (
     <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
