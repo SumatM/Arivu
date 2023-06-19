@@ -31,7 +31,7 @@ import ProfilePage from "../Pages/ProfilePage";
 const AllRoute = () => {
   return (
     <Routes>
-      <Route path="/singlePage" element={<SinglePage />} />
+      <Route path="/singlePage/:id" element={<SinglePage />} />
       <Route path="/admin/dashboard" element={<DashBoard />} />
       <Route path="/admin/courses" element={<Courses />} />
       <Route path="/admin/edit/:id" element={<EditPage />} />
