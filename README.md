@@ -1,5 +1,8 @@
 # puny-potato-4945
 
+Github Link: https://github.com/SumatM/puny-potato-4945
+Front-end Deployed Link: https://puny-potato-4945.vercel.app/
+
 # ARIVU
 
 ARIVU is an online learning platform that offers courses across various domains, similar to Coursera. This repository contains the source code for the ARIVU website.
