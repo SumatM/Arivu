@@ -79,7 +79,11 @@ const Login = () => {
   // if isAuth is true move to dashboard;
 
   if (userStore.isAuth) {
-    navigate("/arivu");
+    if(userStore?.role==='user'){
+      navigate("/arivu");
+    }else if(userStore?.role=='admin'){
+      navigate("/admin/dashboard");
+    }
   }
 
   return (

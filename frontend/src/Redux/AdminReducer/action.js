@@ -2,6 +2,8 @@
 import axios from "axios"
 import { ADD_PRODUCT_SUCCESS, ADD_User_SUCCESS, ADD_Video_SUCCESS, GET_PRODUCT_SUCCESS, GET_User_SUCCESS, GET_Video_SUCCESS, PATCH_PRODUCT_SUCCESS, PATCH_User_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType"
 
+const token = JSON.parse(localStorage.getItem('user'))?.token || "";
+
 
 
 export const addProduct=(data)=>(dispatch)=>{
@@ -10,7 +12,7 @@ export const addProduct=(data)=>(dispatch)=>{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
-      Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      Authorization:`Bearer ${token}`
     },
     body:JSON.stringify(data)
   }).then(res=>res.json()).then((res)=>{console.log(res);
@@ -24,7 +26,7 @@ export const addUser=(data)=>(dispatch)=>{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
-      Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      Authorization:`Bearer ${token}`
     },
     body:JSON.stringify(data)
   }).then(res=>res.json()).then((res)=>{console.log("userData",res);
@@ -37,7 +39,7 @@ export const addVideo=(data,courseId)=>(dispatch)=>{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
-      Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      Authorization:`Bearer ${token}`
     },
     body:JSON.stringify(data)
   }).then(res=>res.json()).then((res)=>{console.log("userData",res);
@@ -50,7 +52,7 @@ export const getProduct=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
     axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}`,{
       headers:{
-        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+        Authorization:`Bearer ${token}`
       }
     }).then((res)=>{console.log("getProduct",res);
     dispatch({type:GET_PRODUCT_SUCCESS,payload:res.data.course})
@@ -61,7 +63,7 @@ export const getUser=(page,limit,search,order)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
     axios.get(`https://arivu-sever-link.onrender.com/users?page=${page}&limit=${limit}`,{
       headers:{
-        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+        Authorization:`Bearer ${token}`
       }
     }).then((res)=>{console.log("getUsers",res);
     dispatch({type:GET_User_SUCCESS,payload:res.data.users})
@@ -72,7 +74,7 @@ export const getvideo=(page,limit)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST})
     axios.get(`https://arivu-sever-link.onrender.com/videos?page=${page}&limit=${limit}`,{
       headers:{
-        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+        Authorization:`Bearer ${token}`
       }
     }).then((res)=>{console.log("getVideos",res.data);
     dispatch({type:GET_Video_SUCCESS,payload:res.data})
@@ -86,7 +88,7 @@ export const patchProduct=(id,data)=>(dispatch)=>{
     method:"PATCH",
     headers:{
       "Content-Type":"application/json",
-      Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      Authorization:`Bearer ${token}`
     },
     body:JSON.stringify(data)
   }).then(res=>res.json()).then((res)=>{console.log("patch data is",res.course);
@@ -99,7 +101,7 @@ export const patchUser=(id,data)=>(dispatch)=>{
     method:"PATCH",
     headers:{
       "Content-Type":"application/json",
-      Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+      Authorization:`Bearer ${token}`
     },
     body:JSON.stringify(data)
   }).then(res=>res.json()).then((res)=>{console.log("patch data is",res);
@@ -112,7 +114,7 @@ export const deleteProduct=(id)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST});
     axios.delete(`https://arivu-sever-link.onrender.com/courses/delete/${id}`,{
       headers:{
-        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+        Authorization:`Bearer ${token}`
       }
     }).then((res)=>{console.log(res,"deleted");
     dispatch(getProduct(4,3))}).catch(e=>dispatch({type:PRODUCT_FAILURE}))
@@ -121,7 +123,7 @@ export const deleteUsers=(id)=>(dispatch)=>{
     dispatch({type:PRODUCT_REQUEST});
     axios.delete(`https://arivu-sever-link.onrender.com/users/delete/${id}`,{
       headers:{
-        Authorization:`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug`
+        Authorization:`Bearer ${token}`
       }
     }).then((res)=>{console.log(res,"deleted");
     dispatch(getUser(4,3))}).catch(e=>dispatch({type:PRODUCT_FAILURE}))
