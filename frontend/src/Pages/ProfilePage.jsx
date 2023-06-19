@@ -12,31 +12,37 @@ import {
   Center,
   AbsoluteCenter,
 } from "@chakra-ui/react";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const ProfilePage = () => {
-  const [name, setName] = useState("");
+  const creds = localStorage.getItem("token");
+  const decode = jwtDecode(creds);
+  console.log(decode);
+  const [name, setName] = useState(decode.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [city, setCity] = useState("");
   const [job, setJob] = useState("");
+  // console.log(creds);
 
   const handleSave = () => {
     // Implement save logic here
     console.log("Profile Saved");
-  };
+    const obj = {
+      name,
+      email,
+      password,
+      age,
+      city,
+      job,
+    };
 
-  const isFormValid = () => {
-    // Add your form validation logic here
-    // Return true if the form is valid, otherwise false
-    return (
-      name !== "" &&
-      email !== "" &&
-      password !== "" &&
-      age !== "" &&
-      city !== "" &&
-      job !== ""
-    );
+    axios
+      .patch(`http://localhost:8080/users/update/${decode.userId}`, obj)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -45,12 +51,12 @@ const ProfilePage = () => {
         <Center>
           <Avatar
             justifyContent={"center"}
-            size="xl"
+            size="2xl"
             name={name}
             src="/path/to/profile-image.jpg"
           />
         </Center>
-        <Heading mb="4" fontSize="2xl" textAlign="center">
+        <Heading mt="10" mb="4" fontSize="2xl" textAlign="center">
           Edit Profile
         </Heading>
         <VStack spacing="4" align="stretch">
