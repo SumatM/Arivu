@@ -22,7 +22,7 @@ const Dropdown = () => {
     axios
       .get("https://arivu-sever-link.onrender.com/users/logout")
       .then((res) => {
-        localStorage.setItem("token", "");
+        localStorage.setItem("user", null);
         navigate("/");
       })
       .catch((err) => console.log(err));
