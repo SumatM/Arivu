@@ -3,10 +3,13 @@ import { Box, Flex, Heading, IconButton, Text, useDisclosure } from '@chakra-ui/
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { capitalizeFirstLetter } from '../Redux/UserReducer/action';
 
 const AdminSidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isMobile, setIsMobile] = useState(false);
+  const userStore = useSelector((store) => store.UserReducer);
 
   const handleResize = () => {
     if (window.innerWidth < 768) {
@@ -42,7 +45,7 @@ const AdminSidebar = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-       Welcome Admin!
+      <Text fontWeight='500'> Welcome {capitalizeFirstLetter(userStore.name)}!</Text>
       </motion.h1>
         </Box>
       <Box>

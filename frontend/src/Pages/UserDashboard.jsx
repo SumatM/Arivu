@@ -4,7 +4,10 @@ import Footer from "./Footer";
 import CourseComponent from "../components/UserComponents/CourseComponent";
 
 import { Box, Container, Flex } from "@chakra-ui/react";
+import ToggleButton from "../Toggle";
+import { useSelector } from "react-redux";
 const UserDashboard = () => {
+  const userStore = useSelector((store) => store.UserReducer);
   return (
     <>
       <Box>
@@ -50,6 +53,11 @@ const UserDashboard = () => {
         <Container mt="100px" maxW="container.xxl">
           <Footer />
         </Container>
+        <Box>
+        {userStore.isAuth && userStore.role=='admin' ? (
+        <ToggleButton value={55}/>
+      ) : null}
+        </Box>
       </Box>
     </>
   );

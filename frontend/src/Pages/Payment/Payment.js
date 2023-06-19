@@ -24,7 +24,6 @@ import { useParams } from "react-router";
 import { Input } from "@chakra-ui/react";
 
 export default function Payment({ isOpen, onOpen, onClose }) {
-  console.log(isOpen,onClose)
 
   const { id } = useParams();
   const courseId = id;
@@ -103,7 +102,7 @@ export default function Payment({ isOpen, onOpen, onClose }) {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      {/* <Button onClick={onOpen}>Open Modal</Button> */}
 
       <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />

@@ -1,7 +1,9 @@
 import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import sectionImage from "../../asset/sectionImage.png";
+import { useNavigate } from "react-router-dom";
 const Section6 = () => {
+  const navigate = useNavigate()
   return (
     <Flex
       bgColor={"#ebf3ff"}
@@ -76,6 +78,7 @@ const Section6 = () => {
               md: "15px 30px",
               lg: "25px 45px",
             }}
+            onClick={() => navigate("/signup")}
           >
             Join for Free
           </Button>

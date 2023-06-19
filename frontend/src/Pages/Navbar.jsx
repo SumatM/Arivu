@@ -43,29 +43,9 @@ const Navbar = () => {
           {/* Logo */}
           {/* <img src={image} alt="Logo" width="30%" /> */}
           <Text fontSize={30} fontWeight="extrabold" color="#0056d2" onClick={home} _hover={{cursor:"pointer"}}>
-            ARIVU
+          AṞIVU
           </Text>
         </Box>
-        {!isMobile && (
-          <Box ml={4}>
-            {/* Explore Select */}
-            <Select
-              variant="filled"
-              bg="#0056d2"
-              color="white"
-              borderRadius={8}
-              _hover={{
-                bg: "white",
-                color: "#0056d2",
-                border: "2px solid black",
-                cursor: "pointer",
-              }}
-            >
-              <option value="explore">Explore</option>
-              {/* Add options here */}
-            </Select>
-          </Box>
-        )}
       </Flex>
 
       {!isMobile ? (
@@ -78,6 +58,7 @@ const Navbar = () => {
               border="1px solid black"
               color="black"
               placeholder="What do you want to learn?"
+              borderRadius="10px 0 0px 10px"
               _placeholder={{ color: "#555454" }}
             />
           </Box>
@@ -86,7 +67,8 @@ const Navbar = () => {
             icon={<FaSearch />}
             bg="#0056d2"
             color="white"
-            borderRightRadius="7px"
+            borderRadius="0px 10px 10px 0px"
+            _hover={{background:'#0288D1'}}
           />
         </Flex>
       ) : (

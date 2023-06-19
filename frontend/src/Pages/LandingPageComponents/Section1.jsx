@@ -1,6 +1,8 @@
 import { Flex, Text, Button, Image, Box } from "@chakra-ui/react";
 import teacher from "../../asset/A.png";
+import { useNavigate } from "react-router-dom";
 const Section1 = () => {
+  const navigate = useNavigate();
   return (
     <Flex
       mt={100}
@@ -62,6 +64,8 @@ const Section1 = () => {
               sm: "20px 40px",
             }}
             border="3px solid #0056d2"
+            _hover={{ background: "#42A5F5", color: "#0D47A1" }}
+            onClick={() => navigate("/signup")}
           >
             Join for Free
           </Button>
@@ -76,6 +80,7 @@ const Section1 = () => {
               sm: "20px 40px",
             }}
             border="3px solid #0056d2"
+            onClick={() => navigate("/login")}
           >
             Try Arivu for Business
           </Button>

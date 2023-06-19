@@ -8,6 +8,7 @@ import { BiMale } from 'react-icons/bi';
 import { FaVideo } from 'react-icons/fa';
 import { FiBook } from 'react-icons/fi';
 import { FiFilm } from 'react-icons/fi';
+import Navbar from '../UserComponents/UserNavbar';
 
 
 const DashBoard = () => {
@@ -48,7 +49,8 @@ const DashBoard = () => {
 
   return (
 
-    <Grid className='Nav'  h={'99vh'} w='94%' gap={10}>
+    <Box>
+      <Grid  className='Nav'  h={'99vh'} w='94%' gap={10}>
     <AdminSidebar/> 
        <Box >
      <AdminNavTop/>
@@ -150,6 +152,7 @@ const DashBoard = () => {
        </Box>
  
      </Grid>
+    </Box>
 
     
   )

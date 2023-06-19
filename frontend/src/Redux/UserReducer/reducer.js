@@ -1,8 +1,8 @@
 
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, SIGNUP_LOADING, SINGUP_ERROR, SINGUP_SUCCESS } from "./actionType";
+import { ISUSER_FALSE, ISUSER_TRUE, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, SIGNUP_LOADING, SINGUP_ERROR, SINGUP_SUCCESS } from "./actionType";
 
 
-let init = {
+let init = JSON.parse(localStorage.getItem('user')) || {
     email:"",
     name:"",
     "role":"",
@@ -11,10 +11,10 @@ let init = {
     isError:"",
     loading:false,
     success: false,
+    isUser: false
 } 
 
 const reducer = (state = init,action)=>{
-    
     const {type,payload} = action;
     switch(type){
         case LOGIN_LOADING : return {...state, isAuth:false,token:"",isError:"",loading:true}
@@ -28,6 +28,9 @@ const reducer = (state = init,action)=>{
         case SINGUP_SUCCESS: return {...state,loading:false,success:true  }
 
         case SINGUP_ERROR: return {...state,loading:false,isError:payload  }
+
+        case ISUSER_TRUE: return {...state,isUser:true}
+        case ISUSER_FALSE: return {...state,isUser:false}
 
         default: return {...state}
     }
