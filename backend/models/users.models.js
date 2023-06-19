@@ -10,10 +10,9 @@ const userSchema = mongoose.Schema(
     city: String,
     job: String,
     course:[{type: mongoose.Schema.Types.ObjectId, ref: 'course'}],
-
     role: {type: String,default: 'user'},
-
     image: String,
+    isPromotion: Boolean
   },
   {
     versionKey: false,
