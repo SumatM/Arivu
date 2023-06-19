@@ -23,3 +23,4 @@ ARIVU is an online learning platform that offers courses across various domains,
 - Database: MongoDB
 - Authentication: JSON Web Tokens (JWT)
 - Deployment: Vercel (front-end), AWS (back-end)
+
