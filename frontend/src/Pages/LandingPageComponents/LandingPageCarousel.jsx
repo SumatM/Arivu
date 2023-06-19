@@ -51,18 +51,10 @@ const LandingPageCarousel = () => {
   };
 
   useEffect(() => {
-    const url = "https://arivu-sever-link.onrender.com/courses/";
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDhhZDAzYjZhZWM1ZjUzYjJiODE0MmEiLCJ1c2VyIjoic3VtYXQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODY5MDg3NjEsImV4cCI6MTY4NzUxMzU2MX0.nu-ma37MDpZFdAqPWX9XmMIFDvVZ0Nzg-59J9Ajm1Ug";
-
+    const url = "https://arivu-sever-link.onrender.com/courses/all";
     setLoading(true);
 
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
