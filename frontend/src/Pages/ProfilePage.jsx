@@ -40,7 +40,7 @@ const ProfilePage = () => {
     };
 
     axios
-      .patch(`http://localhost:8080/users/update/${decode.userId}`, obj)
+      .patch(`https://arivu-sever-link.onrender.com/users/update/${decode.userId}`, obj)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
