@@ -3,7 +3,7 @@ import UserSlider from "../components/UserComponents/UserSlider";
 import Footer from "./Footer";
 import CourseComponent from "../components/UserComponents/CourseComponent";
 
-import { Box, Container, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex, Text } from "@chakra-ui/react";
 import ToggleButton from "../Toggle";
 import { useSelector } from "react-redux";
 const UserDashboard = () => {
@@ -33,11 +33,10 @@ const UserDashboard = () => {
           padding="4"
           textAlign="center"
           width="95%"
-          height="90px"
           margin="auto"
-          bgColor="blue"
+          bgColor="blue.500"
         >
-          <span
+          <Text
             style={{
               fontStyle: "bold",
               fontFamily: "Heading Font Name",
@@ -48,7 +47,7 @@ const UserDashboard = () => {
           >
             " Education is the most powerful weapon which you can use to change
             the world."
-          </span>
+          </Text>
         </Box>
         <Container mt="100px" maxW="container.xxl">
           <Footer />

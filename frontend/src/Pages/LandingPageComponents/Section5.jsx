@@ -6,6 +6,7 @@ const Section5 = () => {
     <Flex
       direction={"column"}
       p={{
+        base:"10px",
         sm: "20px",
         md: "40px",
         lg: "60px",
@@ -36,6 +37,7 @@ const Section5 = () => {
             xl: "repeat(4, 1fr)",
           }}
           gap={{
+            base:"5",
             sm: "3",
             md: "4",
             lg: "5",
@@ -54,6 +56,7 @@ const Section5 = () => {
           >
             <Flex width={"25%"}>
               <Image
+                width="120%"
                 src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/browse/domains/data_science.png?auto=format%2Ccompress&dpr=1&fit=crop&h=100"
                 alt=""
                 objectFit="fill"
@@ -374,6 +377,7 @@ const Section5 = () => {
           >
             <Flex width={"25%"}>
               <Image
+                width="120%"
                 src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/browse/domains/data_science.png?auto=format%2Ccompress&dpr=1&fit=crop&h=100"
                 alt=""
                 objectFit="fill"

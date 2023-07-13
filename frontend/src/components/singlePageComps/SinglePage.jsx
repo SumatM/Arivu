@@ -30,6 +30,7 @@ import convertDateFormat from "../../Redux/AdminReducer/action";
 import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 import { AiOutlineLock } from "react-icons/ai";
 import Navbar from "../UserComponents/UserNavbar";
+import Footer from "../../Pages/Footer";
 
 export default function SinglePage() {
   const [res, setRes] = useState({});
@@ -63,7 +64,7 @@ export default function SinglePage() {
     getSinglePageData(id);
   }, [id]);
 
-  // prevent click on video 
+  // prevent click on video
   const handleClickPrevent = (event) => {
     event.preventDefault();
   };
@@ -71,9 +72,11 @@ export default function SinglePage() {
   return (
     <div className=" w-full flex justify-center items-center flex-col">
       <div className="w-full bg-neutral-800 flex justify-center">
-      <Navbar/>
-
-        <div style={{ paddingTop: '100px' }} className=" xl:max-h-[300px] px-2 max-w-[598px] xl:max-w-[900px]">
+        <Navbar />
+        <div
+          style={{ paddingTop: "100px" }}
+          className=" xl:max-h-[320px] px-2  max-w-[598px] xl:max-w-[900px]"
+        >
           <div className="xl:flex xl:space-x-4">
             <Box className=" my-8 ">
               <Box
@@ -163,27 +166,37 @@ export default function SinglePage() {
       <div className="max-w-[598px] xl:mr-72">
         <SingleList />
       </div>
-      <Box mt='90px'>
+      <Box mt="90px">
         {res?.course?.videos?.map((video) => {
           return (
-            <div >
+            <div>
               <Card
                 direction={{ base: "column", sm: "row" }}
                 overflow="hidden"
                 variant="outline"
                 border="1px solid"
-                m='15px'
+                m="15px"
               >
-                <Box  onClick={handleClickPrevent} position='relative'>
-                  <iframe onClick={handleClickPrevent}
+                <Box onClick={handleClickPrevent} position="relative">
+                  <iframe
+                    onClick={handleClickPrevent}
                     width="350"
                     height="180"
                     src="https://www.youtube.com/watch?v=u183gdMkhxw"
                     frameborder="0"
                     allowfullscreen
-                   
                   ></iframe>
-                  {<Box onClick={handleClickPrevent} position='absolute' top='40%' left="40%" textAlign='center'><AiOutlineLock size="45px"/></Box>}
+                  {
+                    <Box
+                      onClick={handleClickPrevent}
+                      position="absolute"
+                      top="40%"
+                      left="40%"
+                      textAlign="center"
+                    >
+                      <AiOutlineLock size="45px" />
+                    </Box>
+                  }
                 </Box>
                 <Stack>
                   <CardBody>
@@ -210,7 +223,6 @@ export default function SinglePage() {
                     </Text>
                   </CardBody>
                 </Stack>
-                
               </Card>
             </div>
           );
@@ -219,7 +231,9 @@ export default function SinglePage() {
       <div>
         <Payment isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       </div>
-      
+      <Box>
+        <Footer/>
+      </Box>
     </div>
   );
 }

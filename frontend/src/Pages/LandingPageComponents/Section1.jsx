@@ -4,19 +4,11 @@ import { useNavigate } from "react-router-dom";
 const Section1 = () => {
   const navigate = useNavigate();
   return (
-    <Flex
-      mt={100}
-      pl={{
-        sm: "50px",
-        md: "100px",
-        lg: "170px",
-      }}
-      mb={70}
-      gap={50}
-    >
+    <Flex mt={100} mb={70} gap={50} p="15px" justify="center">
       <Flex
         direction="column"
         w={{
+          base: "100%",
           sm: "60%",
           md: "55%",
           lg: "50%",
@@ -25,6 +17,7 @@ const Section1 = () => {
       >
         <Text
           fontSize={{
+            base: "70px",
             sm: "30px",
             md: "60px",
             lg: "80px",
@@ -39,6 +32,7 @@ const Section1 = () => {
             lg: "18px",
             md: "16px",
             sm: "14px",
+            base: "20px",
           }}
           fontWeight="semibold"
         >
@@ -49,6 +43,7 @@ const Section1 = () => {
         <Flex
           gap={30}
           direction={{
+            base: "column",
             sm: "column",
             md: "row",
             lg: "row",
@@ -87,7 +82,7 @@ const Section1 = () => {
         </Flex>
       </Flex>
       <Box
-        display={{ sm: "none", md: "flex" }}
+        display={{base:'none', sm: "none", md: "flex" }}
         justifyContent="center"
         alignItems="center"
       >

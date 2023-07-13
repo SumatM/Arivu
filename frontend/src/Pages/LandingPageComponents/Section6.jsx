@@ -3,7 +3,7 @@ import React from "react";
 import sectionImage from "../../asset/sectionImage.png";
 import { useNavigate } from "react-router-dom";
 const Section6 = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Flex
       bgColor={"#ebf3ff"}
@@ -13,11 +13,13 @@ const Section6 = () => {
         lg: "45px",
       }}
       p={{
+        base: "10px",
         sm: "0px 20px",
         md: "0px 40px",
         lg: "0px 60px",
       }}
       direction={{
+        base: "column",
         sm: "column",
         md: "column",
         lg: "row",
@@ -29,6 +31,7 @@ const Section6 = () => {
       <Flex
         direction={"column"}
         padding={{
+          base: "40px 0px",
           sm: "20px 10px",
           md: "30px 15px",
           lg: "40px 20px",
@@ -40,6 +43,7 @@ const Section6 = () => {
         justifyContent={{
           lg: "space-evenly",
         }}
+       
       >
         <Text
           fontSize={{
@@ -68,7 +72,7 @@ const Section6 = () => {
           professional growth, enabling them to stay relevant in today's
           competitive job market.
         </Text>
-        <Flex>
+        <Flex mt='15px' >
           <Button
             bgColor={"#0056d2"}
             _hover={{ backgroundColor: "#03357b" }}

@@ -184,11 +184,11 @@ const SignUp = () => {
         pt='100px'
       >
         <Box w={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}>
-          <Box>
-            <Heading size="xs">Sign up and start learning</Heading>
+          <Box mt='15px'>
+            <Heading size="md">Sign up and start learning</Heading>
           </Box>
           {/* 2nd box  */}
-          <Box mt="25px">
+          <Box  mt="35px">
             {/* name */}
             <Box
               border="1px solid"

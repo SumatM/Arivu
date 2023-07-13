@@ -99,11 +99,11 @@ const Login = () => {
         ref={backgroundRef}
       >
         <Box w={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}>
-          <Box>
-            <Heading size="xs">Log in to your Aṟivu Account</Heading>
+          <Box mt='15px'>
+            <Heading size="md">Log in to your Aṟivu Account</Heading>
           </Box>
           {/* 2nd box  */}
-          <Box mt="15px">
+          <Box mt="35px">
             {/* google bar  */}
             <Flex border="1px solid" p="15px" align="center" m="5px 0">
               <Box>

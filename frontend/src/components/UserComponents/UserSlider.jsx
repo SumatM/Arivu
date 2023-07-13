@@ -56,7 +56,7 @@ const UserSlider = () => {
             </Button>
             <Box>
               <Box />
-              <Image w={"2000px"} h={"400px"} src={`${images[currentIndex]}`} />
+              <Image w={"2000px"} h={"400px"} fit="cover" src={`${images[currentIndex]}`} />
             </Box>
             <Button borderRadius={"50%"} onClick={handleNext}>
               <ArrowRightIcon />
