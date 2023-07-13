@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Flex
       bg="#f5f5f5"
-      p={4}
+      p={5}
       paddingBottom={{
         sm: "60px",
         md: "60px",

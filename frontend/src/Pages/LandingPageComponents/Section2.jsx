@@ -18,6 +18,7 @@ const Section2 = () => {
       p={10}
       justifyContent={"center"}
       alignItems={"center"}
+    
     >
       <Text
         fontSize={{
