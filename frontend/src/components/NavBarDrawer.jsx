@@ -106,39 +106,69 @@ export function NavBarDrawer({ isOpen, onClose }) {
             </Box>
           </DrawerHeader>
           <DrawerBody>
-            <Flex justify="space-between" alignItems="center">
-              <Box p="1.5rem 0">
-                {userStore?.role == "admin" ? (
-                  <Flex alignItems={"center"}>
-                    <Box>
-                      <FaUserShield size="2rem" color="#0056d2" />
-                      <Text fontSize="0.6rem" fontWeight="bold">
-                        {capitalizeFirstLetter(userStore?.role)}
-                      </Text>
-                    </Box>
-                    <Heading size="sm" ml="1rem">
-                      {capitalizeFirstLetter(userStore?.name)}
-                    </Heading>
-                  </Flex>
-                ) : userStore?.role == "user" ? (
-                  <Flex alignItems={"center"}>
-                    <BiUserCircle size="2rem" color="#0056d2" />
-                    <Heading size="sm" ml="1rem">
-                      {capitalizeFirstLetter(userStore?.name)}
-                    </Heading>
-                  </Flex>
-                ) : null}
-              </Box>
-              <Button
-                fontSize="0.8rem"
-                p="1rem"
-                colorScheme="blue"
-                fontWeight={"bold"}
-                onClick={handleLogoutClick}
+            {userStore?.isAuth ? (
+              <Flex justify="space-between" alignItems="center">
+                <Box p="1.5rem 0">
+                  {userStore?.role == "admin" ? (
+                    <Flex alignItems={"center"}>
+                      <Box>
+                        <FaUserShield size="2rem" color="#0056d2" />
+                        <Text fontSize="0.6rem" fontWeight="bold">
+                          {capitalizeFirstLetter(userStore?.role)}
+                        </Text>
+                      </Box>
+                      <Heading size="sm" ml="1rem">
+                        {capitalizeFirstLetter(userStore?.name)}
+                      </Heading>
+                    </Flex>
+                  ) : userStore?.role == "user" ? (
+                    <Flex alignItems={"center"}>
+                      <BiUserCircle size="2rem" color="#0056d2" />
+                      <Heading size="sm" ml="1rem">
+                        {capitalizeFirstLetter(userStore?.name)}
+                      </Heading>
+                    </Flex>
+                  ) : null}
+                </Box>
+                <Button
+                  fontSize="0.8rem"
+                  p="1rem"
+                  colorScheme="blue"
+                  fontWeight={"bold"}
+                  onClick={handleLogoutClick}
+                >
+                  Logout
+                </Button>
+              </Flex>
+            ) :  (
+              <Box
+                borderTop="1px solid #3A3F3F"
+                pt="25px"
+                display="flex"
+                justifyContent="space-between"
               >
-                Logout
-              </Button>
-            </Flex>
+                <Link to="/login">
+                  <Button
+                    bg="#0056d2"
+                    color="white"
+                    borderRadius="5px"
+                    _hover={{ bg: "#003e9c" }}
+                  >
+                    LogIn
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button
+                    bg="#0056d2"
+                    color="white"
+                    borderRadius="5px"
+                    _hover={{ bg: "#003e9c" }}
+                  >
+                    Join for free
+                  </Button>
+                </Link>
+              </Box>
+            ) }
             {/* personlized settings  */}
             {/* ADMIND options  */}
             {userStore?.role == "admin" && (
@@ -229,35 +259,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
                 </ul>
               </Box>
             }
-            {!userStore?.isAuth ? (
-              <Box
-                borderTop="1px solid #3A3F3F"
-                pt="25px"
-                display="flex"
-                justifyContent="space-between"
-              >
-                <Link to="/login">
-                  <Button
-                    bg="#0056d2"
-                    color="white"
-                    borderRadius="5px"
-                    _hover={{ bg: "#003e9c" }}
-                  >
-                    LogIn
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button
-                    bg="#0056d2"
-                    color="white"
-                    borderRadius="5px"
-                    _hover={{ bg: "#003e9c" }}
-                  >
-                    Join for free
-                  </Button>
-                </Link>
-              </Box>
-            ) : null}
+            
           </DrawerBody>
         </DrawerContent>
       </Drawer>
