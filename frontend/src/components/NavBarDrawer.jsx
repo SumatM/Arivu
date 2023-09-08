@@ -52,7 +52,11 @@ export function NavBarDrawer({ isOpen, onClose }) {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .post("http://localhost:8080/users/logout", {}, { headers })
+      .post(
+        "https://arivu-sever-link.onrender.com/users/logout",
+        {},
+        { headers }
+      )
       .then((res) => {
         localStorage.setItem(
           "user",
@@ -102,13 +106,15 @@ export function NavBarDrawer({ isOpen, onClose }) {
             </Box>
           </DrawerHeader>
           <DrawerBody>
-            <Flex justify='space-between' alignItems='center'>
+            <Flex justify="space-between" alignItems="center">
               <Box p="1.5rem 0">
                 {userStore?.role == "admin" ? (
                   <Flex alignItems={"center"}>
                     <Box>
-                    <FaUserShield size="2rem" color="#0056d2" />
-                    <Text fontSize='0.6rem' fontWeight='bold'>{capitalizeFirstLetter(userStore?.role)}</Text>
+                      <FaUserShield size="2rem" color="#0056d2" />
+                      <Text fontSize="0.6rem" fontWeight="bold">
+                        {capitalizeFirstLetter(userStore?.role)}
+                      </Text>
                     </Box>
                     <Heading size="sm" ml="1rem">
                       {capitalizeFirstLetter(userStore?.name)}
@@ -123,15 +129,15 @@ export function NavBarDrawer({ isOpen, onClose }) {
                   </Flex>
                 ) : null}
               </Box>
-                <Button
-                  fontSize="0.8rem"
-                  p="1rem"
-                  colorScheme='blue'
-                  fontWeight={"bold"}
-                  onClick={handleLogoutClick}
-                >
-                  Logout
-                </Button>
+              <Button
+                fontSize="0.8rem"
+                p="1rem"
+                colorScheme="blue"
+                fontWeight={"bold"}
+                onClick={handleLogoutClick}
+              >
+                Logout
+              </Button>
             </Flex>
             {/* personlized settings  */}
             {/* ADMIND options  */}
