@@ -41,6 +41,14 @@ app.get("/regenerateToken", (req, res) => {
   }
 });
 
+app.get('/',(req,res)=>{
+  try{
+    res.status(200).json({message:"Welcome to Arivu's Backend"})
+  }catch(err){
+    res.status(400).json({ message: "Some Error Occur. Please Refresh" });
+  }
+})
+
 app.listen(process.env.port, async () => {
   try {
     await connection;

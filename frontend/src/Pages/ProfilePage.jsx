@@ -29,7 +29,6 @@ const ProfilePage = () => {
 
   const handleSave = () => {
     // Implement save logic here
-    console.log("Profile Saved");
     const obj = {
       name,
       email,

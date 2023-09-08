@@ -17,7 +17,7 @@ const GoogleSignup = () => {
     const { credential } = response;
     const decodedToken = jwtDecode(credential);
 
-    console.log(decodedToken);
+    // console.log(decodedToken);
     const data = {
       email: decodedToken.email,
       password: decodedToken.email,
@@ -37,7 +37,7 @@ const GoogleSignup = () => {
         })
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          console.log(res.data.token);
+          // console.log(res.data.token);
         })
         .catch((err) => console.log(err));
       if (isUser) {
@@ -51,12 +51,11 @@ const GoogleSignup = () => {
     } catch (error) {
       //  await dispatch(signUp(data));
       // navigate("/dashboard");
-      console.log("Something went wrong");
     }
   };
 
   const handleFailure = () => {
-    console.log("Google login failed");
+    // console.log("Google login failed");
     // Handle the failed login response
   };
 

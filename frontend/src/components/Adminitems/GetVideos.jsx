@@ -25,7 +25,6 @@ const GetVideos = () => {
   const [page,setPage]=useState(1)
   const limit =4
 
-  console.log(store,"storeAll")
   
 
   useEffect(()=>{
@@ -35,7 +34,7 @@ const GetVideos = () => {
   
 
   const handleDelete=(id,title)=>{
-    console.log(id)
+    // console.log(id)
     dispatch(deleteProduct(id))
   alert(`${title} is Deleted`)
   
@@ -47,7 +46,7 @@ const GetVideos = () => {
 
  const count=Math.ceil(store.length/limit);
 //  console.log(count)
-console.log(count)
+// console.log(count)
 
 
  const handlePageButton=(val)=>{

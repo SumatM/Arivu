@@ -21,9 +21,7 @@ const Courses = () => {
 
   const store=useSelector((store)=>store.AdminReducer.data);
   const dispatch=useDispatch();
-  const navigate=useNavigate()
   const [page,setPage]=useState(1)
-  const [check,setCheck]=useState("");
   const [search,setSearch]=useState("")
   const [order,setOrder]=useState("")
   const limit = 4
@@ -31,18 +29,17 @@ const Courses = () => {
   const courseSize = useBreakpointValue({ base: 'md', sm: 'lg', md: 'xl' });
 
 
-  console.log(store,"storeAll")
   
   const handleSearch=(e)=>{
     setSearch(e.target.value);
-    console.log(search)
+    // console.log(search)
   }
   const handleSelect=(e)=>{
     const {value}=e.target
     setOrder(value)
     
     }
-    console.log(order)
+    // console.log(order)
 
   useEffect(()=>{
   dispatch(getProduct(page,limit,search,order))  
@@ -51,7 +48,7 @@ const Courses = () => {
   
 
   const handleDelete=(id,title)=>{
-    console.log(id)
+    // console.log(id)
   dispatch(deleteProduct(id))
   alert(`${title} is Deleted`)
   }
@@ -59,9 +56,9 @@ const Courses = () => {
   const handlePageChange=(page)=>{
     setPage(page)
   }
-console.log("store.length",store.length)
+// console.log("store.length",store.length)
   const count=4
-console.log("count",count)
+// console.log("count",count)
   
 
  const handlePageButton=(val)=>{

@@ -8,8 +8,9 @@ import Navbar from './UserComponents/UserNavbar';
 
 const AdminNavbar = () => {
 
+
   return (
-    <Box>
+    <Box >
       <Grid className='Nav'  h={'99vh'} w='94%' gap={10} bg='red'>
    <AdminSidebar/> 
       <Box >

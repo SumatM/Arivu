@@ -62,7 +62,7 @@ const InProgressCarousel = () => {
       .then((res) => {
         setLoading(false);
         setCourse(res.data.course);
-        console.log(res.data.course);
+        // console.log(res.data.course);
       })
       .catch((err) => console.log(err));
   }, []);

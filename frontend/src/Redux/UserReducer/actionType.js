@@ -43,3 +43,7 @@ export function actionisUserTrue(){
 export function actionisUserFalse(){
     return {type:ISUSER_FALSE}
 }
+
+export function actionUserLogout(){
+    return {type:'USER_LOGOUT'}
+}

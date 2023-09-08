@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const SingleAbsolute = ({ props }) => {
   const [page, setPage] = useState("left");
   const navigate = useNavigate();
-  console.log("props 🏃🏃🏃", props);
 
   const { onOpen, onClose } = props;
 

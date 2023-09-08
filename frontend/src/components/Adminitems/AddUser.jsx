@@ -10,16 +10,8 @@ import { useNavigate } from 'react-router-dom'
 const AddUser = () => {
 
   const dispatch=useDispatch();
-  const store=useSelector(store=>console.log(store))
   const navigate=useNavigate()
 
-  // name,
-  // email,
-  // password: hash,
-  // age,
-  // city,
-  // job,
-  // image,
   let obj={
   name:"",
   email:"",

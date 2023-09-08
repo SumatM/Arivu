@@ -172,7 +172,7 @@ const SignUp = () => {
 
 
   return (
-    <Box>
+    <Box pb='2rem'>
       <Box>
         <Navbar />
       </Box>

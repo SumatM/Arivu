@@ -70,7 +70,6 @@ const Login = () => {
   // login function
 
   function handleLogin() {
-    console.log(form);
     dispatch(loginFetch(form)).then((res) => {
       setForm({ email: "", password: "" });
     });
@@ -87,7 +86,7 @@ const Login = () => {
   }
 
   return (
-    <Box>
+    <Box pb='2rem'>
       <Box>
         <Navbar />
       </Box>

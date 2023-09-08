@@ -17,11 +17,11 @@ const EditPage = () => {
   const store=useSelector(store=>store.AdminReducer.data);
 
   const existedUser=store.filter(el=>el._id==id);
-  console.log("existedUser",existedUser)
+  // console.log("existedUser",existedUser)
   const navigate=useNavigate()
  
  
-console.log(id)
+// console.log(id)
 
   let obj={
   title:existedUser[0].title,
@@ -31,7 +31,7 @@ console.log(id)
   teacher:existedUser[0].teacher
   }
   
-console.log("obj",obj)
+// console.log("obj",obj)
   const [detail,setDetail]=useState(obj)
 
   const handleChange=(e)=>{
@@ -41,7 +41,7 @@ console.log("obj",obj)
    })
   }
   const handleSubmit=()=>{
-     console.log(detail);
+    //  console.log(detail);
    dispatch(patchProduct(id,detail))
    alert("Data Updated Successfully")
    navigate("/admin/courses")

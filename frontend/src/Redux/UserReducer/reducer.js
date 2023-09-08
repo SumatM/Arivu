@@ -32,6 +32,8 @@ const reducer = (state = init,action)=>{
         case ISUSER_TRUE: return {...state,isUser:true}
         case ISUSER_FALSE: return {...state,isUser:false}
 
+        case 'USER_LOGOUT':  return {...state,loading:false, isAuth:false,token:"",name:"",role:"",email:""}
+
         default: return {...state}
     }
 

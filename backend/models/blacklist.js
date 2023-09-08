@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 //schema
 const blackListSchema = mongoose.Schema(
   {
-    blacklist: Array,
+    token: String,
   },
   {
     versionKey: false,

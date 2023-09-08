@@ -14,11 +14,11 @@ const EditUser = () => {
   const dispatch=useDispatch();
   const store=useSelector(store=>store.AdminReducer.users);
   const existedUser=store.filter(el=>el._id==id);
-  console.log("existedUser",existedUser)
+  // console.log("existedUser",existedUser)
   const navigate=useNavigate()
  
  
-console.log(id)
+
 
 let obj={
     name:existedUser[0].name,
@@ -36,7 +36,7 @@ let obj={
    })
   }
   const handleSubmit=()=>{
-     console.log(detail);
+    //  console.log(detail);
    dispatch(patchUser(id,detail))
    alert("Data Updated Successfully")
    navigate("/admin/users")

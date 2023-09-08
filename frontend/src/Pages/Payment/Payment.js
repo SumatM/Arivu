@@ -45,7 +45,7 @@ export default function Payment({ isOpen, onOpen, onClose }) {
           },
           cancelToken: source.token,
         });
-        console.log(res.data.course);
+        // console.log(res.data.course);
         setCourse(res.data.course);
       } catch (err) {
         if (axios.isCancel(err)) {
@@ -86,7 +86,6 @@ export default function Payment({ isOpen, onOpen, onClose }) {
 
   // handle payment
   function handlePayment() {
-    console.log("yes");
     setinput("");
   }
 

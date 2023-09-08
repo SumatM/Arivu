@@ -6,13 +6,9 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { AiOutlineBell } from "react-icons/ai";
 import { TbCircleLetterM } from "react-icons/tb";
 import { useSelector } from "react-redux";
-import { motion } from 'framer-motion';
-import ToggleButton from "../Toggle";
-import Navbar from "./UserComponents/UserNavbar";
 
 const AdminNavTop = ({ handleSearch }) => {
   const userStore = useSelector((store) => store.UserReducer);
-
 
   return (
     <Flex h="10vh" justifyContent={"space-between"} mt="15px">
@@ -54,15 +50,15 @@ const AdminNavTop = ({ handleSearch }) => {
           border="1px solid"
           bg="#CFD8DC"
           cursor="pointer"
-          textAlign='center'
-          w='5%'
+          textAlign="center"
+          w="5%"
         >
-          <Text fontSize="25px" mt='-5px'> {userStore?.name[0]}</Text>
+          <Text fontSize="25px" mt="-5px">
+            {" "}
+            {userStore?.name[0]}
+          </Text>
         </Button>
       </Flex>
-      {userStore.isAuth && userStore.role=='admin' ? (
-        <ToggleButton value={55}/>
-      ) : null}
     </Flex>
   );
 };

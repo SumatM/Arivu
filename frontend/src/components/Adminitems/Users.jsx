@@ -27,19 +27,19 @@ const Users = () => {
   const [order,setOrder]=useState("")
   const limit =4
 
-  console.log(store,"storeAll")
+  // console.log(store,"storeAll")
   
   const handleSearch=(e)=>{
     setSearch(e.target.value);
   }
-  console.log(search)
+  // console.log(search)
 
   const handleSelect=(e)=>{
     const {value}=e.target
     setOrder(value)
     
     }
-    console.log(order)
+    // console.log(order)
 
   useEffect(()=>{
   dispatch(getUser(page,limit))  
@@ -47,7 +47,7 @@ const Users = () => {
   
 
   const handleDelete=(id,name)=>{
- console.log(id)
+//  console.log(id)
  dispatch(deleteUsers(id))
  alert(`${name} is Deleted`)
   }
@@ -55,7 +55,7 @@ const Users = () => {
   const handlePageChange=(page)=>{
     setPage(page)
   }
-console.log(store.length)
+// console.log(store.length)
   const count=2
 
 

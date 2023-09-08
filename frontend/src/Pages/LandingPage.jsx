@@ -11,6 +11,7 @@ import LandingPageCarousel from "./LandingPageComponents/LandingPageCarousel";
 const LandingPage = () => {
 
 
+
    
   return (
     <Flex direction={"column"}>
@@ -21,6 +22,7 @@ const LandingPage = () => {
       <Section5 />
       <Section6 />
       <Footer />
+
     </Flex>
   );
 };

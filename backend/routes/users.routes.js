@@ -2,9 +2,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/users.models");
 const jwt = require("jsonwebtoken");
-const { blacklist } = require("../blacklist");
-const multer = require("multer");
 const { auth } = require("../middlewares/users.middleware");
+const { BlackListModel } = require("../models/blacklist");
 
 const userRouter = express.Router();
 
@@ -93,7 +92,7 @@ userRouter.post("/login", async (req, res) => {
           }
         );
         if (result) {
-          res.status(202).json({ msg: "logged in ", token, rToken,user });
+          res.status(202).json({ msg: "logged in ", token, rToken, user });
         } else {
           res.status(401).json({ msg: "invalid credentials" });
         }
@@ -121,7 +120,7 @@ userRouter.patch("/update/:userId", async (req, res) => {
       if (err) {
         res.status(404).json({ msg: err });
       } else {
-        console.log(hash);
+        // console.log(hash);
         insertpayload = await { ...payload, password: hash };
       }
       await UserModel.findByIdAndUpdate({ _id: userId }, insertpayload);
@@ -158,12 +157,15 @@ userRouter.delete("/delete/:userId", auth, async (req, res) => {
 // Access: All
 // EndPoint: /users/logout
 // FRONTEND: when users want to logout
-userRouter.get("/logout", (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1];
+userRouter.post("/logout", (req, res) => {
+  
   try {
-    // blacklist.push(token);
+    const token = req.headers.authorization?.split(" ")[1];
+    const newToken = BlackListModel({ token });
+    newToken.save();
     res.status(200).json({ msg: "The user has logged out" });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 });
