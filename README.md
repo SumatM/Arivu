@@ -24,3 +24,8 @@ ARIVU is an online learning platform that offers courses across various domains,
 - Authentication: JSON Web Tokens (JWT)
 - Deployment: Vercel (front-end), AWS (back-end)
 
+## user Credentials  
+
+- Email: atul@email.com
+- Password: atul12345
+
