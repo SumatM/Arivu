@@ -13,6 +13,7 @@ let baseURL = "https://arivu-sever-link.onrender.com/";
 
 export const loginFetch = (value) => (dispatch) => {
   dispatch(actionLoginLoading());
+  localStorage.setItem('user',"")
   return axios
     .post(`${baseURL}users/login`, value)
     .then((res) => {
@@ -35,10 +36,9 @@ export const signUpFetch = (value) => (dispatch) => {
   return  axios.post(`${baseURL}users/register`,value)
     .then((res)=>{
     dispatch(actionsingUpSuccess())
-        console.log(res);
     })
     .catch((err)=>{
-    dispatch(actionsingUpError(err.response.data.msg))
+    dispatch(actionsingUpError(err.response?.data.msg))
         console.log(err.response.data.msg);
     })
 }

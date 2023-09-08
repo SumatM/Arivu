@@ -92,7 +92,7 @@ userRouter.post("/login", async (req, res) => {
           }
         );
         if (result) {
-          res.status(202).json({ msg: "logged in ", token, rToken, user });
+          res.status(202).json({ msg: "User LogIn Success", token, rToken, user });
         } else {
           res.status(401).json({ msg: "invalid credentials" });
         }

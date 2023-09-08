@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../Pages/Navbar";
 import {
   Box,
@@ -9,14 +9,16 @@ import {
   Spinner,
   Text,
   keyframes,
+  useToast,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { DiApple } from "react-icons/di";
 import { BsFacebook } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { loginFetch } from "../Redux/UserReducer/action";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleAuth from "../Pages/GoogleAuth";
+import { showToast } from "./SignUp";
 
 const Login = () => {
   const emailInput = useRef(null);
@@ -29,7 +31,7 @@ const Login = () => {
   const userStore = useSelector((store) => store.UserReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const toast = useToast();
   // will show the input element when click on element
   function showInput(e) {
     const ele = e.target.id;
@@ -71,11 +73,20 @@ const Login = () => {
 
   function handleLogin() {
     dispatch(loginFetch(form)).then((res) => {
-      setForm({ email: "", password: "" });
+      console.log(userStore?.message)
+      if(userStore?.message=="User LogIn Success"){
+        showToast({toast,message:userStore?.message,color:'green'})
+        setForm({ email: "", password: "" });
+      }else{
+        showToast({toast,message:userStore?.isError,color:'red'})
+      }
+      
     });
   }
 
-  // if isAuth is true move to dashboard;
+
+  useEffect(()=>{
+    // if isAuth is true move to dashboard;
 
   if (userStore.isAuth) {
     if(userStore?.role==='user'){
@@ -84,6 +95,7 @@ const Login = () => {
       navigate("/admin/dashboard");
     }
   }
+  },[userStore?.isAuth,userStore?.role])
 
   return (
     <Box pb='2rem'>

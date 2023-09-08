@@ -9,16 +9,18 @@ import {
   Flex,
   Heading,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { BiUserCircle } from "react-icons/bi";
 import { capitalizeFirstLetter } from "../Redux/UserReducer/action";
 import { FaUserShield } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import axios from "axios";
 import { actionUserLogout } from "../Redux/UserReducer/actionType";
+import { showToast } from "./SignUp";
 
 export function NavBarDrawer({ isOpen, onClose }) {
   const userStore = useSelector((store) => store.UserReducer);
@@ -43,6 +45,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
     ],
   };
   const navigate = useNavigate();
+  const toast = useToast();
 
   const dispatch = useDispatch();
 
@@ -61,22 +64,23 @@ export function NavBarDrawer({ isOpen, onClose }) {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            email:"",
-            name:"",
-            "role":"",
-            "token": "",
-            isAuth:"",
-            isError:"",
-            loading:false,
+            email: "",
+            name: "",
+            role: "",
+            token: "",
+            isAuth: false,
+            isError: "",
+            loading: false,
             success: false,
             isUser: false,
-            userId:"",
-            place:"",
-            age:"",
-        } )
+            userId: "",
+            place: "",
+            age: "",
+          })
         );
-        dispatch(actionUserLogout());
-        navigate("/");
+        dispatch(actionUserLogout())
+        showToast({ toast, message: "You have Logout Successfully",color:'green' });
+          navigate("/");
       })
       .catch((err) => console.log(err));
   };

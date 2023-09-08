@@ -18,8 +18,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
 import { signUpFetch } from "../Redux/UserReducer/action";
-import {BiError} from 'react-icons/bi'
 import { actionsingUpError } from "../Redux/UserReducer/actionType";
+
+// Sucess Toast
+export const showToast = ({ toast, message, color }) => {
+  toast({
+    position: "top-right",
+    top: "100px",
+    render: () => (
+      <Box color="white" p={3} bg={color}>
+        {message}
+      </Box>
+    ),
+  });
+};
 
 const SignUp = () => {
   const emailInput = useRef(null);
@@ -44,8 +56,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [eyeclose, seteyeMoment] = useState(false);
-  const toast = useToast()
-  const [toastkey,setToastKey] = useState(true)
+  const toast = useToast();
+  const [toastkey, setToastKey] = useState(true);
 
   // will show the input element when click on element
   function showInput(e) {
@@ -106,73 +118,47 @@ const SignUp = () => {
       : (passwordInput.current.type = "password");
   }
 
-
   // handle promotion
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     setForm({ ...form, isPromotion: !isChecked });
   };
 
-// Error toast
-  const showToast = () => {
-    toast({
-        position: 'top-right',
-        top:'100px',
-      render: () => (
-        <Box color="white" p={3} bg="red.500">
-          {userStore.isError}
-        </Box>
-      ),
-    });
-  };
 
-  // Sucess Toast
-  const showSucessToast = () => {
-    toast({
-        position: 'top-right',
-        top:'100px',
-      render: () => (
-        <Box color="white" p={3} bg="green.500">
-          Sign Up Sucess
-        </Box>
-      ),
-    });
-  };
-
-  if(userStore.isError && toastkey){
-    showToast();
-    setToastKey(false)
-  }
 
   // SignUp function
-  function handleSignUp() {
-    setToastKey(true);
+  async function handleSignUp() {
     const { email, password, confirmPassword, name } = form;
     if (!email || !password || !confirmPassword || !name) {
-      dispatch(actionsingUpError('All fields are required'));
+      dispatch(actionsingUpError("All fields are required"));
       return;
     }
 
     if (confirmPassword !== password) {
-      dispatch(actionsingUpError('Password does not match'));
+      dispatch(actionsingUpError("Password does not match"));
       return;
     }
 
     if (password.length < 8) {
-      dispatch(actionsingUpError('Password should be at least 8 characters long'));
+      dispatch(
+        actionsingUpError("Password should be at least 8 characters long")
+      );
       return;
     }
 
-    dispatch(signUpFetch(form))
-      .then((res) => {
-        setForm({ email: '', password: '', confirmPassword: '', name: '' });
-        showSucessToast();
-      })
+     dispatch(signUpFetch(form)).then((res) => {
+    if(!userStore?.isError){
+      setForm({ email: "", password: "", confirmPassword: "", name: "" });
+      showToast({toast,message:'SignUp Successful',color:'green'});
+    }else{
+      showToast({toast,message:userStore?.isError,color:'red'});
+    }
+      
+    });
   }
 
-
   return (
-    <Box pb='2rem'>
+    <Box pb="2rem">
       <Box>
         <Navbar />
       </Box>
@@ -181,14 +167,14 @@ const SignUp = () => {
         justifyContent="center"
         onClick={blockInput}
         ref={backgroundRef}
-        pt='100px'
+        pt="100px"
       >
         <Box w={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}>
-          <Box mt='15px'>
+          <Box mt="15px">
             <Heading size="md">Sign up and start learning</Heading>
           </Box>
           {/* 2nd box  */}
-          <Box  mt="35px">
+          <Box mt="35px">
             {/* name */}
             <Box
               border="1px solid"
@@ -346,9 +332,13 @@ const SignUp = () => {
                 </Heading>
               </Button>
             </Box>
-            <Box display='flex' m='1rem 0' fontSize='0.7rem' >
-              <Text >You already have Account with us?</Text>
-              <Link to='/login'><Text _hover={{}} fontWeight='500' ml='0.5rem' color='black'>Login</Text></Link>
+            <Box display="flex" m="1rem 0" fontSize="0.7rem">
+              <Text>You already have Account with us?</Text>
+              <Link to="/login">
+                <Text _hover={{}} fontWeight="500" ml="0.5rem" color="black">
+                  Login
+                </Text>
+              </Link>
             </Box>
           </Box>
         </Box>

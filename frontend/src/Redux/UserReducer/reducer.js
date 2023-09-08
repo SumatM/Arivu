@@ -15,6 +15,7 @@ let init = JSON.parse(localStorage.getItem('user')) || {
     userId:"",
     place:"",
     age:"",
+    message:''
 } 
 
 const reducer = (state = init,action)=>{
@@ -22,7 +23,7 @@ const reducer = (state = init,action)=>{
     switch(type){
         case LOGIN_LOADING : return {...state, isAuth:false,token:"",isError:"",loading:true}
         
-        case LOGIN_SUCCESS : return {...state,loading:false, isAuth:true,token:payload.token,name:payload.user.name,role:payload.user.role,email:payload.user.email,userId:payload.user._id,place:payload.user.city,age:payload.user.age,job:payload.user.job}
+        case LOGIN_SUCCESS : return {...state,loading:false, isAuth:true,token:payload.token,name:payload.user.name,role:payload.user.role,email:payload.user.email,userId:payload.user._id,place:payload.user.city,age:payload.user.age,job:payload.user.job,message:payload?.msg}
 
         case LOGIN_ERROR : return {...state,loading:false,isAuth:false,isError:payload,token:''}
 
