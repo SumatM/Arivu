@@ -16,7 +16,7 @@ import { AiOutlineEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUpFetch } from "../Redux/UserReducer/action";
 import {BiError} from 'react-icons/bi'
 import { actionsingUpError } from "../Redux/UserReducer/actionType";
@@ -345,6 +345,10 @@ const SignUp = () => {
                   {userStore.loading ? <Spinner color="white" /> : "Sign Up"}
                 </Heading>
               </Button>
+            </Box>
+            <Box display='flex' m='1rem 0' fontSize='0.7rem' >
+              <Text >You already have Account with us?</Text>
+              <Link to='/login'><Text _hover={{}} fontWeight='500' ml='0.5rem' color='black'>Login</Text></Link>
             </Box>
           </Box>
         </Box>

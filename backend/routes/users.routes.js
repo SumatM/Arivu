@@ -115,7 +115,13 @@ userRouter.patch("/update/:userId", async (req, res) => {
 
   try {
     let insertpayload;
-    bcrypt.hash(payload.password, 5, async (err, hash) => {
+    if(!payload?.password){
+      await UserModel.findByIdAndUpdate({ _id: userId }, payload);
+      const user = await UserModel.findOne({ _id: userId });
+      res.status(200).json({ msg: "user updated successfully", user });
+      return;
+    }
+    bcrypt.hash(payload.password, 2, async (err, hash) => {
       // Store hash in your password DB.
       if (err) {
         res.status(404).json({ msg: err });

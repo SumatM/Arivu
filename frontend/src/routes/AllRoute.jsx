@@ -22,6 +22,7 @@ import GetVideos from "../components/Adminitems/GetVideos";
 import AddVideo from "../components/Adminitems/AddVideos";
 import ProfilePage from "../Pages/ProfilePage";
 import PrivateRoutes from "./PrivateRoutes";
+import { AdminRoute } from "./AdminRoute";
 
 const AllRoute = () => {
   return (
@@ -39,7 +40,9 @@ const AllRoute = () => {
         path="/admin/dashboard"
         element={
           <PrivateRoutes>
-            <DashBoard />
+            <AdminRoute>
+              <DashBoard />
+            </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -47,7 +50,9 @@ const AllRoute = () => {
         path="/admin/courses"
         element={
           <PrivateRoutes>
-            <Courses />
+          <AdminRoute>
+          <Courses />
+          </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -55,7 +60,9 @@ const AllRoute = () => {
         path="/admin/edit/:id"
         element={
           <PrivateRoutes>
-            <EditPage />
+          <AdminRoute>
+          <EditPage />
+          </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -63,7 +70,9 @@ const AllRoute = () => {
         path="/admin/addCourse"
         element={
           <PrivateRoutes>
-            <AddCourse />
+          <AdminRoute>
+          <AddCourse />
+          </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -79,7 +88,9 @@ const AllRoute = () => {
         path="/admin/discount"
         element={
           <PrivateRoutes>
-            <Discount />
+          <AdminRoute>
+          <Discount />
+          </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -87,7 +98,9 @@ const AllRoute = () => {
         path="/admin/statistic"
         element={
           <PrivateRoutes>
-            <Statistics />
+           <AdminRoute>
+           <Statistics />
+           </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -95,7 +108,9 @@ const AllRoute = () => {
         path="/admin/giftcard"
         element={
           <PrivateRoutes>
+            <AdminRoute>
             <GiftCard />
+            </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -103,7 +118,9 @@ const AllRoute = () => {
         path="/admin/setting"
         element={
           <PrivateRoutes>
-            <Setting />
+           <AdminRoute>
+           <Setting />
+           </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -111,7 +128,9 @@ const AllRoute = () => {
         path="/admin/users"
         element={
           <PrivateRoutes>
+            <AdminRoute>
             <Users />
+            </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -119,7 +138,9 @@ const AllRoute = () => {
         path="/admin/users/add"
         element={
           <PrivateRoutes>
-            <AddUser />
+           <AdminRoute>
+           <AddUser />
+           </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -127,7 +148,9 @@ const AllRoute = () => {
         path="/admin/users/edit/:id"
         element={
           <PrivateRoutes>
+            <AdminRoute>
             <EditUser />
+            </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -135,7 +158,9 @@ const AllRoute = () => {
         path="/admin/videos"
         element={
           <PrivateRoutes>
-            <GetVideos />
+           <AdminRoute>
+           <GetVideos />
+           </AdminRoute>
           </PrivateRoutes>
         }
       />
@@ -144,7 +169,9 @@ const AllRoute = () => {
         path="/admin/videos/add/:courseId"
         element={
           <PrivateRoutes>
-            <AddVideo />
+          <AdminRoute>
+          <AddVideo />
+          </AdminRoute>
           </PrivateRoutes>
         }
       />

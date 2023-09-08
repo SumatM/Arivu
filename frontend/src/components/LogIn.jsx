@@ -15,7 +15,7 @@ import { DiApple } from "react-icons/di";
 import { BsFacebook } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { loginFetch } from "../Redux/UserReducer/action";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleAuth from "../Pages/GoogleAuth";
 
 const Login = () => {
@@ -186,6 +186,10 @@ const Login = () => {
                   onChange={handleInput}
                 />
               </Box>
+            </Box>
+            <Box display='flex' m='1rem 0' fontSize='0.7rem'>
+              <Text >You don't have Account with us?</Text>
+              <Link to='/signup'><Text _hover={{}} fontWeight='500' ml='0.5rem' color='black'>SignUp</Text></Link>
             </Box>
             {/* button  */}
             <Box mt="15px">

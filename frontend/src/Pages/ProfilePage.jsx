@@ -13,19 +13,24 @@ import {
   AbsoluteCenter,
 } from "@chakra-ui/react";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+import UserNavbar from "../components/UserComponents/UserNavbar";
+import { useDispatch, useSelector } from "react-redux";
+import { actionLoginSuccess } from "../Redux/UserReducer/actionType";
 
 const ProfilePage = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userStore = useSelector((store) => store.UserReducer);
+
   // const decode = jwtDecode(creds);
   // console.log(decode);
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(userStore?.name || "");
+  const [email, setEmail] = useState(userStore?.email || "");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
-  const [city, setCity] = useState("");
-  const [job, setJob] = useState("");
-  // console.log(creds);
+  const [age, setAge] = useState(userStore?.age || "");
+  const [city, setCity] = useState(userStore?.place || "");
+  const [job, setJob] = useState(
+    (userStore?.job != "null" && userStore?.job) || ""
+  );
+  const dispatch = useDispatch();
 
   const handleSave = () => {
     // Implement save logic here
@@ -38,15 +43,37 @@ const ProfilePage = () => {
       job,
     };
 
+    const id = userStore?.userId;
+
     axios
-      .patch(`https://arivu-sever-link.onrender.com/users/update/${user.userId}`, obj)
-      .then((res) => console.log(res))
+      .patch(`https://arivu-sever-link.onrender.com/users/update/${id}`, obj)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(actionLoginSuccess(res?.data));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            email: res.data.user.email,
+            name: res.data.user.name,
+            role: res.data.user.role,
+            token: res.data.token,
+            isAuth: true,
+            userId: res.data.user._id,
+            age: res.data.user.age,
+            job: res.data.user.job,
+            place: res.data.user.city,
+          })
+        );
+      })
       .catch((err) => console.log(err));
   };
 
   return (
     <ChakraProvider>
-      <Box maxW="500px" mx="auto" p="4">
+      <Box>
+        <UserNavbar />
+      </Box>
+      <Box maxW="500px" mx="auto" p="4" pt="80px">
         <Center>
           <Avatar
             justifyContent={"center"}
@@ -106,7 +133,6 @@ const ProfilePage = () => {
             isDisabled={
               name === "" ||
               email === "" ||
-              password === "" ||
               age === "" ||
               city === "" ||
               job === ""

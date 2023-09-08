@@ -44,16 +44,19 @@ const Dropdown = () => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            email: "",
-            name: "",
-            role: "",
-            token: "",
-            isAuth: "",
-            isError: "",
-            loading: false,
+            email:"",
+            name:"",
+            "role":"",
+            "token": "",
+            isAuth:"",
+            isError:"",
+            loading:false,
             success: false,
             isUser: false,
-          })
+            userId:"",
+            place:"",
+            age:"",
+        } )
         );
         dispatch(actionUserLogout());
         navigate("/");

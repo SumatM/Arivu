@@ -61,16 +61,19 @@ export function NavBarDrawer({ isOpen, onClose }) {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            email: "",
-            name: "",
-            role: "",
-            token: "",
-            isAuth: "",
-            isError: "",
-            loading: false,
+            email:"",
+            name:"",
+            "role":"",
+            "token": "",
+            isAuth:"",
+            isError:"",
+            loading:false,
             success: false,
             isUser: false,
-          })
+            userId:"",
+            place:"",
+            age:"",
+        } )
         );
         dispatch(actionUserLogout());
         navigate("/");
@@ -140,7 +143,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
                   Logout
                 </Button>
               </Flex>
-            ) :  (
+            ) : (
               <Box
                 borderTop="1px solid #3A3F3F"
                 pt="25px"
@@ -168,7 +171,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
                   </Button>
                 </Link>
               </Box>
-            ) }
+            )}
             {/* personlized settings  */}
             {/* ADMIND options  */}
             {userStore?.role == "admin" && (
@@ -259,7 +262,6 @@ export function NavBarDrawer({ isOpen, onClose }) {
                 </ul>
               </Box>
             }
-            
           </DrawerBody>
         </DrawerContent>
       </Drawer>

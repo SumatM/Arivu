@@ -19,7 +19,7 @@ export const loginFetch = (value) => (dispatch) => {
       dispatch(actionLoginSuccess(res.data));
       localStorage.setItem(
         "user",
-        JSON.stringify({email: res.data.user.email,name: res.data.user.name,role:res.data.user.role,token: res.data.token,isAuth: true})
+        JSON.stringify({email: res.data.user.email,name: res.data.user.name,role:res.data.user.role,token: res.data.token,isAuth: true,userId:res.data.user._id,age:res.data.user.age,job:res.data.user.job,place:res.data.user.city})
       );
       console.log(res);
     })
