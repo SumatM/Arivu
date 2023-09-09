@@ -41,7 +41,8 @@ export default function SinglePage() {
 
   // /courses/:courseID
 
-  let vdo_url = `https://arivu-sever-link.onrender.com/courseVideos/${id}`;
+  let vdo_url = `https://arivu-sever-link.onrender.com/courses/${id}`;
+
 
   const getSinglePageData = (id) => {
     const token = JSON.parse(localStorage.getItem("user")).token;
@@ -55,10 +56,10 @@ export default function SinglePage() {
     })
       .then((res) => res.json())
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         setRes(res);
       })
-      .catch((err) => console.log("error in case of fetch 👎👎👎", err));
+      .catch((err) => console.log( err));
   };
 
   useEffect(() => {
@@ -88,29 +89,9 @@ export default function SinglePage() {
                   fontFamily="sans-serif"
                 >
                   <Box className="space-y-2">
-                    <Box className="breadCrumb text-purple-300 font-bold text-sm ">
-                      <Breadcrumb
-                        spacing="8px"
-                        separator={<FaAngleRight color="gray.500" />}
-                      >
-                        <BreadcrumbItem>
-                          <BreadcrumbLink href="#">Development</BreadcrumbLink>
-                        </BreadcrumbItem>
 
-                        <BreadcrumbItem>
-                          <BreadcrumbLink href="#">
-                            Web Development
-                          </BreadcrumbLink>
-                        </BreadcrumbItem>
-
-                        <BreadcrumbItem isCurrentPage>
-                          <BreadcrumbLink href="#">JavaScript</BreadcrumbLink>
-                        </BreadcrumbItem>
-                      </Breadcrumb>
-                    </Box>
-
-                    <Box className="title " fontSize="2xl" fontWeight="bold">
-                      {res?.course?.title}
+                    <Box className="title "  fontWeight="bold" >
+                      <Text fontSize="2rem">{res?.course?.title || "Course Name"}</Text>
                     </Box>
 
                     <Box className="description text-[16px] font-thin ">
@@ -187,7 +168,7 @@ export default function SinglePage() {
           </Flex>
         </Box>
 
-        <Box mt="40px">
+        {res?.course?.videos?.length ? <Box mt="40px">
           {res?.course?.videos?.map((video) => {
             return (
               <div>
@@ -248,7 +229,9 @@ export default function SinglePage() {
               </div>
             );
           })}
-        </Box>
+        </Box> : <Box mt='3rem' p='1rem 0' borderBottom='1px solid gray' mb='1rem'>
+          <Text fontSize='1.2rem' fontWeight='bold'>We are Working On Content of this course. You will soon get Video.</Text>
+        </Box>}
         
 
         <div>

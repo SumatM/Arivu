@@ -25,7 +25,7 @@ export const showToast = ({ toast, message, color }) => {
   toast({
     position: "top-right",
     top: "100px",
-    duration: 2000,
+    duration: 3000,
     render: () => (
       <Box color="white" p={3} bg={color}>
         {message || 'Something Went Wrong Please Refresh'}

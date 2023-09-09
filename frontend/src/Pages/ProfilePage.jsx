@@ -52,7 +52,7 @@ const ProfilePage = () => {
     const id = userStore?.userId;
 
     axios
-      .patch(`http://localhost:8080/users/update/${id}`, obj)
+      .patch(`https://arivu-sever-link.onrender.com/users/update/${id}`, obj)
       .then((res) => {
         dispatch(actionLoginSuccess(res?.data));
         localStorage.setItem(
