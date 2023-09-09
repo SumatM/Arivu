@@ -2,6 +2,7 @@
 import axios from "axios"
 import { ADD_PRODUCT_SUCCESS, ADD_User_SUCCESS, ADD_Video_SUCCESS, GET_PRODUCT_SUCCESS, GET_User_SUCCESS, GET_Video_SUCCESS, PATCH_PRODUCT_SUCCESS, PATCH_User_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType"
 
+
 const token = JSON.parse(localStorage.getItem('user'))?.token || "";
 
 
@@ -49,6 +50,7 @@ export const addVideo=(data,courseId)=>(dispatch)=>{
 
 
 export const getProduct=(page,limit,search,order)=>(dispatch)=>{
+  console.log(token)
     dispatch({type:PRODUCT_REQUEST})
     axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}`,{
       headers:{

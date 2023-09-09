@@ -31,7 +31,6 @@ const AddUser = () => {
    })
   }
   const handleSubmit=()=>{
-     console.log(detail);
   dispatch(addUser(detail))
   alert("User Added Successfully")
   navigate("/admin/users")

@@ -9,7 +9,7 @@ const UserDashboard = () => {
   const userStore = useSelector((store) => store.UserReducer);
   return (
     <>
-      <Box >
+      <Box>
         <Flex>
           <UserNavbar />
         </Flex>

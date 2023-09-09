@@ -11,11 +11,15 @@ import {
   Avatar,
   Center,
   AbsoluteCenter,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import UserNavbar from "../components/UserComponents/UserNavbar";
 import { useDispatch, useSelector } from "react-redux";
 import { actionLoginSuccess } from "../Redux/UserReducer/actionType";
+import { showToast } from "../components/SignUp";
+import { useNavigate } from 'react-router-dom';
+
 
 const ProfilePage = () => {
   const userStore = useSelector((store) => store.UserReducer);
@@ -31,6 +35,8 @@ const ProfilePage = () => {
     (userStore?.job != "null" && userStore?.job) || ""
   );
   const dispatch = useDispatch();
+  const toast = useToast();
+  const navigate = useNavigate();
 
   const handleSave = () => {
     // Implement save logic here
@@ -46,9 +52,8 @@ const ProfilePage = () => {
     const id = userStore?.userId;
 
     axios
-      .patch(`https://arivu-sever-link.onrender.com/users/update/${id}`, obj)
+      .patch(`http://localhost:8080/users/update/${id}`, obj)
       .then((res) => {
-        console.log(res.data);
         dispatch(actionLoginSuccess(res?.data));
         localStorage.setItem(
           "user",
@@ -64,16 +69,21 @@ const ProfilePage = () => {
             place: res.data.user.city,
           })
         );
+        navigate(-1); 
+        showToast({toast,message:'Profile Updated',color:'green'});
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        showToast({toast,message:'Error occur',color:'green'});
+        console.log(err)
+      });
   };
 
   return (
-    <ChakraProvider>
+    <Box pb="2rem">
       <Box>
         <UserNavbar />
       </Box>
-      <Box maxW="500px" mx="auto" p="4" pt="80px">
+      <Box maxW="500px" mx="auto" p="4" pt="90px" border="1px solid gray">
         <Center>
           <Avatar
             justifyContent={"center"}
@@ -137,13 +147,14 @@ const ProfilePage = () => {
               city === "" ||
               job === ""
             }
+            colorScheme="blue"
             onClick={handleSave}
           >
             Save
           </Button>
         </VStack>
       </Box>
-    </ChakraProvider>
+    </Box>
   );
 };
 

@@ -31,6 +31,10 @@ const courseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  img:{
+    type:String,
+    required:true
+  },
   videos: [{type: mongoose.Schema.Types.ObjectId, ref: "videos"}]
 });
 

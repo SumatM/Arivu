@@ -5,6 +5,7 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Flex,
   Heading,
   Image,
   Stack,
@@ -36,14 +37,13 @@ export default function SinglePage() {
   const [res, setRes] = useState({});
   const { id } = useParams();
 
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // /courses/:courseID
 
-  const getSinglePageData = (id) => {
-    let vdo_url = `https://arivu-sever-link.onrender.com/videos/courseVideos/${id}`;
+  let vdo_url = `https://arivu-sever-link.onrender.com/courseVideos/${id}`;
 
+  const getSinglePageData = (id) => {
     const token = JSON.parse(localStorage.getItem("user")).token;
 
     fetch(vdo_url, {
@@ -54,7 +54,10 @@ export default function SinglePage() {
       },
     })
       .then((res) => res.json())
-      .then((res) => setRes(res))
+      .then((res) => {
+        //console.log(res);
+        setRes(res);
+      })
       .catch((err) => console.log("error in case of fetch 👎👎👎", err));
   };
 
@@ -71,7 +74,7 @@ export default function SinglePage() {
     <div>
       <Navbar />
       <div className=" w-full flex justify-center items-center flex-col">
-        <div className="w-full bg-neutral-800 flex justify-center">
+        <div className="w-full bg-neutral-800 flex justify-center p-5">
           <div
             style={{ paddingTop: "100px" }}
             className=" xl:max-h-[320px] px-2  max-w-[598px] xl:max-w-[900px]"
@@ -111,7 +114,6 @@ export default function SinglePage() {
                     </Box>
 
                     <Box className="description text-[16px] font-thin ">
-                  
                       {res?.course?.description}
                     </Box>
 
@@ -150,19 +152,42 @@ export default function SinglePage() {
                   </Box>
                 </Box>
               </Box>
-              <div className="mt-6 ">
-                <SingleAbsolute
-                  props={{ ...res?.course?.price, onOpen, onClose }}
-                />{" "}
+              <div className="mt-6">
+                <SingleAbsolute props={{ ...res?.course, onOpen, onClose }} />{" "}
               </div>
             </div>
           </div>
         </div>
-
         <div className="max-w-[598px] xl:mr-72">
           <SingleList />
         </div>
-        <Box mt="90px">
+        <Box mt="1rem" bg='#D7DBDD' w='95%' p='5' >
+          <Flex justify='center'>
+            <Heading size="xl">
+              {capitalizeFirstLetter(res?.course?.title)}
+            </Heading>
+          </Flex>
+          <Flex mt="1rem" justify='center'>
+            <Heading size="md">Teacher:</Heading>
+            <Heading size="md" ml='1rem'>
+              {capitalizeFirstLetter(res?.course?.teacher)}
+            </Heading>
+          </Flex>
+          <Flex mt="1rem" justify='center'>
+            <Heading size="md">Course Created:</Heading>
+            <Heading size="md" ml="1rem">
+              {convertDateFormat(res?.course?.createdAt)}
+            </Heading>
+          </Flex>
+          <Flex mt="1rem" justify='center'>
+            <Heading size="md">Total Videos:</Heading>
+            <Heading size="md" ml="1rem">
+              {res?.course?.videos?.length || 0}
+            </Heading>
+          </Flex>
+        </Box>
+
+        <Box mt="40px">
           {res?.course?.videos?.map((video) => {
             return (
               <div>
@@ -196,26 +221,26 @@ export default function SinglePage() {
                   </Box>
                   <Stack>
                     <CardBody>
-                      <Heading size="md">{video.title}</Heading>
+                      <Heading size="md">{video?.title}</Heading>
                       <Text py="2">{video.description}</Text>
                       <Text size="12px">
                         <Text fontWeight="bold" display="inline" mr="5px">
                           Instructor:
                         </Text>
-                        {capitalizeFirstLetter(video.teacher)}
+                        {capitalizeFirstLetter(video?.teacher)}
                       </Text>
                       <Text size="12px">
                         <Text fontWeight="bold" display="inline" mr="5px">
                           Date:
                         </Text>
-                        {convertDateFormat(video.createdAt)}
+                        {convertDateFormat(video?.createdAt)}
                       </Text>
                       <Text size="12px"></Text>
                       <Text>
                         <Text fontWeight="bold" display="inline" mr="5px">
                           Views:
                         </Text>
-                        {video.views}
+                        {video?.views}
                       </Text>
                     </CardBody>
                   </Stack>
@@ -224,6 +249,8 @@ export default function SinglePage() {
             );
           })}
         </Box>
+        
+
         <div>
           <Payment isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
         </div>

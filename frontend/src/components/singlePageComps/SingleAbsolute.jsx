@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { BsStopwatchFill } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Box, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SingleAbsolute = ({ props }) => {
   const [page, setPage] = useState("left");
-  const navigate = useNavigate();
+  const [random,setRandom] = useState(0)
 
-  const { onOpen, onClose } = props;
+  const { onOpen,price } = props;
 
   function handlePayment() {
     onOpen();
   }
+  useEffect(()=>{
+   setRandom( (Math.random()*20).toFixed())
+  },[])
+
 
   return (
     <div className="xl:border text-white  xl:text-black xl:border-white xl:max-w-[280px] xl:shadow-md shadow-neutral-800  xl:bg-white">
@@ -53,7 +57,7 @@ const SingleAbsolute = ({ props }) => {
       <div className="px-[24px]">
         <div>
           <h3 className="font-serif font-bold max-w-[250px] py-1 ">
-            Subscribe to Udemy's top courses
+            Subscribe to Arivu's top courses
           </h3>
           <p className="text-[10px]">
             Get this course, plus 8,000+ of our top-rated courses with Personal
@@ -62,7 +66,7 @@ const SingleAbsolute = ({ props }) => {
               Learn more
             </a>
           </p>
-          <button className="bg-fuchsia-700  w-full py-[7px] font-semibold my-2">
+          <button className="bg-fuchsia-700  w-full py-[7px] font-semibold my-2" onClick={handlePayment}>
             Start subscription
           </button>
           <div className="w-full justify-center items-center flex flex-col space-y-[8px]">
@@ -77,15 +81,18 @@ const SingleAbsolute = ({ props }) => {
         </div>
 
         <div className="flex space-x-2 place-items-baseline">
-          <p className="font-bold text-sm">₹649</p>
-          <p className="line-through text-xs ">₹3299</p>
-          <p className="text-xs">80% off</p>
+          <p className="font-bold text-sm">₹{price}</p>
+          <p className="line-through text-xs ">₹{((price*(+random+100))/100).toFixed()}</p>
+          <p className="text-xs">{random} off</p>
         </div>
         <div className="flex text-red-600 items-baseline space-x-1 my-2">
           {/* <BsStopwatchFill/> */}
           <p className="text-xs font-bold">52 minutes </p>
           <p className="text-xs">left at this price!</p>
         </div>
+        <Box>
+            <Text>{}</Text>
+        </Box>
         <button
           onClick={handlePayment}
           className=" border-2 w-full py-[7px] text-sm font-bold"
@@ -100,13 +107,13 @@ const SingleAbsolute = ({ props }) => {
 
         <div className="underline flex text-[11px] font-bold justify-around underline-offset-2 pb-7">
           <div>
-            <a href="http://">share</a>
+            <Link to=''>share</Link>
           </div>
           <div>
-            <a href="">Gift this course</a>
+            <Link to=''>Gift this course</Link>
           </div>
           <div>
-            <a href="">ApplyCoupan</a>
+            <Link to=''>ApplyCoupan</Link>
           </div>
         </div>
       </div>

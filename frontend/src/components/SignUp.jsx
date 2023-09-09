@@ -25,9 +25,10 @@ export const showToast = ({ toast, message, color }) => {
   toast({
     position: "top-right",
     top: "100px",
+    duration: 2000,
     render: () => (
       <Box color="white" p={3} bg={color}>
-        {message}
+        {message || 'Something Went Wrong Please Refresh'}
       </Box>
     ),
   });
@@ -53,11 +54,9 @@ const SignUp = () => {
 
   const userStore = useSelector((store) => store.UserReducer);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [eyeclose, seteyeMoment] = useState(false);
   const toast = useToast();
-  const [toastkey, setToastKey] = useState(true);
 
   // will show the input element when click on element
   function showInput(e) {

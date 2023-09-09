@@ -69,13 +69,14 @@ const Login = () => {
     }
   }
 
-  // login function
 
+
+  // login function
   function handleLogin() {
     dispatch(loginFetch(form)).then((res) => {
-      console.log(userStore?.message)
-      if(userStore?.message=="User LogIn Success"){
-        showToast({toast,message:userStore?.message,color:'green'})
+   const user = JSON.parse(localStorage.getItem('user'))
+      if(user?.message){
+        showToast({toast,message:'Login Successful',color:'green'})
         setForm({ email: "", password: "" });
       }else{
         showToast({toast,message:userStore?.isError,color:'red'})

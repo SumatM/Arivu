@@ -21,7 +21,8 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 import { useParams } from "react-router";
-import { Input, keyframes } from "@chakra-ui/react";
+import { Input, keyframes, useToast } from "@chakra-ui/react";
+import { showToast } from "../../components/SignUp";
 
 export default function Payment({ isOpen, onOpen, onClose }) {
   const { id } = useParams();
@@ -34,33 +35,23 @@ export default function Payment({ isOpen, onOpen, onClose }) {
 
   const [course, setCourse] = useState({});
   const vpiRef = useRef(null);
+  const toast = useToast();
 
   useEffect(() => {
-    const source = axios.CancelToken.source();
     const fetchCourse = async () => {
       try {
         const res = await axios.get(`${baseURL}/courses/${courseId}`, {
           headers: {
-            Authorization: `bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
-          cancelToken: source.token,
         });
-        // console.log(res.data.course);
         setCourse(res.data.course);
       } catch (err) {
-        if (axios.isCancel(err)) {
-          console.log("Request canceled:", err.message);
-        } else {
-          console.log(err);
-        }
+        console.log(err);
       }
     };
 
     fetchCourse();
-
-    return () => {
-      source.cancel("Component unmounted");
-    };
   }, []);
 
   // will show the box when click on upi
@@ -86,6 +77,33 @@ export default function Payment({ isOpen, onOpen, onClose }) {
 
   // handle payment
   function handlePayment() {
+    axios
+      .post(
+        `${baseURL}/users/addCourse/${courseId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        showToast({
+          toast,
+          message: res?.data?.message || res?.data?.msg,
+          color: "green",
+        });
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
+        showToast({
+          toast,
+          message: err?.response.data.error || err?.message,
+          color: "red",
+        });
+        onClose();
+      });
     setinput("");
   }
 
@@ -117,25 +135,23 @@ export default function Payment({ isOpen, onOpen, onClose }) {
                   </Box>
                   <Box>
                     <Heading size="sm">Total</Heading>
-                    <Heading size="xs">₹{course[0]?.price}</Heading>
+                    <Heading size="xs">₹{course?.price}</Heading>
                   </Box>
                 </Flex>
                 {/* 2nd bar  */}
 
                 <Flex>
                   <Box mr="5px">
-                    <Text>
-                      Module: {capitalizeFirstLetter(course[0]?.title)}
-                    </Text>
+                    <Text>Module: {capitalizeFirstLetter(course?.title)}</Text>
                   </Box>
                   <Box m="0 7px">
                     <Text>
-                      Instructor: {capitalizeFirstLetter(course[0]?.teacher)}
+                      Instructor: {capitalizeFirstLetter(course?.teacher)}
                     </Text>
                   </Box>
                 </Flex>
                 <Text fontSize="12px">{`Number of video you are getting ${
-                  course[0]?.videos?.length || 1
+                  course?.videos?.length || 1
                 }`}</Text>
 
                 {/* Address */}

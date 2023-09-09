@@ -92,7 +92,9 @@ userRouter.post("/login", async (req, res) => {
           }
         );
         if (result) {
-          res.status(202).json({ msg: "User LogIn Success", token, rToken, user });
+          res
+            .status(202)
+            .json({ msg: "User LogIn Success", token, rToken, user });
         } else {
           res.status(401).json({ msg: "invalid credentials" });
         }
@@ -115,7 +117,8 @@ userRouter.patch("/update/:userId", async (req, res) => {
 
   try {
     let insertpayload;
-    if(!payload?.password){
+    if (!payload?.password) {
+      delete payload.password;
       await UserModel.findByIdAndUpdate({ _id: userId }, payload);
       const user = await UserModel.findOne({ _id: userId });
       res.status(200).json({ msg: "user updated successfully", user });
@@ -164,7 +167,6 @@ userRouter.delete("/delete/:userId", auth, async (req, res) => {
 // EndPoint: /users/logout
 // FRONTEND: when users want to logout
 userRouter.post("/logout", (req, res) => {
-  
   try {
     const token = req.headers.authorization?.split(" ")[1];
     const newToken = BlackListModel({ token });
@@ -210,12 +212,14 @@ userRouter.post("/addCourse/:courseId", auth, async (req, res) => {
         if (course) {
           res
             .status(400)
-            .json({ error: "Course is already present for the user" });
+            .json({ error: "You already have Suscribed the Course" });
         } else {
           let user = await UserModel.findByIdAndUpdate(id, {
             $push: { course: courseId },
           });
-          res.status(201).json({ message: "course added", user });
+          res
+            .status(201)
+            .json({ message: "You have Suscribe the Course", user });
         }
       })
       .catch((error) => {

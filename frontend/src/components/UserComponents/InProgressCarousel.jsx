@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -68,10 +68,38 @@ const InProgressCarousel = () => {
   }, []);
 
   return (
-    <Flex direction={"column"} width="90%" p={"20px"} m={"auto"}>
-      <Slider {...settings}>
+    <Flex
+      direction={"column"}
+      width="90%"
+      p="2rem"
+      m={"auto"}
+      h={{
+        sm: "420px",
+        md: "450px",
+        lg: "450px",
+      }}
+      overflow="hidden"
+    >
+    {course?.length!==0 ?       <Slider {...settings}>
         {!loading ? course.map((el) => <Card {...el} key={el._id} />) : ""}
-      </Slider>
+      </Slider> : (
+        <Box
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          bg="#F7F3EA"
+          p="4"
+        >
+          <Box w={{ base: "100%", md: "50%", lg: "30%" }}>
+            <Image
+              display="block"
+              src="https://cdn.dribbble.com/users/1693462/screenshots/3504905/media/6d5a0df598037bf7a872f1f8aef118b8.gif"
+              alt="Empyt"
+            />
+          </Box>
+          <Text fontWeight="bold">You haven't subscribe any course</Text>
+        </Box>
+      )}
     </Flex>
   );
 };

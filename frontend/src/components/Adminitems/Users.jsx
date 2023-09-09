@@ -95,7 +95,7 @@ const Users = () => {
           <Th>Subscribed Course</Th>
         </Tr>
       </Thead>
-     {store.length>0 && store.map((el,i)=>{
+     {store?.length>0 && store?.map((el,i)=>{
         return  <Tbody key={i}>
         <Tr>
           <Td>{el.name}</Td>
