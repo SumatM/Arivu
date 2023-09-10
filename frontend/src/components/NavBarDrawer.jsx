@@ -182,7 +182,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
             )}
             {/* personlized settings  */}
             {/* ADMIND and teacher options  */}
-            {userStore?.role == "admin" || userStore?.role=='teacher' && (
+            {userStore?.role == "admin" || userStore?.role=='teacher' ? (
               <Box p="0.5rem 0" borderTop="1px solid #3A3F3F">
                 <Box>
                   <Link to="/profile">
@@ -255,7 +255,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
                   </Link>
                 </Box>
               </Box>
-            )}
+            ) : ""}
 
             {/* users options  */}
             {userStore?.role == "user" && (

@@ -148,7 +148,7 @@ const Dropdown = () => {
             )}
             {/* admin options */}
 
-            {userStore?.role == "admin" || userStore?.role=='teacher' && (
+            {userStore?.role == "admin" || userStore?.role=='teacher' ? (
               <Box >
                 <Link to="/profile">
                   <MenuItem
@@ -241,7 +241,7 @@ const Dropdown = () => {
                   </MenuItem>
                 </Link>
               </Box>
-            )}
+            ) : ''}
           </MenuList>
         </Menu>
       </Box>
