@@ -5,7 +5,7 @@ import "./adminRoute.css";
 
 export const AdminRoute = ({ children }) => {
   const userStore = useSelector((store) => store.UserReducer);
-  if (userStore?.role == "admin") {
+  if (userStore?.role == "admin" || userStore?.role=='teacher') {
     return (
       <>
         <Box>

@@ -8,7 +8,7 @@ function App() {
   const userStore = useSelector((store)=>store.UserReducer);
   return (
     <div className="App">
-    {userStore?.role=='admin' ? <Navbar/> : null}
+    {userStore?.role == "admin" || userStore?.role=='teacher' ? <Navbar/> : null}
       <AllRoute />
     </div>
   );

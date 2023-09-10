@@ -92,7 +92,7 @@ const Login = () => {
   if (userStore.isAuth) {
     if(userStore?.role==='user'){
       navigate("/arivu");
-    }else if(userStore?.role=='admin'){
+    }else if(userStore?.role == "admin" || userStore?.role=='teacher'){
       navigate("/admin/dashboard");
     }
   }

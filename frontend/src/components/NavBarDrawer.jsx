@@ -120,7 +120,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
             {userStore?.isAuth ? (
               <Flex justify="space-between" alignItems="center">
                 <Box p="1.5rem 0">
-                  {userStore?.role == "admin" ? (
+                  {userStore?.role == "admin" || userStore?.role=='teacher' ? (
                     <Flex alignItems={"center"}>
                       <Box>
                         <FaUserShield size="2rem" color="#0056d2" />
@@ -181,8 +181,8 @@ export function NavBarDrawer({ isOpen, onClose }) {
               </Box>
             )}
             {/* personlized settings  */}
-            {/* ADMIND options  */}
-            {userStore?.role == "admin" && (
+            {/* ADMIND and teacher options  */}
+            {userStore?.role == "admin" || userStore?.role=='teacher' && (
               <Box p="0.5rem 0" borderTop="1px solid #3A3F3F">
                 <Box>
                   <Link to="/profile">

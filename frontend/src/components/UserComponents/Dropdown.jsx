@@ -92,8 +92,8 @@ const Dropdown = () => {
             <Box >
               <Flex justify="space-between" alignItems="center">
                 <Box p="1.5rem 0">
-                  {userStore?.role == "admin" ? (
-                    <Flex alignItems={"center"}>
+                  {userStore?.role == "admin" || userStore?.role=='teacher' ? (
+                    <Flex alignItems={"center"} >
                       <Box>
                         <FaUserShield size="2rem" color="#0056d2" />
                         <Text fontSize="0.6rem" fontWeight="bold">
@@ -148,7 +148,7 @@ const Dropdown = () => {
             )}
             {/* admin options */}
 
-            {userStore?.role == "admin" && (
+            {userStore?.role == "admin" || userStore?.role=='teacher' && (
               <Box >
                 <Link to="/profile">
                   <MenuItem
