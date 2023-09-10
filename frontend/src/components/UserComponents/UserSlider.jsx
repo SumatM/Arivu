@@ -32,6 +32,18 @@ const UserSlider = () => {
     "Successful Career",
   ];
 
+  const indexDescription = [
+    "Arivu encourages collaborative group studies, creating a vibrant learning environment where students can connect and learn together. It offers a versatile platform for educators to share their knowledge, helping students excel academically.",
+    "Secure your degree from renowned institutes with Arivu's comprehensive education solutions. Arivu provides access to globally recognized institutions, ensuring students receive quality education and gain valuable qualifications for their future careers.",
+    "Arivu unlocks access to prestigious educational institutions, elevating your academic journey to new heights. With Arivu, you can explore a world of educational opportunities, expanding your knowledge and skills in various fields.",
+    "Experience dynamic online classes on Arivu's intuitive platform, tailored to modern learners' needs. Arivu's user-friendly interface and interactive features make online learning engaging and effective, helping students succeed in today's digital age.",
+    "Access meticulously crafted study notes on Arivu to enhance your understanding and retention of course materials. Arivu's comprehensive study resources empower students to excel in their studies and gain a deeper understanding of their subjects.",
+    "Arivu is your gateway to a successful career, offering the knowledge and skills needed for professional excellence. With Arivu, you can prepare for a bright future and achieve your career goals through high-quality education and training."
+  ];
+  
+  
+  
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleChange = (value) => {
@@ -61,13 +73,13 @@ const UserSlider = () => {
   }, []);
   return (
     <>
-      <Container mt="100px" maxW="container.xxl">
-        <Flex direction="column" align="center">
+      <Container mt="100px" maxW="container.xxl" >
+        <Flex direction="column" align="center" bg='#F7F3EA'>
           <Flex align="center" justify="space-between" mb={4}>
-            <Button borderRadius={"50%"} onClick={handlePrevious}>
+            <Button colorScheme="blue" borderRadius={"50%"} onClick={handlePrevious}>
               <ArrowLeftIcon />
             </Button>
-            <Box position="relative">
+            <Box position="relative" p='2'>
               <Image
                 w={"2000px"}
                 h={"400px"}
@@ -77,7 +89,7 @@ const UserSlider = () => {
               <Box
                 position="absolute"
                 bottom="10"
-                w='100%'
+                w="100%"
                 color="rgba(255, 255, 255, 0.8)"
                 p="8px"
                 display="flex"
@@ -96,7 +108,7 @@ const UserSlider = () => {
                 </Text>
               </Box>
             </Box>
-            <Button borderRadius={"50%"} onClick={handleNext}>
+            <Button colorScheme="blue" borderRadius={"50%"} onClick={handleNext}>
               <ArrowRightIcon />
             </Button>
           </Flex>
@@ -113,7 +125,20 @@ const UserSlider = () => {
             </SliderTrack>
             <SliderThumb /> */}
           </Slider>
+          <Box pb='3rem' w='80%' m='auto' p='4'>
+          <Text>
+            <Heading
+              size="md"
+              fontWeight='500'
+              letterSpacing="2px"
+              lineHeight='2rem'
+            >
+              {indexDescription[currentIndex]}
+            </Heading>
+          </Text>
+        </Box>
         </Flex>
+        
       </Container>
     </>
   );

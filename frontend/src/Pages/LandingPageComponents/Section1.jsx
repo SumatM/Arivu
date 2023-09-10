@@ -36,9 +36,7 @@ const Section1 = () => {
           }}
           fontWeight="semibold"
         >
-          Start, switch, or advance your career with more than 5,800 courses,
-          Professional Certificates, and degrees from world-class universities
-          and companies.
+          <Text fontSize='2rem' color="#0056d2" display='inline'>Arivu</Text> Where Educators and Students Connect Seamlessly Online. Teachers craft personalized courses for various subjects and grades, while students explore and purchase courses tailored to their needs. Empowering both educators and learners, Arivu revolutionizes online education.
         </Text>
         <Flex
           gap={30}
