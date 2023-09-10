@@ -78,9 +78,13 @@ export function NavBarDrawer({ isOpen, onClose }) {
             age: "",
           })
         );
-        dispatch(actionUserLogout())
-        showToast({ toast, message: "You have Logout Successfully",color:'green' });
-          navigate("/");
+        dispatch(actionUserLogout());
+        showToast({
+          toast,
+          message: "You have Logout Successfully",
+          color: "green",
+        });
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -112,7 +116,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
               <RxCross2 size="1.5rem" onClick={onClose} />
             </Box>
           </DrawerHeader>
-          <DrawerBody>
+          <DrawerBody >
             {userStore?.isAuth ? (
               <Flex justify="space-between" alignItems="center">
                 <Box p="1.5rem 0">
@@ -180,40 +184,76 @@ export function NavBarDrawer({ isOpen, onClose }) {
             {/* ADMIND options  */}
             {userStore?.role == "admin" && (
               <Box p="0.5rem 0" borderTop="1px solid #3A3F3F">
-                <Link to="/profile">
-                  <Flex alignItems={"center"} justify="space-between">
+                <Box>
+                  <Link to="/profile">
                     <Text fontSize="0.8rem" p="1rem 0">
                       Your Account
                     </Text>
-                    <IoIosArrowForward />
-                  </Flex>
-                </Link>
-
-                <Link to="/arivu">
-                  <Flex alignItems={"center"} justify="space-between">
-                    <Text fontSize="0.8rem" p="1rem 0">
+                  </Link>
+                  <Link to="/arivu">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
                       User Dashboard
                     </Text>
-                    <IoIosArrowForward />
-                  </Flex>
-                </Link>
-
-                <Link to="/admin/dashboard">
-                  <Flex alignItems={"center"} justify="space-between">
-                    <Text fontSize="0.8rem" p="1rem 0">
+                  </Link>
+                  <Link to="/admin/dashboard">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
                       Admin Dashboard
                     </Text>
-                    <IoIosArrowForward />
-                  </Flex>
-                </Link>
-                <Link to="/admin/setting">
-                  <Flex alignItems={"center"} justify="space-between">
-                    <Text fontSize="0.8rem" p="1rem 0">
-                      Admin Setting
+                  </Link>
+                  <Link to="/admin/courses">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      Courses
                     </Text>
-                    <IoIosArrowForward />
-                  </Flex>
-                </Link>
+                  </Link>
+                  <Link to="/admin/users">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      Users
+                    </Text>
+                  </Link>
+                  <Link to="/admin/videos">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      AllVideos
+                    </Text>
+                  </Link>
+                  <Link to="/admin/discount">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      Discount
+                    </Text>
+                  </Link>
+                  <Link to="/admin/giftcard">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      GiftCards
+                    </Text>
+                  </Link>
+                  <Link to="/admin/statistic">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      Statistics
+                    </Text>
+                  </Link>
+                  <Link to="/admin/setting">
+                    <Text
+                      fontSize="0.8rem" p="1rem 0"
+                    >
+                      Settings
+                    </Text>
+                  </Link>
+                </Box>
               </Box>
             )}
 

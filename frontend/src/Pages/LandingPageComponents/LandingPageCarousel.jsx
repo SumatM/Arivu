@@ -74,7 +74,7 @@ const LandingPageCarousel = () => {
   }, []);
 
   return (
-    <Flex direction={"column"} width="80%" p={"20px"} m={"auto"}>
+    <Flex direction={"column"} width="80%" p={"20px"} m={"auto"} >
       <Slider {...settings}>
         {!loading
           ? course?.map((el) => <Card {...el} key={el._id} />)

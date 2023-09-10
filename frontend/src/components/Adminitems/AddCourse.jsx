@@ -24,6 +24,7 @@ const AddCourse = () => {
     description: "",
     category: "",
     price: "",
+    img:""
   };
 
   const [detail, setDetail] = useState(obj);
@@ -43,8 +44,8 @@ const AddCourse = () => {
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      <AdminSidebar />
-      <Box>
+      {/* <AdminSidebar /> */}
+      <Box mt='80px'>
         <AdminNavTop />
 
         <Box border={"2px solid gray"} borderRadius={10} p={10} h="90%">
@@ -84,6 +85,16 @@ const AddCourse = () => {
               placeholder="Enter Course price"
               name="price"
               value={Number(detail.price)}
+              onChange={handleChange}
+            />
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>Thumbnail</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Course thumbnail Link"
+              name="img"
+              value={detail?.img}
               onChange={handleChange}
             />
           </FormControl>

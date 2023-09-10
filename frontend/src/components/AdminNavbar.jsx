@@ -12,7 +12,7 @@ const AdminNavbar = () => {
   return (
     <Box >
       <Grid className='Nav'  h={'99vh'} w='94%' gap={10} bg='red'>
-   <AdminSidebar/> 
+   {/* <AdminSidebar/>  */}
       <Box >
    
     <AdminNavTop bg='green'/>

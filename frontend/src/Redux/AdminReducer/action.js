@@ -36,7 +36,8 @@ export const addUser=(data)=>(dispatch)=>{
 }
 export const addVideo=(data,courseId)=>(dispatch)=>{
   dispatch({type:PRODUCT_REQUEST})
-  fetch(`https://arivu-sever-link.onrender.com/videos/add/${courseId}`,{
+  delete data.courseId
+  fetch(`http://localhost:8080//videos/add/${courseId}`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -50,7 +51,6 @@ export const addVideo=(data,courseId)=>(dispatch)=>{
 
 
 export const getProduct=(page,limit,search,order)=>(dispatch)=>{
-  console.log(token)
     dispatch({type:PRODUCT_REQUEST})
     axios.get(`https://arivu-sever-link.onrender.com/courses?page=${page}&limit=${limit}&q=${search}&sortBy=price&sortOrder=${order}`,{
       headers:{
@@ -139,5 +139,10 @@ export default function convertDateFormat(dateString) {
   const year = date.getFullYear().toString().slice(-2);
 
   const formattedDate = `${day}/${month}/${year}`;
+
+  if(isNaN(day)){
+    return 'No Date Found'
+  }
+
   return formattedDate;
 }

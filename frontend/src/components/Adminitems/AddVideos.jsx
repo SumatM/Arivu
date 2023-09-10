@@ -24,6 +24,8 @@ const AddVideo = () => {
     description: "",
     link: "",
     views: "",
+    img: "",
+    courseId: "",
   };
 
   const [detail, setDetail] = useState(obj);
@@ -36,15 +38,15 @@ const AddVideo = () => {
   };
   const handleSubmit = () => {
     // console.log(detail);
-    dispatch(addVideo(detail, courseId));
-    alert("User Added Successfully");
+    dispatch(addVideo(detail, detail.courseId));
+    alert("Video Added Successfully");
     navigate("/admin/videos");
   };
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      <AdminSidebar />
-      <Box>
+      {/* <AdminSidebar /> */}
+      <Box mt='80px'>
         <AdminNavTop />
 
         <Box border={"2px solid gray"} borderRadius={10} p={10} h="90%">
@@ -52,12 +54,23 @@ const AddVideo = () => {
             <FormLabel>Title</FormLabel>
             <Input
               type="text"
-              placeholder="Enter Course Title"
+              placeholder="Enter Video Title"
               name="title"
               value={detail.title}
               onChange={handleChange}
             />
           </FormControl>
+          <FormControl>
+            <FormLabel>CourseID</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter The Course Id to add video"
+              name="courseId"
+              value={detail.courseId}
+              onChange={handleChange}
+            />
+          </FormControl>
+
           <FormControl mt={4}>
             <FormLabel>Description</FormLabel>
             <Textarea
@@ -81,10 +94,20 @@ const AddVideo = () => {
           <FormControl mt={4}>
             <FormLabel>Views</FormLabel>
             <Input
-              type="text"
+              type="number"
               placeholder="Enter Total Views"
               name="views"
               value={detail.views}
+              onChange={handleChange}
+            />
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>Thumbnail</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Video Thumbnail"
+              name="img"
+              value={detail.img}
               onChange={handleChange}
             />
           </FormControl>

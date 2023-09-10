@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { FaGraduationCap } from "react-icons/fa";
 import { Link } from "react-router-dom";
-const Card = ({ course, title, category, description, _id }) => {
+const Card = ({ course, title, category, description, _id,img }) => {
   const image = [
     "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/ddp/branding/mba-macquarie/thumbnail.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=204&fit=crop&q=50",
     "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/ddp/branding/bachelor-of-science-computer-science-bits/2c1c9800-93b0-48df-b278-a5246da9e086.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=204&q=50&fit=crop",
@@ -30,9 +30,10 @@ const Card = ({ course, title, category, description, _id }) => {
         _hover={{ boxShadow: "2xl", cursor: "pointer" }}
       >
         <Image
-          src={image[Math.floor(Math.random() * length)]}
+          src={img || image[Math.floor(Math.random() * length)]}
           alt={title}
           objectFit="cover"
+          h='150px'
         />
         <Box display="flex" alignItems="center" mb={2}>
           <Image src={miniimg} alt="Logo" boxSize={4} mr={2} />
@@ -54,7 +55,7 @@ const Card = ({ course, title, category, description, _id }) => {
           {title}
         </Text>
         <Text fontSize="sm" mb={2} textTransform={"capitalize"}>
-          {description}
+          {description.substring(0,80)}...
         </Text>
         <Flex color="#0056d2" fontFamily={"poppins"} gap={2}>
           <Flex alignItems={"center"}>

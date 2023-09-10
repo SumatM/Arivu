@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ const SingleAbsolute = ({ props }) => {
   const [page, setPage] = useState("left");
   const [random,setRandom] = useState(0)
 
-  const { onOpen,price } = props;
+  const { onOpen,price,img } = props;
 
   function handlePayment() {
     onOpen();
@@ -20,16 +20,8 @@ const SingleAbsolute = ({ props }) => {
     <div className="xl:border text-white  xl:text-black xl:border-white xl:max-w-[280px] xl:shadow-md shadow-neutral-800  xl:bg-white">
       <div>
         <div>
-          <iframe
-            className="w-full xl:h-[200px] h-[300px]"
-            width=""
-            height=""
-            src="https://www.youtube.com/embed/MrLnibFTtbA"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          ></iframe>
+          <Image src={img} />
+          
         </div>
         <div className="flex justify-around font-semibold text-sm h-[48px] items-center ">
           <div

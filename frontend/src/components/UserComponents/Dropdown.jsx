@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionUserLogout } from "../../Redux/UserReducer/actionType";
 import { BiUserCircle } from "react-icons/bi";
 import { FaUserShield } from "react-icons/fa";
-import {FiMoreVertical} from 'react-icons/fi'
+import { FiMoreVertical } from "react-icons/fi";
 import { capitalizeFirstLetter } from "../../Redux/UserReducer/action";
 const Dropdown = () => {
   const navigate = useNavigate();
@@ -44,19 +44,19 @@ const Dropdown = () => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            email:"",
-            name:"",
-            "role":"",
-            "token": "",
-            isAuth:"",
-            isError:"",
-            loading:false,
+            email: "",
+            name: "",
+            role: "",
+            token: "",
+            isAuth: "",
+            isError: "",
+            loading: false,
             success: false,
             isUser: false,
-            userId:"",
-            place:"",
-            age:"",
-        } )
+            userId: "",
+            place: "",
+            age: "",
+          })
         );
         dispatch(actionUserLogout());
         navigate("/");
@@ -80,18 +80,16 @@ const Dropdown = () => {
               cursor: "pointer",
             }}
           >
-            <Flex alignItems='center'>
-           <Text>
-           Profile
-           </Text>
-            <Box ml='0.2rem'>
-            <FiMoreVertical/>
-            </Box>
+            <Flex alignItems="center">
+              <Text>Profile</Text>
+              <Box ml="0.2rem">
+                <FiMoreVertical />
+              </Box>
             </Flex>
           </MenuButton>
-          <MenuList p={5}>
+          <MenuList p={5} w='25vw' overflow={userStore?.role=='admin' ? 'scroll' : ''} h={userStore?.role=='admin' ? '90vh' : ''} pb='4'>
             {/* user options  */}
-            <Box>
+            <Box >
               <Flex justify="space-between" alignItems="center">
                 <Box p="1.5rem 0">
                   {userStore?.role == "admin" ? (
@@ -129,12 +127,20 @@ const Dropdown = () => {
             {/* users options  */}
             {userStore?.role == "user" && (
               <Box>
-                <MenuItem p='0.7rem 0' onClick={handleProfileClick} fontWeight="500" >
+                <MenuItem
+                  p="0.7rem 0"
+                  onClick={handleProfileClick}
+                  fontWeight="500"
+                >
                   Your Account
                 </MenuItem>
 
                 <Link to="/arivu">
-                  <MenuItem p='0.7rem 0' fontWeight="500" borderTop="1px solid #D7DBDD">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
                     DashBoard
                   </MenuItem>
                 </Link>
@@ -143,26 +149,95 @@ const Dropdown = () => {
             {/* admin options */}
 
             {userStore?.role == "admin" && (
-              <Box>
+              <Box >
                 <Link to="/profile">
-                  <MenuItem p='0.7rem 0' fontWeight="500" borderTop="1px solid #D7DBDD">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
                     Your Account
                   </MenuItem>
                 </Link>
-
                 <Link to="/arivu">
-                  <MenuItem p='0.7rem 0' fontWeight="500" borderTop="1px solid #D7DBDD">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
                     User Dashboard
                   </MenuItem>
                 </Link>
                 <Link to="/admin/dashboard">
-                  <MenuItem p='0.7rem 0' fontWeight="500" borderTop="1px solid #D7DBDD">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
                     Admin Dashboard
                   </MenuItem>
                 </Link>
+                <Link to="/admin/courses">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    Courses
+                  </MenuItem>
+                </Link>
+                <Link to="/admin/users">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    Users
+                  </MenuItem>
+                </Link>
+                <Link to="/admin/videos">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    AllVideos
+                  </MenuItem>
+                </Link>
+                <Link to="/admin/discount">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    Discount
+                  </MenuItem>
+                </Link>
+                <Link to="/admin/giftcard">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    GiftCards
+                  </MenuItem>
+                </Link>
+                <Link to="/admin/statistic">
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    Statistics
+                  </MenuItem>
+                </Link>
                 <Link to="/admin/setting">
-                  <MenuItem p='0.7rem 0' fontWeight="500" borderTop="1px solid #D7DBDD">
-                    Admin Setting
+                  <MenuItem
+                    p="0.7rem 0"
+                    fontWeight="500"
+                    borderTop="1px solid #D7DBDD"
+                  >
+                    Settings
                   </MenuItem>
                 </Link>
               </Box>

@@ -50,7 +50,7 @@ const Navbar = () => {
         bg="#f5f5f5"
         boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
         position="fixed"
-        width="100%"
+        width="100vw"
         zIndex={12}
         top={0}
       >

@@ -56,7 +56,6 @@ videoRoute.post('/add/:courseId', async (req,res)=>{
     const data = req.body
     const courseId = req.params.courseId;
       const video = await  VideoModel.findOne({title:req.body.title,link:req.body.link})
-     // console.log(video)
     if(!video){
          const video = new VideoModel({...data,courseId:courseId,teacher:req.body.username,teacherId:req.body.userId});
            video.save();

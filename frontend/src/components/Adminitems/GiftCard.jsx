@@ -101,8 +101,8 @@ const GiftCard = () => {
 
   return (
     <Grid className="Nav" h={"99vh"} w="94%" gap={10}>
-      <AdminSidebar />
-      <Box>
+      {/* <AdminSidebar /> */}
+      <Box mt='80px'>
         <AdminNavTop />
         {/*  */}
         <Grid

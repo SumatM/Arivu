@@ -33,6 +33,11 @@ const videoSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  img:{
+    type: String,
+    require: true
+  }
+  ,
   courseId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'course',
