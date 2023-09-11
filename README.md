@@ -1,4 +1,4 @@
-# Arivu <img width='20%' src="https://raw.githubusercontent.com/SumatM/Arivu/main/frontend/public/favicon.ico"/>
+# Arivu <img width='10%' src="https://raw.githubusercontent.com/SumatM/Arivu/main/frontend/public/favicon.ico"/>
 
 
 
@@ -86,7 +86,7 @@ Arivu allows teachers to create personalized courses, while students can explore
 
 | Desktop View | Mobile View |
 | :---: | :---: |
-| ![Deskstop View]() | ![Mobile View](https://raw.githubusercontent.com/SumatM/Arivu/main/frontend/public/mobileScreen/studentHamburger.jpg) |
+| ![Deskstop View](https://raw.githubusercontent.com/SumatM/Arivu/main/frontend/public/desktopScreen/userNavbar.png) | ![Mobile View](https://raw.githubusercontent.com/SumatM/Arivu/main/frontend/public/mobileScreen/studentHamburger.jpg) |
 
 ## Payment
 
